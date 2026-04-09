@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KELMATICA - Inicio</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo.png" alt="Logo KELMATICA">
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item active"><a href="index.html">INICIO</a></li>
+                <li class="nav-item"><a href="nosotros.html">NOSOTROS</a></li>
+                <li class="nav-item"><a href="servicios.html">SERVICIOS</a></li>
+                <li class="nav-item"><a href="galeria.html">GALERIA</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="k-login-overlay" id="login-overlay">
+    <button class="k-close-btn" id="close-login">&times;</button>
+    <div class="k-login-content">
+        
+        <div class="k-login-box">
+            <div class="k-icon-gold"><i class="fa-solid fa-gem"></i></div>
+            <h2>Soy amante del arte, un coleccionista</h2>
+            <p>Crea una cuenta para guardar tus favoritos y recibir ofertas personalizadas.</p>
+            
+            <div class="k-email-login-group">
+                <input type="email" id="user-email" placeholder="Ingresa tu correo electrónico" class="k-input-field">
+                <button class="k-btn-main">INGRESAR CON EMAIL</button>
+                
+                <div class="k-login-help" id="login-help">
+                    <a href="#" class="k-help-link">Crear cuenta</a>
+                    <span class="k-help-sep">|</span>
+                    <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+
+            <span class="k-sep">o</span>
+            
+            <div class="k-socials">
+                <button class="k-btn-social"><i class="fa-brands fa-google"></i> Continuar con Google</button>
+                <button class="k-btn-social"><i class="fa-brands fa-facebook-f"></i> Continuar con Facebook</button>
+            </div>
+        </div>
+
+        <div class="k-login-box">
+            <div class="k-icon-gold"><i class="fa-solid fa-palette"></i></div>
+            <h2>Soy un artista o Administrador</h2>
+            <p>Si eres Artista o Administrador gestiona tu cuenta.</p>
+            
+            <div class="k-admin-form" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+                <div class="k-input-group" style="text-align: left;">
+                    <label class="k-label" style="display: block; color: #c5a059; font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase;"></label>
+                    <select id="user-role" class="k-input-field k-select" style="width: 100%;">
+                        <option value="" disabled selected>¿Que eres?</option>
+                        <option value="artista">Artista</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                </div>
+
+                <input type="text" id="admin-user" placeholder="Usuario" class="k-input-field">
+                
+                <input type="password" id="admin-pass" placeholder="Contraseña" class="k-input-field">
+                
+                <button id="btn-admin-login" class="k-btn-main">INGRESAR AL PANEL</button>
+                <div id="admin-error-msg" style="color: #ff4d4d; font-size: 0.8rem; text-align: center; display: none; font-family: 'Roboto', sans-serif;"></div>
+
+                <div class="k-login-help">
+                    <a href="#" class="k-help-link">Crear cuenta</a>
+                    <span class="k-help-sep">|</span>
+                    <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<main>
+    <section class="hero-nft-style">
+        <div class="container hero-wrapper">
+            <div class="hero-left">
+                <span class="hero-tag">KELMÁTICA</span>
+                <h1>Explora la Expresión <br> <span class="gradient-text">Pura del Color</span></h1>
+                <p>Donde la ciencia del color se encuentra con la expresión pura. Transforma tu espacio con piezas únicas diseñadas para dialogar con tu entorno.</p>
+                
+                <div class="hero-btns">
+                    <a href="galeria.html" class="btn-main">Descubrir Portafolio</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">120+</span>
+                        <span class="stat-label">Obras Únicas</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Exposiciones</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2026</span>
+                        <span class="stat-label">Año Actual</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="artist-card-wrapper">
+                    <img src="img/pintura inicio blanco y negro.png" alt="Kelly Galván - Kelmática" class="hero-artist-img">
+                    <div class="image-overlay-badge">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-art">
+        <div class="section-header">
+            <h2>Obras <span class="gradient-text">Destacadas</span></h2>
+        </div>
+
+        <div class="art-grid">
+            <div class="art-card">
+                <div class="card-img-container">
+                    <img src="img/pintura 4.jpg"Obra 1">
+                </div>
+                <div class="card-info">
+                    <h3>Nombre de Obra 1</h3>
+                </div>
+            </div>
+            <div class="art-card">
+                <div class="card-img-container">
+                    <img src="img/pintura 6.jpg" alt="Obra 2">
+                </div>
+                <div class="card-info">
+                    <h3>Nombre de Obra 2</h3>
+                </div>
+            </div>
+            <div class="art-card">
+                <div class="card-img-container">
+                    <img src="img/pintura 3.jpg" alt="Obra 3">
+                </div>
+                <div class="card-info">
+                    <h3>Nombre de Obra 3</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-full-btn-container">
+            <a href="galeria.html" class="btn-discover">VER GALERÍA COMPLETA</a>
+        </div>
+    </section>
+
+    <section class="mini-bio-section">
+        <div class="mini-bio-wrapper">
+            <div class="mini-bio-content">
+                <h2 class="mini-bio-title">KELMATICA: <span class="gradient-text">TRAS EL LIENZO</span></h2>
+                <div class="mini-bio-divider"></div>
+                <p>El arte es una conversación, y KELMATICA es el eco de la luz y el dramatismo. Con una profunda admiración por el claroscuro clásico y la expresión emocional moderna, cada pincelada busca contar una historia personal e intensa.</p>
+                <p>El lienzo es mi diario y tu historia, mi inspiración.</p>
+                <a href="nosotros.html" class="btn-main">LEER MI HISTORIA COMPLETA</a>
+            </div>
+
+            <div class="mini-bio-visual">
+                <div class="mini-bio-frame">
+                    <img src="img/fotokelly.png" alt="Kelly Galván - Artista" class="artista-img-mini">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="visit-section">
+    <div class="visit-wrapper">
+        <div class="visit-info">
+            <h2>Visítanos en <span class="gradient-text">Medellín</span></h2>
+            <p>Explora mi estudio personal y coordina una cita para apreciar las obras con todo su detalle y textura en persona.</p>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Cra. 53 #12c Sur-33, Guayabal, Medellín</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Atención bajo cita previa</span>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/tu-numero" class="btn-main">Agendar Cita</a>
+        </div>
+
+        <div class="visit-map">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5105160033318!2d-75.59489929137764!3d6.19617109376561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4683c398670f0f%3A0x16f2507e971f5c9a!2sARQUITEXTIL!5e0!3m2!1ses-419!2sco!4v1775092230594!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="faq-section">
+    <h2>PREGUNTAS <span class="gradient-text">FRECUENTES</span></h2>
+    <p class="faq-subtitle">Resuelve las dudas más comunes sobre encargos, envíos y la galería.</p>
+
+    <div class="faq-container">
+        <details>
+            <summary>¿Cuánto tiempo tarda un encargo personalizado?</summary>
+            <div class="faq-content">
+                <p>El tiempo de entrega varía según la técnica, el tamaño y la complejidad de la obra. Generalmente, un encargo toma entre 4 a 8 semanas desde el acuerdo inicial hasta la entrega.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Realizan envíos nacionales?</summary>
+            <div class="faq-content">
+                <p>Sí, realizamos envíos a nivel nacional. Las obras son embaladas profesionalmente en cajas de madera o tubo resistente para garantizar su seguridad.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Qué métodos de pago aceptan?</summary>
+            <div class="faq-content">
+                <p>Aceptamos transferencias bancarias, tarjetas de crédito y plataformas digitales. Para encargos, se requiere un anticipo del 50% para iniciar la obra.</p>
+            </div>
+        </details>
+        <details>
+            <summary>¿Cómo puedo solicitar una cotización para un retrato?</summary>
+            <div class="faq-content">
+                <p>Puedes ir a nuestra página de <strong>Servicios</strong> y llenar el formulario de "Solicitud Rápida de Encargo" especificando el tipo de retrato, el tamaño deseado y adjuntando una foto de referencia (si la tienes). Te responderemos con la cotización en 48 horas.</p>
+            </div>
+        </details>  
+    </div>
+</section>
+</main>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h2 class="footer-logo">KELMÁTICA</h2>
+            <p>Explora la expresión pura del color a través de obras únicas y retratos personalizados.</p>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/kelma_tica?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/573117397346"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explorar</h3>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="galeria.html">Pinturas</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Sobre la Artista</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <h3>Recursos</h3>
+            <ul>
+                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#">Cuidado de Obras</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 KELMÁTICA Art. Todos los derechos reservados. Creado por Keith Sarin.</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

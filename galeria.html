@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria - KELMÁTICA</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body style="background-color: #0a0a0a; color: white;">
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo.png" alt="Logo KELMATICA">
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html">INICIO</a></li>
+                <li class="nav-item"><a href="nosotros.html">NOSOTROS</a></li>
+                <li class="nav-item"><a href="servicios.html">SERVICIOS</a></li>
+                <li class="nav-item active"><a href="galeria.html">GALERIA</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="k-login-overlay" id="login-overlay">
+    <button class="k-close-btn" id="close-login">&times;</button>
+    <div class="k-login-content">
+        
+        <div class="k-login-box">
+            <div class="k-icon-gold"><i class="fa-solid fa-gem"></i></div>
+            <h2>Soy amante del arte, un coleccionista</h2>
+            <p>Crea una cuenta para guardar tus favoritos y recibir ofertas personalizadas.</p>
+            
+            <div class="k-email-login-group">
+                <input type="email" id="user-email" placeholder="Ingresa tu correo electrónico" class="k-input-field">
+                <button class="k-btn-main">INGRESAR CON EMAIL</button>
+                
+                
+                <div class="k-login-help" id="login-help">
+                    <a href="#" class="k-help-link">Crear cuenta</a>
+                    <span class="k-help-sep">|</span>
+                    <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+
+            <span class="k-sep">o</span>
+            
+            <div class="k-socials">
+                <button class="k-btn-social"><i class="fa-brands fa-google"></i> Continuar con Google</button>
+                <button class="k-btn-social"><i class="fa-brands fa-facebook-f"></i> Continuar con Facebook</button>
+            </div>
+        </div>
+
+        <div class="k-login-box">
+            <div class="k-icon-gold"><i class="fa-solid fa-palette"></i></div>
+            <h2>Soy un artista o Administrador</h2>
+            <p>Si eres Artista o Administrador gestiona tu cuenta.</p>
+            
+            <div class="k-admin-form" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+                <div class="k-input-group" style="text-align: left;">
+                    <label class="k-label" style="display: block; color: #c5a059; font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase;"></label>
+                    <select id="user-role" class="k-input-field k-select" style="width: 100%;">
+                        <option value="" disabled selected> ¿Que eres?</option>
+                        <option value="artista">Artista</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                </div>
+
+                <input type="text" id="admin-user" placeholder="Usuario" class="k-input-field">
+                
+                <input type="password" id="admin-pass" placeholder="Contraseña" class="k-input-field">
+                
+                <button id="btn-admin-login" class="k-btn-main">INGRESAR AL PANEL</button>
+
+                <div id="admin-error-msg" style="color: #ff4d4d; font-size: 0.8rem; text-align: center; display: none; font-family: 'Roboto', sans-serif;"></div>
+
+                <div class="k-login-help">
+                    <a href="#" class="k-help-link">Crear cuenta</a>
+                    <span class="k-help-sep">|</span>
+                    <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<main>
+    <section class="galeria-hero">
+        <div class="k-galeria-header">
+            <h5 class="subtitle-gold">PINTURAS AL ÓLEO Y ACRÍLICOS</h5>
+            <h1 class="main-title-white">GALERÍA DE OBRAS DE ARTE</h1>
+            <h2 class="secondary-title-gold">EXPLORA LAS OBRAS DISPONIBLES</h2>
+            <p class="description-text">Descubre piezas únicas en diversas técnicas y listas para decorar tu espacio.</p>
+        </div>
+    </section>
+
+<section class="obras-gallery">
+    <div class="container-gallery">
+        <div class="gallery-grid">
+            
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 1.jpg" alt="El Pirata">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle1.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">El Pirata</h3>
+                    <p class="k-obra-detalles-v2">Óleo y Acrílico sobre Lienzo</p>
+                    <p class="k-obra-precio-v2">$3'000.000 COP</p>
+                </div>
+            </div>
+
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 2.jpg" alt="Alas de Ternura">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle2.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">Alas de Ternura</h3>
+                    <p class="k-obra-detalles-v2">Acrílico sobre Lienzo</p>
+                    <p class="k-obra-precio-v2">$1'500.000 COP</p>
+                </div>
+            </div>
+
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 3.jpg" alt="El Secreto Del Estanque">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle3.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">El Secreto Del Estanque</h3>
+                    <p class="k-obra-detalles-v2">Acrílico en Lienzo</p>
+                    <p class="k-obra-precio-v2">$1'900.000 COP</p>
+                </div>
+            </div>
+
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 4.jpg" alt="El Baile De Los Colores">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle4.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">El Baile De Los Colores</h3>
+                    <p class="k-obra-detalles-v2">Acrílico en Lienzo</p>
+                    <p class="k-obra-precio-v2">$800.000 COP</p>
+                </div>
+            </div>
+
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 5.jpg" alt="El Dominio Del Dragon">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle5.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">El Dominio Del Dragon</h3>
+                    <p class="k-obra-detalles-v2">Acrílico en Lienzo</p>
+                    <p class="k-obra-precio-v2">$2'450.000 COP</p>
+                </div>
+            </div>
+
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 6.jpg" alt="Ventana Al Paraiso">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle6.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">Ventana Al Paraiso</h3>
+                    <p class="k-obra-detalles-v2">Óleo en Lienzo</p>
+                    <p class="k-obra-precio-v2">$3'750.000 COP</p>
+                </div>
+            </div>
+
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 7.jpeg" alt="Reflejos del Alma">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle7.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">Reflejos del Alma</h3>
+                    <p class="k-obra-detalles-v2">Óleo/Acrílico sobre Lienzo</p>
+                    <p class="k-obra-precio-v2">$2'200.000 COP</p>
+                </div>
+            </div>
+
+            <div class="k-obra-card-v2">
+                <div class="k-obra-img-container-v2">
+                    <img src="img/pintura 8.jpeg" alt="La Musa de Medianoche">
+                    <div class="k-obra-overlay-v2">
+                        <a href="obra-detalle8.html" class="k-view-piece-btn-v2">VIEW PIECE</a>
+                    </div>
+                </div>
+                <div class="k-obra-info-v2">
+                    <h3 class="k-obra-titulo-v2">La Musa de Medianoche</h3>
+                    <p class="k-obra-detalles-v2">Técnica Mixta sobre Lienzo</p>
+                    <p class="k-obra-precio-v2">$3'100.000 COP</p>
+                </div>
+            </div>
+
+        </div> </div> </section>
+        
+        <main>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h2 class="footer-logo">KELMÁTICA</h2>
+            <p>Explora la expresión pura del color a través de obras únicas y retratos personalizados.</p>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/kelma_tica?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/573117397346" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explorar</h3>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="galeria.html">Pinturas</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Sobre la Artista</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <h3>Recursos</h3>
+            <ul>
+                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#">Cuidado de Obras</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 KELMÁTICA Art. Todos los derechos reservados. Creado por Keith Sarin.</p>
+    </div>
+</footer>
+<script src="js/script.js"></script>
+</body>
+</html>
