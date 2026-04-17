@@ -3,117 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelmática - Panel de Administración</title>
+    <title>Panel de Administración - KELMATICA</title>
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
-    <div class="admin-container">
-        <aside class="sidebar">
-            <div class="sidebar-logo">
-                <h2>KELMÁTICA</h2>
-                <span>Admin Panel</span>
-            </div>
+    <div class="admin-container"> <aside class="sidebar">
+<div class="sidebar-logo">
+    <div class="logo-container">
+        <img src="img/logo.png" alt="Kelmática Logo" class="brand-logo">
+    </div>
+    <span class="panel-subtitle">PANEL ADMIN</span>
+</div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li class="active"><i class="fa-solid fa-chart-pie"></i> Reportes</li>
-                    <li><i class="fa-solid fa-users"></i> Gestión de Usuarios</li>
-                    <li><i class="fa-solid fa-check-to-slot"></i> Aprobación de Obras</li>
-                    <li><i class="fa-solid fa-cart-shopping"></i> Gestión de Ventas</li>
+                    <li class="active" data-section="reportes"><i class="fa-solid fa-chart-pie"></i> Reportes</li>
+                    <li data-section="usuarios"><i class="fa-solid fa-users"></i> Gestión de Usuarios</li>
+                    <li data-section="obras"><i class="fa-solid fa-check-to-slot"></i> Aprobación de Obras</li>
+                    <li data-section="ventas"><i class="fa-solid fa-cart-shopping"></i> Gestión de Ventas</li>
+                    <li data-section="mensajes"><i class="fa-solid fa-envelope"></i> Mensajes</li>
+                    <li data-section="configuracion"><i class="fa-solid fa-gear"></i> Configuración</li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                <a href="index.html" class="logout-link">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                </a>
             </div>
         </aside>
 
         <main class="main-panel">
-            <header class="panel-header">
-                <div class="header-info">
-                    <h1>Panel de Control</h1>
-                    <p>Bienvenido de nuevo, Administrador</p>
+            
+            <section id="section-reportes" class="content-section">
+                <header class="panel-header">
+                    <div class="header-info">
+                        <h1>Panel de Control</h1>
+                        <p>Bienvenido de nuevo, Administrador</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-download"><i class="fa-solid fa-file-pdf"></i> Guardar Reporte</button>
+                    </div>
+                </header>
+                <div class="dashboard-grid">
+                    <div class="chart-card wide">
+                        <h3>Ventas Mensuales (COP)</h3>
+                        <canvas id="chartVentas"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Obras más Visualizadas</h3>
+                        <canvas id="chartObras"></canvas>
+                    </div>
                 </div>
-                <div class="header-actions">
-                    <button class="btn-download">
-         <i class="fa-solid fa-file-pdf"></i> Guardar Reporte</button>
-            </header>
+            </section>
 
-           <section id="section-reportes" class="content-section">
-    <div class="dashboard-grid">
-        <div class="chart-card wide">
-            <h3>Ventas Mensuales (COP)</h3>
-            <canvas id="chartVentas"></canvas>
-        </div>
-        
-        <div class="chart-card">
-            <h3>Obras más Visualizadas</h3>
-            <canvas id="chartObras"></canvas>
-        </div>
-        
-        <div class="chart-card">
-            <h3>Distribución de Artistas</h3>
-            <canvas id="chartArtistas"></canvas>
-        </div>
-    </div>
-</section>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="js/admin.js"></script>
-
-<main class="main-panel">
-    <section id="section-reportes" class="content-section">
-        </section>
-
-    <section id="section-mensajes" class="content-section">
-        <header class="panel-header">
-            <h1>Mensajes</h1>
-        </header>
-        <div class="messages-container">
-            <div class="message-item unread">
-                <div class="msg-avatar">JD</div>
-                <div class="msg-info">
-                    <h4>Juan Delgado <span class="msg-date">Hoy, 2:30 PM</span></h4>
-                    <p>Hola, me gustaría saber el estado de mi pedido #K-1025...</p>
-                </div>
-            </div>
-            </div>
-    </section>
-
-    <section id="section-configuracion" class="content-section">
-        <header class="panel-header">
-            <h1>Configuración</h1>
-        </header>
-        <div class="config-grid chart-card">
-            <div class="input-group-admin">
-                <label>Nombre del Administrador</label>
-                <input type="text" value="Kelly Galván">
-            </div>
-            <div class="input-group-admin">
-                <label>Correo de Contacto</label>
-                <input type="email" placeholder="admin@kelmatica.com">
-            </div>
-            <button class="btn-approve">Guardar Cambios</button>
-        </div>
-    </section>
             <section id="section-usuarios" class="content-section" style="display:none;">
                 <div class="table-section">
-       <div class="table-header">
-    <div class="header-top">
-        <h3>Lista de Usuarios</h3>
-        <button class="btn-add-user"><i class="fa-solid fa-plus"></i> Nuevo Usuario</button>
-    </div>
-    
-    <div class="header-bottom">
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="user-search" placeholder="Buscar por nombre o rol..." class="search-input">
-        </div>
-        <button class="btn-filter"><i class="fa-solid fa-filter"></i> Filtros</button>
-    </div>
-</div>
+                    <div class="table-header">
+                        <div class="header-top">
+                            <h3>Lista de Usuarios</h3>
+                            <button class="btn-add-user"><i class="fa-solid fa-plus"></i> Nuevo Usuario</button>
+                        </div>
+                        <div class="header-bottom">
+                            <div class="search-container">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="user-search" placeholder="Buscar por nombre o rol..." class="search-input">
+                            </div>
+                            <button class="btn-filter"><i class="fa-solid fa-filter"></i> Filtros</button>
+                        </div>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -123,7 +82,7 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="lista-usuarios-body">
                             <tr>
                                 <td>Juan Perez</td>
                                 <td>Artista</td>
@@ -139,133 +98,165 @@
                 </div>
             </section>
 
-<section id="section-obras" class="content-section" style="display:none;">
+           <section id="section-obras" class="content-section" style="display:none;">
     <div class="panel-header-simple">
-        <h2>Solicitudes de Artistas</h2>
-        <p>Tienes <span class="badge-gold">3 pendientes</span> por revisar</p>
+        <h2>Solicitudes de Clientes</h2>
+        <p>Tienes <span class="badge-gold">3 encargos pendientes</span> por validar</p>
     </div>
 
     <div class="obras-grid">
         <div class="obra-card">
             <div class="obra-img-container">
-                <img src="img/obra1.jpg" alt="Obra pendiente">
-                <span class="tag-status">Pendiente</span>
+                <img src="img/obra1.jpg" alt="Referencia cliente">
+                <span class="tag-status">Nuevo Pedido</span>
             </div>
             <div class="obra-info">
                 <h4>"Atardecer en Medellín"</h4>
-                <p>Artista: <strong>Kelly Galván</strong></p>
-                <p>Técnica: Óleo sobre lienzo</p>
+                <p>Para: <strong>Kelly Galván</strong></p>
+                <p>Cliente: Juan Delgado</p>
                 <div class="card-actions">
-                    <button class="btn-review" onclick="verFichaObra()">Revisar Detalles</button>
+                    <button class="btn-review" onclick="verFichaObra(
+                        'Atardecer en Medellín', 
+                        'Juan Delgado', 
+                        'Kelly Galván', 
+                        'Busco una interpretación al óleo de la vista desde el Metrocable al atardecer.', 
+                        '$1.500.000 COP', 
+                        'img/obra1.jpg')">
+                        Revisar Propuesta
+                    </button>
                 </div>
             </div>
         </div>
-        </div>
-            </section>
-            <section id="section-ventas" class="content-section" style="display:none;">
-    <div class="panel-header-simple">
-        <h2>Gestión de Ventas</h2>
-        <p>Monitoreo de transacciones y logística de envíos.</p>
-    </div>
 
-    <div class="sales-summary">
-        <div class="stat-card">
-            <span class="stat-label">Ventas Totales</span>
-            <span class="stat-value">$12'450.000</span>
-            <span class="stat-trend up">+15% este mes</span>
+        <div class="obra-card">
+            <div class="obra-img-container">
+                <img src="img/obra2.jpg" alt="Referencia cliente">
+                <span class="tag-status">Nuevo Pedido</span>
+            </div>
+            <div class="obra-info">
+                <h4>"Abstracción Neón"</h4>
+                <p>Para: <strong>Kelly Galván</strong></p>
+                <p>Cliente: María Paulina</p>
+                <div class="card-actions">
+                    <button class="btn-review" onclick="verFichaObra(
+                        'Abstracción Neón', 
+                        'María Paulina', 
+                        'Kelly Galván', 
+                        'Quiero una pieza digital con colores vibrantes para un local de diseño.', 
+                        '$850.000 COP', 
+                        'img/obra2.jpg')">
+                        Revisar Propuesta
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <span class="stat-label">Comisión Kelmática (20%)</span>
-            <span class="stat-value">$2'490.000</span>
-        </div>
-        <div class="stat-card">
-            <span class="stat-label">Pedidos por Enviar</span>
-            <span class="stat-value highlight">4</span>
-        </div>
-    </div>
 
-    <div class="table-section">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID Pedido</th>
-                    <th>Obra</th>
-                    <th>Cliente</th>
-                    <th>Total</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>#K-1025</td>
-                    <td>Atardecer en Medellín</td>
-                    <td>Carlos Restrepo</td>
-                    <td>$3'500.000</td>
-                    <td><span class="dot green"></span> Pagado</td>
-                    <td><button class="btn-icon"><i class="fa-solid fa-truck"></i></button></td>
-                </tr>
-                <tr>
-                    <td>#K-1026</td>
-                    <td>Abstracción 05</td>
-                    <td>Luisa Fernánda</td>
-                    <td>$1'200.000</td>
-                    <td><span class="dot yellow"></span> En Proceso</td>
-                    <td><button class="btn-icon"><i class="fa-solid fa-clock"></i></button></td>
-                </tr>
-                <tr>
-                    <td>#K-1027</td>
-                    <td>Retrato Custom</td>
-                    <td>Andrés Jaramillo</td>
-                    <td>$850.000</td>
-                    <td><span class="dot red"></span> Pendiente Pago</td>
-                    <td><button class="btn-icon"><i class="fa-solid fa-envelope"></i></button></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="obra-card">
+            <div class="obra-img-container">
+                <img src="img/obra3.jpg" alt="Referencia cliente">
+                <span class="tag-status">Nuevo Pedido</span>
+            </div>
+            <div class="obra-info">
+                <h4>"Silencio de Montaña"</h4>
+                <p>Para: <strong>Kelly Galván</strong></p>
+                <p>Cliente: Carlos Restrepo</p>
+                <div class="card-actions">
+                    <button class="btn-review" onclick="verFichaObra(
+                        'Silencio de Montaña', 
+                        'Carlos Restrepo', 
+                        'Kelly Galván', 
+                        'Acuarela minimalista de los farallones. Es para un regalo de bodas.', 
+                        '$1.200.000 COP', 
+                        'img/obra3.jpg')">
+                        Revisar Propuesta
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+            <section id="section-ventas" class="content-section" style="display:none;">
+                <div class="panel-header-simple">
+                    <h2>Gestión de Ventas</h2>
+                    <p>Monitoreo de transacciones y logística de envíos.</p>
+                </div>
+                <div class="sales-summary">
+                    <div class="stat-card">
+                        <span class="stat-label">Ventas Totales</span>
+                        <span class="stat-value">$12'450.000</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Pedidos por Enviar</span>
+                        <span class="stat-value highlight">4</span>
+                    </div>
+                </div>
+                </section>
+
+            <section id="section-mensajes" class="content-section" style="display:none;">
+                <header class="panel-header">
+                    <h1>Mensajes</h1>
+                </header>
+                <div class="messages-container">
+                    <div class="message-item unread">
+                        <div class="msg-avatar">JD</div>
+                        <div class="msg-info">
+                            <h4>Juan Delgado <span class="msg-date">Hoy, 2:30 PM</span></h4>
+                            <p>Hola, me gustaría saber el estado de mi pedido #K-1025...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-configuracion" class="content-section" style="display:none;">
+                <header class="panel-header">
+                    <h1>Configuración</h1>
+                </header>
+                <div class="config-grid chart-card">
+                    <div class="input-group-admin">
+                        <label>Nombre del Administrador</label>
+                        <input type="text" value="Kelly Galván">
+                    </div>
+                    <button class="btn-approve">Guardar Cambios</button>
+                </div>
             </section>
         </main>
-    </div>
-
-    <script src="js/admin.js"></script>
+    </div> 
     <div id="modal-revision" class="k-modal-overlay">
     <div class="k-modal-content">
         <button class="k-close-modal" onclick="cerrarModalRevision()">×</button>
         
         <div class="k-modal-body">
             <div class="k-modal-visual">
-                <img src="img/obra1.jpg" alt="Obra a revisar" id="modal-obra-img">
+                <img src="" alt="Obra a revisar" id="modal-obra-img">
             </div>
             
-            <div class="k-modal-info">
-                <span class="k-modal-tag">Revisión de Solicitud</span>
-                <h2 id="modal-obra-titulo">"Atardecer en Medellín"</h2>
-                <p class="k-modal-artista">Por: <strong id="modal-obra-artista">Kelly Galván</strong></p>
-                
-                <div class="k-modal-details-box">
-                    <h3><i class="fa-solid fa-palette"></i> Ficha Técnica</h3>
-                    <ul>
-                        <li><strong>Técnica:</strong> Óleo sobre lienzo</li>
-                        <li><strong>Medidas:</strong> 80cm x 100cm</li>
-                        <li><strong>Año:</strong> 2026</li>
-                        <li><strong>Precio Sugerido:</strong> <span class="k-price-tag">$3'500.000 COP</span></li>
-                    </ul>
-                </div>
-                
-                <div class="k-modal-actions">
-                    <button class="btn-approve" onclick="confirmarAprobacion(true)">
-                        <i class="fa-solid fa-check"></i> APROBAR OBRA
-                    </button>
-                    
-                    <button class="btn-reject" onclick="confirmarAprobacion(false)">
-                        <i class="fa-solid fa-xmark"></i> Rechazar con motivo
-                    </button>
-                </div>
-            </div>
-        </div>
+           <div class="k-modal-info">
+    <span class="k-modal-tag">Nueva Solicitud de Encargo</span>
+    <h2 id="modal-obra-titulo">"Título de la Idea"</h2>
+    
+    <div class="k-modal-details-box">
+        <p><strong><i class="fa-solid fa-user-tag"></i> Cliente:</strong> <span id="modal-cliente">Juan Restrepo</span></p>
+        <p><strong><i class="fa-solid fa-paint-brush"></i> Artista Solicitado:</strong> <span id="modal-obra-artista" class="badge-gold">Kelly Galván</span></p>
+        <p><strong><i class="fa-solid fa-comment-dots"></i> Descripción/Parámetros:</strong><br>
+            <span id="modal-descripcion" style="font-style: italic; color: #aaa;">"Quiero un retrato de mi mascota con estilo barroco..."</span>
+        </p>
+        <p><strong><i class="fa-solid fa-money-bill-1-wave"></i> Presupuesto Cliente:</strong> <span id="modal-presupuesto">$500.000 COP</span></p>
+    </div>
+    
+    <div class="k-modal-actions">
+        <button class="btn-approve" onclick="enviarAlArtista(true)">
+            <i class="fa-solid fa-paper-plane"></i> APROBAR Y ENVIAR AL ARTISTA
+        </button>
+        <button class="btn-reject" onclick="enviarAlArtista(false)">
+            <i class="fa-solid fa-trash-can"></i> RECHAZAR SOLICITUD
+        </button>
     </div>
 </div>
+        </div>
+    </div>
+</div>>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>

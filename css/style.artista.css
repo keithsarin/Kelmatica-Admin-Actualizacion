@@ -1,0 +1,654 @@
+/* --- VARIABLES DE MARCA KELMÁTICA --- */
+:root {
+    --bg-black: #0a0a0a;
+    --sidebar-black: #000000;
+    --card-bg: #111111;
+    --gold: #c5a059;
+    --gold-dim: #8e723f;
+    --white: #ffffff;
+    --text-gray: #a0a0a0;
+    --border: #222222;
+    --transition: 0.3s ease;
+}
+
+/* --- RESET Y BASES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--white);
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- SIDEBAR --- */
+.sidebar-artista {
+    width: 280px;
+    background-color: var(--sidebar-black);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebar-header {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.logo-panel {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.role-tag {
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 18px 30px;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu li.active a,
+.sidebar-menu li a:hover {
+    color: var(--gold);
+    background-color: rgba(197, 160, 89, 0.05);
+    border-left: 3px solid var(--gold);
+}
+
+.sidebar-menu i {
+    margin-right: 15px;
+    font-size: 1.1rem;
+}
+
+.sidebar-logout {
+    padding: 30px;
+    border-top: 1px solid var(--border);
+}
+
+/* --- ÁREA DE TRABAJO --- */
+.main-workspace {
+    margin-left: 280px;
+    flex-grow: 1;
+    padding: 60px;
+}
+
+.workspace-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.user-welcome h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+.stats-mini-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 15px 25px;
+    text-align: center;
+    min-width: 140px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+/* --- PERFIL ESTILO MUSEO (LO NUEVO) --- */
+.artist-profile-container {
+    display: flex;
+    gap: 60px;
+    padding: 40px;
+    background: var(--card-bg);
+    border-radius: 15px;
+    border: 1px solid var(--border);
+}
+
+.image-frame {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    border: 1px solid var(--gold);
+    padding: 12px;
+}
+
+.artist-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+}
+
+.display-name {
+    font-size: 3.5rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.detail-item label, .bio-container label {
+    display: block;
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+/* --- BOTÓN PREMIUM --- */
+.btn-kelmatica-gold {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--white);
+    padding: 15px 35px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 20px;
+}
+
+.btn-kelmatica-gold:hover {
+    background: var(--gold);
+    color: var(--sidebar-black);
+}
+
+/* --- RESET PARA EL CONTENEDOR KELMÁTICA --- */
+.kelmatica-profile-wrapper {
+    display: flex !important; /* Forzamos el flujo horizontal */
+    flex-direction: row !important; 
+    align-items: flex-start;
+    gap: 50px;
+    padding: 40px;
+    background: #111; /* Color base de tus tarjetas */
+    border: 1px solid #222;
+    border-radius: 15px;
+    max-width: 1000px;
+}
+
+/* --- COLUMNA FOTO --- */
+.k-column-left {
+    flex: 0 0 320px; /* Tamaño fijo para la columna de la foto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.k-image-frame {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #c5a059; /* Dorado Kelmática */
+    padding: 10px;
+    background-color: #000;
+}
+
+.k-artist-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cambia a 'contain' si prefieres ver la foto entera sin recortes */
+    filter: grayscale(20%);
+}
+
+/* --- COLUMNA TEXTO --- */
+.k-column-right {
+    flex: 1; /* Ocupa el resto del espacio */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: left; /* Alineación a la izquierda */
+}
+
+.k-display-name {
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    margin: 10px 0;
+    letter-spacing: 1px;
+}
+
+.k-tag {
+    color: #c5a059;
+    letter-spacing: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.k-info-item label, .k-bio-section label {
+    display: block;
+    color: #c5a059;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.k-social-links {
+    display: flex;
+    gap: 20px;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.k-social-links a { color: #fff; transition: 0.3s; }
+.k-social-links a:hover { color: #c5a059; }
+
+.k-update-btn {
+    background: transparent;
+    border: none;
+    color: #a0a0a0;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+/* --- ESTILO FORMULARIO SUBIR OBRA --- */
+
+.k-form-wrapper {
+    background: #111; /* Consistencia con el perfil */
+    padding: 40px;
+    border: 1px solid #222;
+    border-radius: 15px;
+}
+
+.k-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Foto a la izquierda, campos a la derecha */
+    gap: 50px;
+}
+
+.k-field-label {
+    display: block;
+    color: #c5a059; /* Dorado Kelmática */
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Zona de Carga Estilizada */
+.k-upload-box {
+    width: 100%;
+    height: 350px;
+    border: 1px dashed #c5a059;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: rgba(197, 160, 89, 0.02);
+}
+
+.k-upload-box:hover {
+    background: rgba(197, 160, 89, 0.08);
+    border-style: solid;
+}
+
+.k-upload-box i { font-size: 2.5rem; color: #c5a059; }
+.k-upload-box p { font-size: 0.9rem; color: #fff; }
+.k-upload-box span { font-size: 0.7rem; color: #666; }
+
+/* Inputs Estilo Minimalista */
+.k-details-column input, 
+.k-details-column select, 
+.k-details-column textarea {
+    width: 100%;
+    background: #000;
+    border: 1px solid #222;
+    padding: 15px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.k-details-column input:focus {
+    border-color: #c5a059;
+}
+
+.k-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Botones de Acción */
+.k-form-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.btn-borrador {
+    background: transparent;
+    border: 1px solid #333;
+    color: #a0a0a0;
+    padding: 15px 25px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    transition: 0.3s;
+}
+
+.btn-borrador:hover {
+    border-color: #fff;
+    color: #fff;
+}
+/* Estilo para los botones de selección circular */
+.k-radio-group {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.k-radio-option {
+    color: #fff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.k-radio-option input[type="radio"] {
+    accent-color: #c5a059; /* Color dorado para el círculo */
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+/* --- GESTIÓN DE CATÁLOGO --- */
+
+.k-filter-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 15px;
+}
+
+.k-filter-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #666;
+    padding: 8px 15px;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.k-filter-btn.active, .k-filter-btn:hover {
+    color: #c5a059;
+    border-color: #c5a059;
+}
+
+.k-catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.k-artwork-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.k-artwork-card:hover {
+    border-color: #c5a059;
+    transform: translateY(-5px);
+}
+
+.k-artwork-img-wrapper {
+    position: relative;
+    height: 250px;
+}
+
+.k-artwork-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Badges de Estado */
+.k-status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+
+.status-venta { background: #c5a059; color: #000; }
+.status-revision { background: #555; color: #fff; }
+.status-vendidas { background: #1a4a1d; color: #fff; }
+
+.k-artwork-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.k-artwork-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.k-artwork-price {
+    color: #c5a059;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Botones de Acción Rápidos */
+.k-artwork-actions {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+}
+
+.k-action-icon {
+    background: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+.k-action-icon:hover { color: #fff; }
+.k-action-icon.k-delete:hover { color: #ff4d4d; }
+/* --- GESTIÓN DE PEDIDOS --- */
+
+.k-orders-container {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 15px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.k-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.k-orders-table th {
+    color: #c5a059; /* Dorado Kelmática */
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    padding: 15px;
+    border-bottom: 1px solid #222;
+}
+
+.k-orders-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #1a1a1a;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.k-client-info strong {
+    display: block;
+    font-size: 1rem;
+}
+
+.k-client-info span {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Estados Dinámicos */
+.k-order-status {
+    padding: 5px 12px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+.status-pago { background: rgba(197, 160, 89, 0.2); color: #c5a059; border: 1px solid #c5a059; }
+.status-camino { background: rgba(0, 123, 255, 0.1); color: #007bff; border: 1px solid #007bff; }
+.status-entregado { background: rgba(40, 167, 69, 0.1); color: #28a745; border: 1px solid #28a745; }
+
+/* Botón de Acción Logística */
+.btn-order-action {
+    background: #c5a059;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-order-action:hover {
+    background: #fff;
+}
+/* --- ESTILO DE NOTIFICACIONES --- */
+
+.k-notifications-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #111;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #222;
+}
+
+.k-notification-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #0a0a0a;
+    border-radius: 10px;
+    border-left: 3px solid transparent;
+    transition: 0.3s;
+    position: relative;
+}
+
+.k-notification-item:hover {
+    background: #161616;
+}
+
+/* Indicador de no leído */
+.k-notification-item.unread {
+    border-left-color: #c5a059; /* Dorado Kelmática */
+}
+
+.k-notif-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.k-notif-content {
+    text-align: left;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.k-notif-content p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.k-notif-content strong {
+    color: #c5a059;
+}
+
+.k-notif-time {
+    display: block;
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+.k-notif-dot {
+    width: 8px;
+    height: 8px;
+    background: #c5a059;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}

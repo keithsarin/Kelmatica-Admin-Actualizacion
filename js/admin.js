@@ -1,120 +1,236 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. LÓGICA DEL MENÚ (SIDEBAR) ---
     const botones = document.querySelectorAll('.sidebar-nav li');
     const secciones = document.querySelectorAll('.content-section');
 
-    console.log("Botones encontrados:", botones.length);
-    console.log("Secciones encontradas:", secciones.length);
-
-    botones.forEach((btn, i) => {
-        btn.onclick = () => {
-            console.log("Diste clic al botón index:", i);
-            
-            // 1. Limpiar activos
+    botones.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            // Quitar clase active
             botones.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // 2. Cambiar visibilidad
+            // Ocultar todas las secciones
             secciones.forEach(s => s.style.display = 'none');
-            if(secciones[i]) {
-                secciones[i].style.display = 'block';
+
+            // Mostrar la sección basada en el data-section
+            const sectionName = btn.getAttribute('data-section');
+            const targetSection = document.getElementById('section-' + sectionName);
+            
+            if (targetSection) {
+                targetSection.style.display = 'block';
             }
-        };
+        });
     });
-});
-// Lógica del Buscador
-const buscador = document.getElementById('user-search');
-const filasTabla = document.querySelectorAll('.table-section tbody tr');
 
-buscador.addEventListener('keyup', (e) => {
-    const texto = e.target.value.toLowerCase();
+    // --- 2. LÓGICA DEL BUSCADOR DE USUARIOS ---
+    const buscador = document.getElementById('user-search');
+    if (buscador) {
+        buscador.addEventListener('keyup', (e) => {
+            const texto = e.target.value.toLowerCase();
+            const filasTabla = document.querySelectorAll('#lista-usuarios-body tr');
 
-    filasTabla.forEach(fila => {
-        // Miramos el texto de la celda del nombre (columna 1) y el rol (columna 2)
-        const contenidoFila = fila.textContent.toLowerCase();
-        
-        if (contenidoFila.includes(texto)) {
-            fila.style.display = ''; // Mostrar
-        } else {
-            fila.style.display = 'none'; // Ocultar
-        }
-    });
+            filasTabla.forEach(fila => {
+                const contenidoFila = fila.textContent.toLowerCase();
+                fila.style.display = contenidoFila.includes(texto) ? '' : 'none';
+            });
+        });
+    }
+
+    // --- 3. GRÁFICO DE VENTAS ---
+    const ctxVentas = document.getElementById('chartVentas');
+    if (ctxVentas) {
+        new Chart(ctxVentas.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [{
+                    label: 'Ventas 2026',
+                    data: [1200000, 1500000, 1900000, 2500000, 3000000, 2800000, 2500000, 3200000, 4200000, 4500000, 4800000, 5000000],
+                    borderColor: '#c5a059',
+                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+
+    // --- 4. GRÁFICO DE OBRAS ---
+    const ctxObras = document.getElementById('chartObras');
+    if (ctxObras) {
+        new Chart(ctxObras.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Óleo', 'Acrílico', 'Alto Relieve', 'Acuarela'],
+                datasets: [{
+                    label: 'Visualizaciones',
+                    data: [450, 320, 600, 150],
+                    backgroundColor: ['#c5a059', '#a6864a', '#e2c285', '#d4b477'],
+                    borderRadius: 8
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
 });
-// Funciones para controlar el Modal de Revisión
-function verFichaObra() {
+
+// --- 5. FUNCIONES GLOBALES (MODAL) ---
+function verFichaObra(titulo, cliente, artista, descripcion, presupuesto, imagen) {
     const modal = document.getElementById('modal-revision');
-    // Esto es para que se muestre como un flex container
-    modal.style.display = 'flex'; 
-    // Evita que el fondo se pueda scrollear
-    document.body.style.overflow = 'hidden'; 
+    if (modal) {
+        document.getElementById('modal-obra-titulo').innerText = titulo;
+        document.getElementById('modal-cliente').innerText = cliente;
+        document.getElementById('modal-obra-artista').innerText = artista;
+        document.getElementById('modal-descripcion').innerText = descripcion;
+        document.getElementById('modal-presupuesto').innerText = presupuesto;
+        document.getElementById('modal-obra-img').src = imagen;
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function cerrarModalRevision() {
     const modal = document.getElementById('modal-revision');
-    modal.style.display = 'none';
-    // Devuelve el scroll al body
-    document.body.style.overflow = ''; 
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
 }
 
-// Lógica de los botones de acción (Aceptar/Rechazar)
-function confirmarAprobacion(esAprobado) {
-    if (esAprobado) {
-        // En un caso real, aquí enviarías un email al artista
-        alert("¡Obra Aprobada! Se ha notificado al artista y ya es visible en la galería.");
+function enviarAlArtista(aprobado) {
+    if (aprobado) {
+        alert("✅ Solicitud aprobada. Se ha enviado al panel del Artista.");
     } else {
-        // En un caso real, aquí abrirías otro prompt para el motivo
-        const motivo = prompt("Por favor, ingresa el motivo del rechazo para enviarlo al artista:");
-        if (motivo) {
-            alert("Obra Rechazada. Se ha enviado la notificación con el motivo: " + motivo);
-        }
+        alert("❌ Solicitud rechazada.");
     }
     cerrarModalRevision();
 }
 
-// Cerrar el modal si haces clic por fuera (en la sombra)
-window.addEventListener('click', (e) => {
+// Cerrar al hacer clic fuera del modal
+window.onclick = function(event) {
     const modal = document.getElementById('modal-revision');
-    if (e.target === modal) {
+    if (event.target == modal) {
         cerrarModalRevision();
     }
-});
-// Configuración de Gráficas
+}
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Gráfico de Ventas (Línea)
-    const ctxVentas = document.getElementById('chartVentas').getContext('2d');
-    new Chart(ctxVentas, {
-        type: 'line',
-        data: {
-            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Ventas 2026',
-                data: [1200000, 1900000, 3000000, 2500000, 4200000, 5000000],
-                borderColor: '#c5a059', // Dorado Kelmática
-                backgroundColor: 'rgba(197, 160, 89, 0.1)',
-                borderWidth: 3,
-                fill: true,
-                tension: 0.4 // Hace la línea curva y elegante
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: { beginAtZero: true, grid: { color: '#222' } },
-                x: { grid: { display: false } }
+    // --- 1. LÓGICA DEL MENÚ (SIDEBAR) ---
+    const botones = document.querySelectorAll('.sidebar-nav li');
+    const secciones = document.querySelectorAll('.content-section');
+
+    botones.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            // Quitar clase active
+            botones.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Ocultar todas las secciones
+            secciones.forEach(s => s.style.display = 'none');
+
+            // Mostrar la sección basada en el data-section
+            const sectionName = btn.getAttribute('data-section');
+            const targetSection = document.getElementById('section-' + sectionName);
+            
+            if (targetSection) {
+                targetSection.style.display = 'block';
             }
-        }
+        });
     });
 
-    // 2. Gráfico de Obras (Barras)
-    const ctxObras = document.getElementById('chartObras').getContext('2d');
-    new Chart(ctxObras, {
-        type: 'bar',
-        data: {
-            labels: ['Óleos', 'Digital', 'Esculturas'],
-            datasets: [{
-                label: 'Visitas',
-                data: [450, 890, 200],
-                backgroundColor: ['#c5a059', '#e0e0e0', '#444']
-            }]
-        }
-    });
+    // --- 2. LÓGICA DEL BUSCADOR DE USUARIOS ---
+    const buscador = document.getElementById('user-search');
+    if (buscador) {
+        buscador.addEventListener('keyup', (e) => {
+            const texto = e.target.value.toLowerCase();
+            const filasTabla = document.querySelectorAll('#lista-usuarios-body tr');
+
+            filasTabla.forEach(fila => {
+                const contenidoFila = fila.textContent.toLowerCase();
+                fila.style.display = contenidoFila.includes(texto) ? '' : 'none';
+            });
+        });
+    }
+
+    // --- 3. GRÁFICO DE VENTAS ---
+    const ctxVentas = document.getElementById('chartVentas');
+    if (ctxVentas) {
+        new Chart(ctxVentas.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [{
+                    label: 'Ventas 2026',
+                    data: [1200000, 1500000, 1900000, 2500000, 3000000, 2800000, 2500000, 3200000, 4200000, 4500000, 4800000, 5000000],
+                    borderColor: '#c5a059',
+                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+
+    // --- 4. GRÁFICO DE OBRAS ---
+    const ctxObras = document.getElementById('chartObras');
+    if (ctxObras) {
+        new Chart(ctxObras.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Óleo', 'Acrílico', 'Alto Relieve', 'Acuarela'],
+                datasets: [{
+                    label: 'Visualizaciones',
+                    data: [450, 320, 600, 150],
+                    backgroundColor: ['#c5a059', '#a6864a', '#e2c285', '#d4b477'],
+                    borderRadius: 8
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
 });
+
+// --- 5. FUNCIONES GLOBALES (MODAL) ---
+function verFichaObra(titulo, cliente, artista, descripcion, presupuesto, imagen) {
+    const modal = document.getElementById('modal-revision');
+    if (modal) {
+        document.getElementById('modal-obra-titulo').innerText = titulo;
+        document.getElementById('modal-cliente').innerText = cliente;
+        document.getElementById('modal-obra-artista').innerText = artista;
+        document.getElementById('modal-descripcion').innerText = descripcion;
+        document.getElementById('modal-presupuesto').innerText = presupuesto;
+        document.getElementById('modal-obra-img').src = imagen;
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function cerrarModalRevision() {
+    const modal = document.getElementById('modal-revision');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+function enviarAlArtista(aprobado) {
+    if (aprobado) {
+        alert("✅ Solicitud aprobada. Se ha enviado al panel del Artista.");
+    } else {
+        alert("❌ Solicitud rechazada.");
+    }
+    cerrarModalRevision();
+}
+
+// Cerrar al hacer clic fuera del modal
+window.onclick = function(event) {
+    const modal = document.getElementById('modal-revision');
+    if (event.target == modal) {
+        cerrarModalRevision();
+    }
+}

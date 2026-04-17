@@ -27,9 +27,7 @@ h1, h2, h3, .stat-number {
     color: transparent;
 }
 
-/* ==========================================================================
-   2. HEADER (ESTILO NFT)
-   ========================================================================== */
+/* 2. HEADER (ESTILO NFT)*/
 .main-header {
     background-color: #0c0c0c;
     padding: 10px 0;
@@ -1411,7 +1409,6 @@ content: "•";
     width: 100%;
     max-width: 350px;
 }
-
 .k-obra-img-container-v2 {
     position: relative;
     width: 100%;
@@ -1459,29 +1456,52 @@ content: "•";
     font-size: 0.8rem;
     letter-spacing: 1px;
 }
-/* =========================================================
-   ESTILOS FINALES LOGIN KELMÁTICA (RESTAURACIÓN)
-   ========================================================= */
+/* ESTILOS FINALES LOGIN KELMÁTICA (RESTAURACIÓN)*/
 
-/* 1. EL FONDO (OVERLAY) */
+/* 1. EL CONTENEDOR (La cortina negra) */
 .k-login-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.95); 
-    z-index: 10000;
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Esto evita que se mezcle con la obra */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 99999; /* Siempre por encima de todo */
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+    overflow-y: auto; /* Por si el contenido es muy largo */
 }
 
-.k-login-overlay.active {
+/* 2. LA CLASE QUE LO ACTIVA */
+.k-login-overlay.show-overlay {
     display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+}
+
+/* 3. EL CUADRO BLANCO/GRIS (Lo que se ve en la foto) */
+.k-login-content {
+    background: #111;
+    border: 1px solid #c5a059;
+    padding: 40px;
+    max-width: 900px;
+    width: 90%;
+    display: grid; /* Cambiamos a grid para que no se amontone */
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px;
+    position: relative;
+    margin: auto;
+}
+
+/* 3. EVITAR QUE EL CONTENIDO SE DESBORDE (Como en tu foto) */
+.k-login-content {
+    background: #111;
+    padding: 40px;
+    border: 1px solid #c5a059;
+    max-width: 900px;
+    width: 90%;
+    display: flex; /* Esto evitará que los botones se salgan de lugar */
+    gap: 20px;
+    position: relative;
 }
 
 /* 2. EL CONTENEDOR BLANCO/NEGRO */
@@ -1808,535 +1828,7 @@ display: flex;
     z-index: 10001;
 }
 
-/* ///////////////// PANEL ADMIN ///////////////// */
-
-:root {
-    --bg-dark: #0a0a0a;
-    --card-dark: #141414;
-    --gold: #c5a059;
-    --text-gray: #a0a0a0;
-    --white: #ffffff;
-}
-
-.admin-container {
-    display: flex;
-    background-color: var(--bg-dark);
-    min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Sidebar Estilo FinSet */
-
-.sidebar {
-    width: 260px;
-    background-color: var(--card-dark);
-    padding: 20px 20px;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #222;
-}
-
-.sidebar h2, .sidebar p {
-    margin-bottom: 0; /* Elimina espacios extra debajo del nombre Kelmática */
-}
-.sidebar-nav ul { 
-    list-style: none; 
-    margin-top: 15px;
-    padding: 0; 
-}
-
-.sidebar-nav li {
-    padding: 10px 15px; /* Bajamos de 15px a 10px para que estén más juntos */
-    color: var(--text-gray);
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10px;
-    margin-bottom: 2px; /* Reducimos el espacio entre botones al mínimo */
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-
-
-.sidebar-nav li.active, .sidebar-nav li:hover {
-    background-color: var(--gold);
-    color: var(--bg-dark);
-    font-weight: bold;
-}
-
-/* Main Panel */
-.main-panel {
-    flex: 1;
-    padding: 05px 40px 40px 40px; /* Reducimos el de arriba a 20px */
-    overflow-y: auto;
-}
-
-/* Gráficas y Cards */
-.chart-card {
-    background-color: var(--card-dark);
-    border-radius: 20px;
-    padding: 20px;
-    border: 1px solid #222;
-}
-
-.chart-placeholder {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    border: 1px dashed #333;
-    margin-top: 15px;
-}
-
-/* Semáforo de estados para ventas */
-.status-active { color: #4caf50; background: rgba(76, 175, 80, 0.1); padding: 5px 10px; border-radius: 20px; }
-.status-pending { color: #ffeb3b; }
-.status-urgent { color: #f44336; }
-
-.header-title-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.btn-add-user {
-    background-color: var(--gold); /* El dorado de Kelmática */
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-add-user:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
-}
-
-/* Variables de Kelmática */
-:root {
-    --negro-profundo: #050505;
-    --gris-oscuro: #121212;
-    --dorado: #c5a059;
-    --dorado-suave: rgba(197, 160, 89, 0.1);
-    --blanco-marfil: #e0e0e0;
-    --borde: #222;
-}
-
-
-
-body {
-
-    background-color: var(--negro-profundo);
-
-    color: var(--blanco-marfil);
-
-    font-family: 'Roboto', sans-serif;
-
-    margin: 0;
-
-}
-
-
-
-/* Header Estilizado */
-
-.panel-header {
-    display: flex;
-    justify-content: space-between; /* Separa los dos bloques principales a los extremos */
-    align-items: flex-start; /* Alinea los bloques arriba */
-    padding: 10px 0 20px 0; /* Bajamos el padding superior de 20px a 10px */
-    border-bottom: 1px solid var(--borde); /* #222 */
-    margin-bottom: 20px;
-    gap: 40px; /* Espacio mínimo si la pantalla es pequeña */
-}
-
-.header-main-info {
-    display: flex;
-    align-items: center; /* Centra el título y el botón verticalmente entre ellos */
-    gap: 25px;
-    flex: 1; /* Permite que este bloque crezca */
-}
-.header-info h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; /* Tamaño elegante como Kelly Galván preferiría */
-    margin: 0;
-    color: var(--dorado);
-    line-height: 1.1; /* Hace que el texto esté más compacto */
-}
-.header-info p {
-    color: var(--blanco-marfil);
-    margin: 2px 0 0 0;
-    font-size: 0.9rem;
-}
-.table-header-tools {
-    display: flex;
-    flex-direction: column; /* Apila el título arriba y la búsqueda abajo */
-    gap: 20px; /* Aire entre las dos filas */
-    flex: 1;
-    max-width: 550px; /* Evita que el buscador se estire demasiado */
-}
-.panel-header h1 {
-
-    font-family: 'Playfair Display', serif;
-
-    font-size: 2rem;
-
-    margin: 0;
-
-    color: var(--dorado);
-
-}
-
-
-
-/* Botones como los de FinSet */
-
-.btn-download, .btn-add-user, .btn-filter {
-
-    background-color: var(--gris-oscuro);
-
-    color: var(--dorado);
-
-    border: 1px solid var(--dorado);
-
-    padding: 10px 20px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    font-weight: 500;
-
-    transition: all 0.3s ease;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-}
-
-
-
-.btn-download:hover, .btn-add-user:hover {
-
-    background-color: var(--dorado);
-
-    color: var(--negro-profundo);
-
-    box-shadow: 0 0 20px var(--dorado-suave);
-
-}
-
-
-
-/* Buscador Moderno */
-
-.search-input {
-
-    background-color: var(--gris-oscuro);
-
-    border: 1px solid var(--borde);
-
-    color: white;
-
-    padding: 12px 20px;
-
-    border-radius: 12px;
-
-    width: 300px;
-
-    outline: none;
-
-    transition: 0.3s;
-
-}
-
-
-
-.search-input:focus {
-
-    border-color: var(--dorado);
-
-    box-shadow: 0 0 10px var(--dorado-suave);
-
-}
-
-
-
-/* Tarjetas de Gráficas (Cards) */
-
-.chart-card {
-
-    background-color: var(--gris-oscuro);
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    border: 1px solid var(--borde);
-
-    transition: transform 0.3s ease;
-
-}
-
-
-
-.chart-card:hover {
-
-    transform: translateY(-5px);
-
-    border-color: #333;
-
-}
-
-
-
-.chart-card h3 {
-
-    font-size: 1.1rem;
-
-    margin-top: 0;
-
-    color: var(--dorado);
-
-    letter-spacing: 1px;
-
-}
-
-
-
-.chart-placeholder {
-
-    height: 180px;
-
-    background: linear-gradient(180deg, rgba(197, 160, 89, 0.05) 0%, transparent 100%);
-
-    border: 1px dashed #333;
-
-    border-radius: 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    color: #555;
-
-    font-style: italic;
-
-}
-
-/* Contenedor principal del encabezado de la tabla */
-
-.table-header {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Reducimos la separación entre la fila del título y la del buscador */
-    margin-bottom: 20px;
-    padding: 0; /* Quitamos padding interno si lo tiene */
-}
-
-
-
-/* Fila superior: Título y Botón Nuevo */
-
-.header-top {
-
-    display: flex;
-
-    justify-content: space-between; /* Manda el título a la izquierda y el botón a la derecha */
-
-    align-items: center;
-
-}
-
-
-
-/* Fila inferior: Buscador y Filtros */
-
-.header-bottom {
-
-    display: flex;
-
-    gap: 15px; /* Separación horizontal entre el input y el botón de filtros */
-
-    align-items: center;
-
-}
-
-
-
-/* Estilizamos el título para que no esté pegado al borde */
-
-.table-header h3 {
-
-    margin: 0;
-
-    font-family: 'Playfair Display', serif;
-
-    letter-spacing: 0.5px;
-
-}
-
-
-
-/* Ajuste del botón para que no se vea gigante */
-
-.btn-add-user {
-
-    padding: 12px 24px; /* Más espacio interno */
-
-    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
-
-}
-
-.obras-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-
-    gap: 25px;
-
-    margin-top: 20px;
-
-}
-
-
-
-.obra-card {
-
-    background-color: var(--gris-oscuro);
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    border: 1px solid var(--borde);
-
-    transition: 0.3s;
-
-}
-
-
-
-.obra-card:hover {
-
-    border-color: var(--dorado);
-
-}
-
-
-
-.obra-img-container {
-
-    height: 200px;
-
-    position: relative;
-
-    background-color: #222;
-
-}
-
-
-
-.obra-img-container img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-}
-
-
-
-.tag-status {
-
-    position: absolute;
-
-    top: 10px;
-
-    right: 10px;
-
-    background: rgba(197, 160, 89, 0.9);
-
-    color: #000;
-
-    padding: 5px 12px;
-
-    border-radius: 20px;
-
-    font-size: 0.8rem;
-
-    font-weight: bold;
-
-}
-
-
-
-.obra-info {
-
-    padding: 20px;
-
-}
-
-
-
-.obra-info h4 {
-
-    margin: 0 0 10px 0;
-
-    color: var(--dorado);
-
-}
-
-
-
-.btn-review {
-
-    width: 100%;
-
-    background: transparent;
-
-    border: 1px solid var(--dorado);
-
-    color: var(--dorado);
-
-    padding: 10px;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    margin-top: 10px;
-
-}
-
-
-
-.btn-review:hover {
-
-    background: var(--dorado);
-
-    color: #000;
-
-}
-
 /* --- ESTILOS DEL MODAL DE REVISIÓN --- */
-
-
-
 /* Fondo oscuro que cubre toda la pantalla */
 
 .k-modal-overlay {

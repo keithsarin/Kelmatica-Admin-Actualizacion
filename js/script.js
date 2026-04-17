@@ -1,6 +1,4 @@
-/**
- * KELMÁTICA - SCRIPT MAESTRO 2026 
- */
+/* KELMÁTICA - SCRIPT MAESTRO 2026*/
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. SELECCIÓN DE ELEMENTOS ---
@@ -109,3 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const userBtn = document.getElementById('user-trigger');
+const overlay = document.getElementById('login-overlay');
+const closeBtn = document.getElementById('close-login');
+
+// Abrir menú (Usamos show-overlay para que coincida con el CSS)
+userBtn.addEventListener('click', () => {
+    overlay.classList.add('show-overlay');
+});
+
+// Cerrar menú
+closeBtn.addEventListener('click', () => {
+    overlay.classList.remove('show-overlay');
+});
