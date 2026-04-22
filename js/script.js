@@ -1,7 +1,5 @@
-/* KELMÁTICA - SCRIPT MAESTRO 2026*/
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. SELECCIÓN DE ELEMENTOS ---
     const userIcon = document.getElementById('user-trigger'); 
     const loginOverlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
@@ -11,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminPass = document.getElementById('admin-pass');
     const errorMsg = document.getElementById('admin-error-msg');
 
-    // --- 2. LÓGICA DE ABRIR / CERRAR LOGIN ---
     if (userIcon && loginOverlay) {
         userIcon.addEventListener('click', (e) => {
             e.preventDefault();
@@ -32,8 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             loginOverlay.classList.remove('active');
         }
     });
-
-    // --- 3. VALIDACIÓN DE LOGIN (ÚNICA Y DEFINITIVA) ---
     if (btnAdminLogin) {
         btnAdminLogin.addEventListener('click', (e) => {
             e.preventDefault();
@@ -42,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const user = adminUser.value;
             const pass = adminPass.value;
 
-            // Validación de credenciales
             if (role === "artista" && user === "artista" && pass === "123") {
                 window.location.href = "artista.html";
             } 
@@ -50,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = "admin.html";
             } 
             else {
-                // Mostrar error en texto rojo
                 if (errorMsg) {
                     errorMsg.style.display = "block";
                     errorMsg.innerText = "Usuario o contraseña incorrectos.";
@@ -60,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Ocultar error al volver a escribir
     [adminUser, adminPass, userRole].forEach(input => {
         if (input) {
             input.addEventListener('input', () => {
@@ -69,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 4. CARRUSELES Y FAQ (RESTO DEL CÓDIGO) ---
     document.querySelectorAll('.faq-item').forEach(item => {
         const question = item.querySelector('.faq-question');
         if (question) {
@@ -111,12 +102,10 @@ const userBtn = document.getElementById('user-trigger');
 const overlay = document.getElementById('login-overlay');
 const closeBtn = document.getElementById('close-login');
 
-// Abrir menú (Usamos show-overlay para que coincida con el CSS)
 userBtn.addEventListener('click', () => {
     overlay.classList.add('show-overlay');
 });
 
-// Cerrar menú
 closeBtn.addEventListener('click', () => {
     overlay.classList.remove('show-overlay');
 });
