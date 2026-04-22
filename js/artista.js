@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. NAVEGACIÓN TIPO PESTAÑA (Single Page Application) ---
     const menuLinks = document.querySelectorAll('.sidebar-menu a');
     const sections = document.querySelectorAll('.tab-content');
 
@@ -8,12 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Obtener el ID de la sección (ej: "perfil" o "subir-obra")
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
 
             if (targetSection) {
-                // Quitar 'active' de todos los li y ocultar secciones
+   
                 document.querySelectorAll('.sidebar-menu li').forEach(li => li.classList.remove('active'));
                 sections.forEach(section => section.style.display = 'none');
                 
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. PREVISUALIZACIÓN DE IMAGEN (Módulo Subir Obra) ---
     const dropArea = document.getElementById('drop-area');
     const fileSelector = document.getElementById('file-selector');
     const imagePreview = document.getElementById('image-preview');
@@ -49,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. VALIDACIÓN Y ENVÍO DEL FORMULARIO ---
     const formObra = document.getElementById('form-subir-obra');
     if (formObra) {
         formObra.addEventListener('submit', (e) => {
@@ -70,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. BOTÓN GUARDAR BORRADOR ---
     const btnBorrador = document.querySelector('.btn-borrador');
     if (btnBorrador) {
         btnBorrador.addEventListener('click', () => {
@@ -78,9 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-// Forzar que al cargar la página se vea el perfil y se marque el menú
 const linkPerfil = document.querySelector('a[href="#perfil"]');
 if (linkPerfil) {
-    // Simulamos un clic para que la lógica que ya creamos se ejecute sola
     linkPerfil.click(); 
 }
