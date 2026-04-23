@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* KELMÁTICA - SCRIPT MAESTRO 2026 */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -12,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 1. SELECCIÓN DE ELEMENTOS ---
+=======
+document.addEventListener('DOMContentLoaded', () => {
+
+    const userIcon = document.getElementById('user-trigger'); 
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
     const loginOverlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
     const btnAdminLogin = document.getElementById('btn-admin-login');
@@ -23,9 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminErrorMsg = document.getElementById('admin-error-msg');
     const profileDropdown = document.getElementById('profile-dropdown');
 
+<<<<<<< HEAD
     // --- 2. LÓGICA DE ABRIR / CERRAR LOGIN ---
     if (userTrigger && loginOverlay) {
         userTrigger.addEventListener('click', (e) => {
+=======
+    if (userIcon && loginOverlay) {
+        userIcon.addEventListener('click', (e) => {
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
             e.preventDefault();
             e.stopPropagation();
             loginOverlay.classList.add('active');
@@ -47,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loginOverlay.classList.remove('show-overlay');
         }
     });
+<<<<<<< HEAD
 
     // --- 3. VALIDACIÓN DE LOGIN ---
 
@@ -73,12 +85,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (clientErrorMsg) {
                     clientErrorMsg.style.display = "block";
                     clientErrorMsg.innerText = "Correo o contraseña incorrectos.";
+=======
+    if (btnAdminLogin) {
+        btnAdminLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const role = userRole.value;
+            const user = adminUser.value;
+            const pass = adminPass.value;
+
+            if (role === "artista" && user === "artista" && pass === "123") {
+                window.location.href = "artista.html";
+            } 
+            else if (role === "administrador" && user === "admin" && pass === "456") {
+                window.location.href = "admin.html";
+            } 
+            else {
+                if (errorMsg) {
+                    errorMsg.style.display = "block";
+                    errorMsg.innerText = "Usuario o contraseña incorrectos.";
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
                 }
                 document.getElementById('client-pass-direct').value = ""; 
             }
         });
     }
 
+<<<<<<< HEAD
     // Lógica para Artista/Admin (Formulario Derecho)
     if (btnAdminLogin) {
         btnAdminLogin.addEventListener('click', (e) => {
@@ -125,6 +158,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 5. CARRUSELES Y FAQ (Tu código original) ---
+=======
+    [adminUser, adminPass, userRole].forEach(input => {
+        if (input) {
+            input.addEventListener('input', () => {
+                if (errorMsg) errorMsg.style.display = "none";
+            });
+        }
+    });
+
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
     document.querySelectorAll('.faq-item').forEach(item => {
         const q = item.querySelector('.faq-question');
         if (q) {
@@ -178,9 +221,19 @@ dashboardTabs.forEach(tab => {
         dashboardTabs.forEach(t => t.classList.remove('active'));
         tabPanes.forEach(p => p.classList.remove('active'));
 
+<<<<<<< HEAD
         // Activar el clickeado
         tab.classList.add('active');
         const targetId = tab.getAttribute('data-tab');
         document.getElementById(targetId).classList.add('active');
     });
 });
+=======
+userBtn.addEventListener('click', () => {
+    overlay.classList.add('show-overlay');
+});
+
+closeBtn.addEventListener('click', () => {
+    overlay.classList.remove('show-overlay');
+});
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab

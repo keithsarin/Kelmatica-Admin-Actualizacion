@@ -7,12 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
+<<<<<<< HEAD
         
+=======
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
 
             if (targetSection) {
-                // Quitar 'active' de todos los li y ocultar secciones
+   
                 document.querySelectorAll('.sidebar-menu li').forEach(li => li.classList.remove('active'));
                 sections.forEach(section => section.style.display = 'none');
                 
@@ -46,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
     const formObra = document.getElementById('form-subir-obra');
     if (formObra) {
         formObra.addEventListener('submit', (e) => {
@@ -66,7 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+<<<<<<< HEAD
    
+=======
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
     const btnBorrador = document.querySelector('.btn-borrador');
     if (btnBorrador) {
         btnBorrador.addEventListener('click', () => {
@@ -74,9 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+<<<<<<< HEAD
 ú
 const linkPerfil = document.querySelector('a[href="#perfil"]');
 if (linkPerfil) {
     
+=======
+const linkPerfil = document.querySelector('a[href="#perfil"]');
+if (linkPerfil) {
+>>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
     linkPerfil.click(); 
 }
