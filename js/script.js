@@ -1,69 +1,48 @@
-<<<<<<< HEAD
-/* KELMÁTICA - SCRIPT MAESTRO 2026 */
+/* KELMÁTICA - SCRIPT MAESTRO INTEGRADO 2026 */
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. PERSISTENCIA DE SESIÓN (REVISAR AL CARGAR) ---
-    const sesionGuardada = localStorage.getItem('sesionKelmatica');
-    const userTrigger = document.getElementById('user-trigger');
+    // --- 1. SELECCIÓN DE ELEMENTOS GLOBALES ---
+    const userIcon = document.getElementById('user-trigger'); 
+    const loginOverlay = document.getElementById('login-overlay');
+    const closeBtn = document.getElementById('close-login');
     const profileTrigger = document.getElementById('profile-trigger');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    const sesionGuardada = localStorage.getItem('sesionKelmatica');
 
+    // --- 2. PERSISTENCIA DE SESIÓN ---
     if (sesionGuardada === 'activa') {
-        if (userTrigger) userTrigger.style.display = 'none';
+        if (userIcon) userIcon.style.display = 'none';
         if (profileTrigger) profileTrigger.style.display = 'block';
     }
 
-    // --- 1. SELECCIÓN DE ELEMENTOS ---
-=======
-document.addEventListener('DOMContentLoaded', () => {
-
-    const userIcon = document.getElementById('user-trigger'); 
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
-    const loginOverlay = document.getElementById('login-overlay');
-    const closeBtn = document.getElementById('close-login');
-    const btnAdminLogin = document.getElementById('btn-admin-login');
-    const userRole = document.getElementById('user-role');
-    const adminUser = document.getElementById('admin-user');
-    const adminPass = document.getElementById('admin-pass');
-    
-    const clientErrorMsg = document.getElementById('client-error-msg'); 
-    const adminErrorMsg = document.getElementById('admin-error-msg');
-    const profileDropdown = document.getElementById('profile-dropdown');
-
-<<<<<<< HEAD
-    // --- 2. LÓGICA DE ABRIR / CERRAR LOGIN ---
-    if (userTrigger && loginOverlay) {
-        userTrigger.addEventListener('click', (e) => {
-=======
+    // --- 3. LÓGICA DE ABRIR / CERRAR LOGIN ---
     if (userIcon && loginOverlay) {
         userIcon.addEventListener('click', (e) => {
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
             e.preventDefault();
-            e.stopPropagation();
-            loginOverlay.classList.add('active');
-            loginOverlay.classList.add('show-overlay');
+            loginOverlay.classList.add('active', 'show-overlay');
         });
     }
 
     if (closeBtn && loginOverlay) {
         closeBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            loginOverlay.classList.remove('active');
-            loginOverlay.classList.remove('show-overlay');
+            loginOverlay.classList.remove('active', 'show-overlay');
         });
     }
 
     window.addEventListener('click', (e) => {
         if (e.target === loginOverlay) {
-            loginOverlay.classList.remove('active');
-            loginOverlay.classList.remove('show-overlay');
+            loginOverlay.classList.remove('active', 'show-overlay');
         }
     });
-<<<<<<< HEAD
 
-    // --- 3. VALIDACIÓN DE LOGIN ---
-
-    // Lógica para el Cliente (Formulario Izquierdo)
+    // --- 4. VALIDACIÓN DE LOGIN (CLIENTE, ARTISTA Y ADMIN) ---
     const btnClienteDirecto = document.getElementById('btn-client-direct');
+    const btnAdminLogin = document.getElementById('btn-admin-login');
+    const clientErrorMsg = document.getElementById('client-error-msg');
+    const adminErrorMsg = document.getElementById('admin-error-msg');
+
+    // Login Cliente
     if (btnClienteDirecto) {
         btnClienteDirecto.addEventListener('click', (e) => {
             e.preventDefault();
@@ -71,54 +50,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const pass = document.getElementById('client-pass-direct').value;
 
             if (user === "cliente@gmail.com" && pass === "789") {
-                // GUARDAR SESIÓN
                 localStorage.setItem('sesionKelmatica', 'activa');
-                
-                // CAMBIO VISUAL INMEDIATO
-                loginOverlay.classList.remove('active');
-                loginOverlay.classList.remove('show-overlay');
-                if (userTrigger) userTrigger.style.display = 'none'; 
+                loginOverlay.classList.remove('active', 'show-overlay');
+                if (userIcon) userIcon.style.display = 'none'; 
                 if (profileTrigger) profileTrigger.style.display = 'block'; 
-                
-                console.log("Sesión iniciada");
+                alert("¡Bienvenido a Kelmática!");
             } else {
                 if (clientErrorMsg) {
                     clientErrorMsg.style.display = "block";
                     clientErrorMsg.innerText = "Correo o contraseña incorrectos.";
-=======
-    if (btnAdminLogin) {
-        btnAdminLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            const role = userRole.value;
-            const user = adminUser.value;
-            const pass = adminPass.value;
-
-            if (role === "artista" && user === "artista" && pass === "123") {
-                window.location.href = "artista.html";
-            } 
-            else if (role === "administrador" && user === "admin" && pass === "456") {
-                window.location.href = "admin.html";
-            } 
-            else {
-                if (errorMsg) {
-                    errorMsg.style.display = "block";
-                    errorMsg.innerText = "Usuario o contraseña incorrectos.";
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
                 }
-                document.getElementById('client-pass-direct').value = ""; 
             }
         });
     }
 
-<<<<<<< HEAD
-    // Lógica para Artista/Admin (Formulario Derecho)
+    // Login Artista / Administrador
     if (btnAdminLogin) {
         btnAdminLogin.addEventListener('click', (e) => {
             e.preventDefault();
-            const role = userRole.value;
-            const u = adminUser.value;
-            const p = adminPass.value;
+            const role = document.getElementById('user-role').value;
+            const u = document.getElementById('admin-user').value;
+            const p = document.getElementById('admin-pass').value;
 
             if (role === "artista" && u === "artista" && p === "123") {
                 window.location.href = "artista.html";
@@ -129,14 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
             else {
                 if (adminErrorMsg) {
                     adminErrorMsg.style.display = "block";
-                    adminErrorMsg.innerText = "Acceso denegado.";
+                    adminErrorMsg.innerText = "Acceso denegado. Revisa tus credenciales.";
                 }
-                adminPass.value = "";
             }
         });
     }
 
-    // --- 4. MENÚ DE PERFIL Y CERRAR SESIÓN ---
+    // --- 5. MENÚ DE PERFIL Y CERRAR SESIÓN ---
     if (profileTrigger && profileDropdown) {
         profileTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -149,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnLogout.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('sesionKelmatica');
-            window.location.reload(); // Recarga para limpiar la vista
+            window.location.reload();
         });
     }
 
@@ -157,17 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (profileDropdown) profileDropdown.classList.remove('active');
     });
 
-    // --- 5. CARRUSELES Y FAQ (Tu código original) ---
-=======
-    [adminUser, adminPass, userRole].forEach(input => {
-        if (input) {
-            input.addEventListener('input', () => {
-                if (errorMsg) errorMsg.style.display = "none";
-            });
-        }
-    });
-
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
+    // --- 6. INTERFAZ: CARRUSELES Y FAQ ---
+    
+    // FAQ Accordion
     document.querySelectorAll('.faq-item').forEach(item => {
         const q = item.querySelector('.faq-question');
         if (q) {
@@ -182,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Sliders de Galería
     const sliders = document.querySelectorAll('.style-slider-container-v2');
     sliders.forEach((container) => {
         const slides = container.querySelector('.style-slides-v2');
@@ -189,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const prev = container.querySelector('.prev-btn');
         const imgs = container.querySelectorAll('.style-slides-v2 img');
         let counter = 0;
+        
         if (slides && next && prev && imgs.length > 0) {
-            imgs.forEach(img => { img.style.minWidth = "100%"; });
             next.addEventListener('click', () => {
                 counter = (counter + 1) % imgs.length;
                 slides.style.transform = `translateX(${-counter * 100}%)`;
@@ -202,8 +146,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Limpiar errores al escribir
-    document.querySelectorAll('.k-input-field').forEach(input => {
+    // --- 7. PANEL DE CONTROL: TABS (PESTAÑAS) ---
+    const dashboardTabs = document.querySelectorAll('.nav-link');
+    const tabPanes = document.querySelectorAll('.tab-content');
+
+    if (dashboardTabs.length > 0) {
+        dashboardTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                dashboardTabs.forEach(t => t.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-tab');
+                const targetPane = document.getElementById(targetId);
+                if (targetPane) targetPane.classList.add('active');
+            });
+        });
+    }
+
+    // Limpiar errores al escribir en cualquier input
+    document.querySelectorAll('input').forEach(input => {
         input.addEventListener('input', () => {
             if (clientErrorMsg) clientErrorMsg.style.display = "none";
             if (adminErrorMsg) adminErrorMsg.style.display = "none";
@@ -211,29 +173,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-// Lógica para cambiar de pestañas en el panel
-const dashboardTabs = document.querySelectorAll('.nav-link');
-const tabPanes = document.querySelectorAll('.tab-content');
-
-dashboardTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        // Quitar clase activa de todos
-        dashboardTabs.forEach(t => t.classList.remove('active'));
-        tabPanes.forEach(p => p.classList.remove('active'));
-
-<<<<<<< HEAD
-        // Activar el clickeado
-        tab.classList.add('active');
-        const targetId = tab.getAttribute('data-tab');
-        document.getElementById(targetId).classList.add('active');
-    });
-});
-=======
-userBtn.addEventListener('click', () => {
-    overlay.classList.add('show-overlay');
-});
-
-closeBtn.addEventListener('click', () => {
-    overlay.classList.remove('show-overlay');
-});
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab

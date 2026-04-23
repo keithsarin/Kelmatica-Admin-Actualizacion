@@ -2477,3 +2477,26 @@ display: flex;
     padding: 12px 12px 12px 45px; /* Espacio para el icono de lupa */
     border-radius: 12px;
 }
+/* ARREGLO DE VISIBILIDAD EN INPUTS DE LOGIN */
+.k-input-field, 
+#client-user-direct, 
+#client-pass-direct, 
+#admin-user, 
+#admin-pass,
+select#user-role {
+    color: #121212 !important; /* Negro Kelmática para el texto que escribes */
+    background-color: #ffffff !important; /* Fondo blanco puro */
+}
+
+/* Para que el texto de ayuda (placeholder) sea gris y se note */
+.k-input-field::placeholder,
+input::placeholder {
+    color: #757575 !important;
+    opacity: 1;
+}
+
+/* Arreglo específico para el desplegable "¿Qué eres?" */
+select#user-role option {
+    color: #121212;
+    background-color: #ffffff;
+}
