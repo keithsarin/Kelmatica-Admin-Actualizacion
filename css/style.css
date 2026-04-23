@@ -2330,22 +2330,15 @@ display: flex;
 }
 
 /* Espacio para el semáforo */
-
 .dot {
-
     margin-right: 12px; /* Más separación del texto "Pagado" o "Pendiente" */
-
 }
 
-
-
 /* Espacio para los botones de acciones */
-
 .btn-icon {
     margin-right: 8px;
     padding: 8px; /* Hace que el área de clic sea más grande y cómoda */
 }
-
 .chart-card canvas {
     max-height: 250px !important; /* Evita que el gráfico sea demasiado alto */
     width: 100% !important;
@@ -2451,65 +2444,31 @@ display: flex;
 }
 
 .btn-add-user {
-
     background: transparent;
-
     color: var(--dorado);
-
     border: 1px solid var(--dorado);
-
     padding: 10px 20px;
-
     border-radius: 10px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.3s;
-
     white-space: nowrap;
-
 }
-
-
-
 .btn-add-user:hover {
-
     background-color: var(--dorado);
-
     color: #000;
-
 }
-
-
-
 /* El buscador moderno */
-
 .search-container {
-
     position: relative;
-
     flex-grow: 1; /* Ocupa el espacio disponible */
-
 }
-
-
-
 .search-container i {
-
     position: absolute;
-
     left: 15px;
-
     top: 12px;
-
     color: #555;
-
 }
-
-
-
 .search-input {
     width: 100%;
     background-color: var(--gris-oscuro);

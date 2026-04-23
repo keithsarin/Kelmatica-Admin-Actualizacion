@@ -6,6 +6,7 @@
     <title>Galeria - KELMÁTICA</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.cliente.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -29,13 +30,44 @@
         </nav>
 
         <div class="header-right">
-            <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
-                <i class="fa-solid fa-user"></i>
+            <div class="k-user-session-container" style="position: relative;">
+                
+                <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div id="profile-trigger" class="k-profile-circle" style="display: none;">
+                    <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" id="profile-img-btn">
+                    
+                    <div class="k-profile-dropdown" id="profile-dropdown">
+                        <div class="k-dropdown-header">
+                            <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil">
+                            <div class="k-header-info">
+                                <p class="k-user-name">Cliente Kelmática</p>
+                                <p class="k-user-email">cliente@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="k-dropdown-divider"></div>
+                        
+                        <nav class="k-dropdown-nav">
+                            <a href="cliente-compra.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
+                            <a href="cliente-pedidos.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
+                            <a href="cliente-favoritos.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
+                            <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
+                            
+                            <div class="k-dropdown-divider"></div>
+                            
+                            <a href="#" id="btn-logout" class="k-logout-link">
+                                <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                            </a>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </header>
-
 <div class="k-login-overlay" id="login-overlay">
     <button class="k-close-btn" id="close-login">&times;</button>
     <div class="k-login-content">
@@ -43,14 +75,19 @@
         <div class="k-login-box">
             <div class="k-icon-gold"><i class="fa-solid fa-gem"></i></div>
             <h2>Soy amante del arte, un coleccionista</h2>
-            <p>Crea una cuenta para guardar tus favoritos y recibir ofertas personalizadas.</p>
+            <p>Ingresa para ver tus favoritos o crea una cuenta nueva.</p>
             
-            <div class="k-email-login-group">
-                <input type="email" id="user-email" placeholder="Ingresa tu correo electrónico" class="k-input-field">
-                <button class="k-btn-main">INGRESAR CON EMAIL</button>
+            <div class="k-email-login-group" style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                <input type="email" id="client-user-direct" placeholder="cliente@gmail.com" class="k-input-field">
                 
-                <div class="k-login-help" id="login-help">
-                    <a href="#" class="k-help-link">Crear cuenta</a>
+                <input type="password" id="client-pass-direct" placeholder="Tu contraseña" class="k-input-field">
+                
+                <button class="k-btn-main" id="btn-client-direct">INGRESAR</button>
+
+                <div id="client-error-msg" style="color: #ff4d4d; font-size: 0.8rem; text-align: center; display: none; margin-top: 10px; font-family: 'Roboto', sans-serif;"></div>
+                
+                <div class="k-login-help">
+                    <a href="cliente.html" class="k-help-link">Crear cuenta</a>
                     <span class="k-help-sep">|</span>
                     <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
                 </div>
@@ -66,30 +103,27 @@
 
         <div class="k-login-box">
             <div class="k-icon-gold"><i class="fa-solid fa-palette"></i></div>
-            <h2>Soy un artista o Administrador</h2>
-            <p>Si eres Artista o Administrador gestiona tu cuenta.</p>
+            <h2>Ingreso Profesional</h2>
+            <p>Gestión exclusiva para Artistas y Administradores del sistema.</p>
             
             <div class="k-admin-form" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
                 <div class="k-input-group" style="text-align: left;">
-                    <label class="k-label" style="display: block; color: #c5a059; font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase;"></label>
                     <select id="user-role" class="k-input-field k-select" style="width: 100%;">
-                        <option value="" disabled selected>¿Que eres?</option>
+                        <option value="" disabled selected>¿Qué eres?</option>
                         <option value="artista">Artista</option>
                         <option value="administrador">Administrador</option>
                     </select>
                 </div>
 
                 <input type="text" id="admin-user" placeholder="Usuario" class="k-input-field">
-                
                 <input type="password" id="admin-pass" placeholder="Contraseña" class="k-input-field">
                 
                 <button id="btn-admin-login" class="k-btn-main">INGRESAR AL PANEL</button>
+
                 <div id="admin-error-msg" style="color: #ff4d4d; font-size: 0.8rem; text-align: center; display: none; font-family: 'Roboto', sans-serif;"></div>
 
                 <div class="k-login-help">
-                    <a href="#" class="k-help-link">Crear cuenta</a>
-                    <span class="k-help-sep">|</span>
-                    <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
+                    <a href="#" class="k-help-link">Ayuda técnica</a>
                 </div>
             </div>
         </div>

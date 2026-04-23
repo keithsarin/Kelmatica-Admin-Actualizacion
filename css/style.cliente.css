@@ -1,0 +1,337 @@
+:root {
+    --k-bg-light: #f4f7f6;
+    --k-white: #ffffff;
+    --k-text-main: #333;
+    --k-gold: #c5a059;
+    --k-dark: #121212;
+    --k-border: #e1e4e8;
+    --k-accent: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+body.client-dashboard {
+    background: #f4f7f6 !important; /* El gris clarito de Kelmática */
+    min-height: 100vh;
+}
+.k-profile-circle {
+    width: 42px;
+    height: 42px;
+    position: relative;
+    cursor: pointer;
+}
+
+.k-profile-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--k-gold);
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.k-profile-dropdown {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 260px;
+    background: var(--k-dark);
+    border: 1px solid #333;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.k-profile-dropdown.active {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.k-dropdown-header {
+    padding: 20px;
+    text-align: center;
+    background: #1a1a1a;
+}
+
+.k-dropdown-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid var(--k-gold);
+}
+
+.k-user-name { color: white; font-weight: bold; margin: 0; }
+.k-user-email { color: #888; font-size: 0.8rem; margin-top: 4px; }
+
+.k-dropdown-nav { padding: 10px; }
+.k-dropdown-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #ddd;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.k-dropdown-nav a i { color: var(--k-gold); width: 20px; }
+.k-dropdown-nav a:hover { background: #222; color: var(--k-gold); }
+
+.k-logout-link:hover { background: rgba(255, 77, 77, 0.1) !important; color: #ff4d4d !important; }
+
+/* 
+ 3. PANEL DE CLIENTE (Diseño de la imagen - Dashboard)
+   */
+.client-dashboard {
+background-color: var(--k-bg-light);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    padding-top: 110px; /* Ajuste para el header */
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    align-items: start;
+}
+
+/* Sidebar lateral */
+.dashboard-sidebar {
+    background: var(--k-white);
+    padding: 25px 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Botones del menú lateral */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: left;
+}
+
+.nav-link i { font-size: 1.2rem; width: 25px; color: #999; }
+
+.nav-link:hover { background-color: #f0f2f5; }
+
+/* Pestaña Activa con tu gradiente azul/morado */
+.nav-link.active {
+    background: var(--k-accent);
+    color: white !important;
+    box-shadow: 0 8px 15px rgba(110, 142, 251, 0.3);
+}
+
+.nav-link.active i { color: white !important; }
+
+/* Área Blanca de Contenido */
+.dashboard-content {
+    background: var(--k-white);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    min-height: 500px;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeInTab 0.4s ease; }
+
+.tab-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #222;
+    font-weight: 700;
+}
+
+/* Formulario */
+.k-input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    margin: 10px 0 20px 0;
+    background: #fafafa;
+}
+
+/* Estado Vacío */
+.k-empty-state {
+    border: 2px dashed #eee;
+    padding: 60px;
+    text-align: center;
+    border-radius: 20px;
+    color: #aaa;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .client-dashboard { padding-top: 100px; }
+}
+.nav-link {
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    display: flex;
+    align-items: center;
+}
+
+/* Base del Dashboard */
+.client-dashboard {
+    background-color: var(--k-bg-light);
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    padding-top: 100px; /* Para que el header no tape el contenido */
+}
+
+.k-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.k-welcome-header h1 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 25px;
+}
+
+/* Grid Principal */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+    background: var(--k-white);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    color: #666;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-link i {
+    width: 20px;
+    font-size: 1.1rem;
+}
+
+.nav-link:hover {
+    background: #f0f2f5;
+}
+
+/* Botón Activo */
+.nav-link.active {
+    background: var(--k-accent);
+    color: white !important;
+    box-shadow: 0 8px 15px rgba(110, 142, 251, 0.3);
+}
+
+.nav-link.active i {
+    color: white !important;
+}
+
+/* Caja de Contenido */
+.dashboard-content {
+    background: var(--k-white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    min-height: 450px;
+}
+
+/* Estado Vacío */
+.k-empty-state {
+    text-align: center;
+    padding: 50px 0;
+    color: #999;
+}
+
+.k-empty-state i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.3;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+/* CLIENTE-FAVORITOS*/
+.k-empty-state i.fa-heart-crack {
+    color: #ffb3b3; /* Un rojo muy clarito para el icono vacío */
+    opacity: 0.6;
+}
+/*CLIENTE - PEDIDOS*/
+.k-empty-state i.fa-box-open {
+    color: #a5d8ff;
+    opacity: 0.7;
+}
+/* ESTILO BOTON DE SALIR*/
+
+/* Estilo para el botón de salir al inicio */
+.nav-link.logout-style {
+    margin-top: 10px;
+    color: #888; /* Un color más suave */
+    transition: all 0.3s ease;
+}
+
+.nav-link.logout-style:hover {
+    background-color: #fff0f0; /* Un fondo rojizo muy leve */
+    color: #ff4d4d; /* Texto en rojo para indicar salida */
+}
+
+.nav-link.logout-style:hover i {
+    color: #ff4d4d;
+    transform: translateX(-3px); /* Pequeña animación hacia la izquierda */
+}

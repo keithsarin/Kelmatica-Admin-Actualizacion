@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. LÓGICA DEL MENÚ (SIDEBAR) ---
+  
     const botones = document.querySelectorAll('.sidebar-nav li');
     const secciones = document.querySelectorAll('.content-section');
 
     botones.forEach((btn) => {
         btn.addEventListener('click', () => {
-            // Quitar clase active
+          
             botones.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Ocultar todas las secciones
+         
             secciones.forEach(s => s.style.display = 'none');
 
-            // Mostrar la sección basada en el data-section
+          
             const sectionName = btn.getAttribute('data-section');
             const targetSection = document.getElementById('section-' + sectionName);
             
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. LÓGICA DEL BUSCADOR DE USUARIOS ---
+  
     const buscador = document.getElementById('user-search');
     if (buscador) {
         buscador.addEventListener('keyup', (e) => {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. GRÁFICO DE VENTAS ---
+
     const ctxVentas = document.getElementById('chartVentas');
     if (ctxVentas) {
         new Chart(ctxVentas.getContext('2d'), {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. GRÁFICO DE OBRAS ---
+  
     const ctxObras = document.getElementById('chartObras');
     if (ctxObras) {
         new Chart(ctxObras.getContext('2d'), {
@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- 5. FUNCIONES GLOBALES (MODAL) ---
 function verFichaObra(titulo, cliente, artista, descripcion, presupuesto, imagen) {
     const modal = document.getElementById('modal-revision');
     if (modal) {
@@ -117,20 +116,20 @@ window.onclick = function(event) {
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. LÓGICA DEL MENÚ (SIDEBAR) ---
+  
     const botones = document.querySelectorAll('.sidebar-nav li');
     const secciones = document.querySelectorAll('.content-section');
 
     botones.forEach((btn) => {
         btn.addEventListener('click', () => {
-            // Quitar clase active
+          
             botones.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Ocultar todas las secciones
+    
             secciones.forEach(s => s.style.display = 'none');
 
-            // Mostrar la sección basada en el data-section
+          
             const sectionName = btn.getAttribute('data-section');
             const targetSection = document.getElementById('section-' + sectionName);
             
@@ -140,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. LÓGICA DEL BUSCADOR DE USUARIOS ---
+
     const buscador = document.getElementById('user-search');
     if (buscador) {
         buscador.addEventListener('keyup', (e) => {
@@ -154,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. GRÁFICO DE VENTAS ---
+ 
     const ctxVentas = document.getElementById('chartVentas');
     if (ctxVentas) {
         new Chart(ctxVentas.getContext('2d'), {
@@ -175,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. GRÁFICO DE OBRAS ---
+  
     const ctxObras = document.getElementById('chartObras');
     if (ctxObras) {
         new Chart(ctxObras.getContext('2d'), {
@@ -194,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- 5. FUNCIONES GLOBALES (MODAL) ---
+
 function verFichaObra(titulo, cliente, artista, descripcion, presupuesto, imagen) {
     const modal = document.getElementById('modal-revision');
     if (modal) {
@@ -227,10 +226,62 @@ function enviarAlArtista(aprobado) {
     cerrarModalRevision();
 }
 
-// Cerrar al hacer clic fuera del modal
 window.onclick = function(event) {
     const modal = document.getElementById('modal-revision');
     if (event.target == modal) {
         cerrarModalRevision();
     }
 }
+// Funciones para Gestión de Usuarios
+function abrirModalUsuario() {
+    document.getElementById('modal-usuario-titulo').innerText = "Agregar Nuevo Perfil";
+    document.getElementById('form-usuario').reset();
+    document.getElementById('modal-usuario').style.display = 'flex';
+}
+
+function cerrarModalUsuario() {
+    document.getElementById('modal-usuario').style.display = 'none';
+}
+
+function editarUsuario(nombre, rol, estado) {
+    document.getElementById('modal-usuario-titulo').innerText = "Editar Perfil";
+    document.getElementById('user-nombre').value = nombre;
+    document.getElementById('user-rol').value = rol;
+    document.getElementById('user-estado').value = estado;
+    document.getElementById('modal-usuario').style.display = 'flex';
+}
+
+function eliminarFila(boton) {
+    if (confirm("¿Estás seguro de que deseas eliminar este perfil? Esta acción no se puede deshacer.")) {
+        // Elimina la fila (tr) que contiene al botón
+        const fila = boton.closest('tr');
+        fila.remove();
+    }
+}
+
+// Manejar el envío del formulario (Agregar a la tabla)
+document.getElementById('form-usuario')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nombre = document.getElementById('user-nombre').value;
+    const rol = document.getElementById('user-rol').value;
+    const estado = document.getElementById('user-estado').value;
+    const tabla = document.getElementById('lista-usuarios-body');
+
+    // Aquí podrías diferenciar si es edición o nuevo, por ahora agregaremos uno nuevo:
+    const nuevaFila = `
+        <tr>
+            <td>${nombre}</td>
+            <td>${rol}</td>
+            <td><span class="${estado === 'Activo' ? 'status-active' : 'status-inactive'}">${estado}</span></td>
+            <td>
+                <button class="btn-icon"><i class="fa-solid fa-eye"></i></button>
+                <button class="btn-icon" onclick="editarUsuario('${nombre}', '${rol}', '${estado}')"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-icon btn-delete" onclick="eliminarFila(this)"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        </tr>
+    `;
+
+    tabla.innerHTML += nuevaFila;
+    cerrarModalUsuario();
+});

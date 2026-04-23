@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelmática - Mi Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.cliente.css">
+</head>
+<body class="client-dashboard">
+
+    <header class="k-header">
+        </header>
+
+    <main class="k-container">
+        <header class="k-welcome-header">
+            <h1>Configuración</h1>
+        </header>
+
+        <div class="dashboard-grid">
+            <aside class="dashboard-sidebar">
+                <nav class="dashboard-nav">
+                    <a href="cliente-compra.html" class="nav-link">
+                        <i class="fa-solid fa-bag-shopping"></i> Mis Compras
+                    </a>
+                    <a href="cliente-pedidos.html" class="nav-link">
+                        <i class="fa-solid fa-truck"></i> Mis Pedidos
+                    </a>
+                    <a href="cliente-favoritos.html" class="nav-link">
+                        <i class="fa-solid fa-heart"></i> Favoritos
+                    </a>
+                    <a href="cliente-perfil.html" class="nav-link active"> <i class="fa-solid fa-user-pen"></i> Mi Perfil
+                        <div style="height: 1px; background: #eee; margin: 10px 0;"></div>
+
+<a href="index.html" class="nav-link logout-style">
+    <i class="fa-solid fa-right-from-bracket"></i> Salir al Inicio
+</a>
+                    </a>
+                </nav>
+            </aside>
+            <section class="dashboard-content">
+                <div class="tab-content active">
+                    <h3><i class="fa-solid fa-user-gear"></i> Información de mi Perfil</h3>
+                    
+                    <form class="k-profile-form">
+                        <div class="form-group-flex">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" class="k-input-field" placeholder="Tu nombre" value="Usuario Ejemplo">
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="k-input-field" placeholder="tu@correo.com" value="usuario@ejemplo.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Dirección de Envío</label>
+                            <input type="text" class="k-input-field" placeholder="Calle, Número, Ciudad" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="tel" class="k-input-field" placeholder="+57 300 000 0000">
+                        </div>
+
+                        <div style="margin-top: 30px; display: flex; gap: 15px;">
+                            <button type="submit" class="k-btn-save">Guardar Cambios</button>
+                            <button type="button" class="k-btn-cancel">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="js/cliente.js"></script>
+</body>
+</html>
