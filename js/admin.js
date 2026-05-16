@@ -1,420 +1,228 @@
 document.addEventListener('DOMContentLoaded', () => {
-<<<<<<< HEAD
-  
-=======
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
-    const botones = document.querySelectorAll('.sidebar-nav li');
-    const secciones = document.querySelectorAll('.content-section');
+    // === 1. NAVEGACIÓN DEL PANEL ===
+    const menuItems = document.querySelectorAll('.sidebar-nav li');
+    const sections = document.querySelectorAll('.content-section');
 
-    botones.forEach((btn) => {
-        btn.addEventListener('click', () => {
-<<<<<<< HEAD
-          
-            botones.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const targetSection = item.getAttribute('data-section');
 
-         
-            secciones.forEach(s => s.style.display = 'none');
+            // Quitar clase activa de todos los botones y secciones
+            menuItems.forEach(i => i.classList.remove('active'));
+            sections.forEach(s => s.style.display = 'none');
 
-          
-=======
-            botones.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            secciones.forEach(s => s.style.display = 'none');
-
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
-            const sectionName = btn.getAttribute('data-section');
-            const targetSection = document.getElementById('section-' + sectionName);
-            
-            if (targetSection) {
-                targetSection.style.display = 'block';
+            // Activar el botón clicado y mostrar la sección correspondiente
+            item.classList.add('active');
+            const targetElement = document.getElementById(`section-${targetSection}`);
+            if (targetElement) {
+                targetElement.style.display = 'block';
             }
         });
     });
 
-<<<<<<< HEAD
-  
-=======
-    const buscador = document.getElementById('user-search');
-    if (buscador) {
-        buscador.addEventListener('keyup', (e) => {
-            const texto = e.target.value.toLowerCase();
-            const filasTabla = document.querySelectorAll('#lista-usuarios-body tr');
-
-            filasTabla.forEach(fila => {
-                const contenidoFila = fila.textContent.toLowerCase();
-                fila.style.display = contenidoFila.includes(texto) ? '' : 'none';
-            });
-        });
-    }
+    // === 2. LÓGICA DE GRÁFICOS (CHART.JS) ===
     const ctxVentas = document.getElementById('chartVentas');
     if (ctxVentas) {
-        new Chart(ctxVentas.getContext('2d'), {
+        new Chart(ctxVentas, {
             type: 'line',
             data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                 datasets: [{
-                    label: 'Ventas 2026',
-                    data: [1200000, 1500000, 1900000, 2500000, 3000000, 2800000, 2500000, 3200000, 4200000, 4500000, 4800000, 5000000],
-                    borderColor: '#c5a059',
-                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true
+                    label: 'Ventas en COP',
+                    data: [1200000, 1900000, 3000000, 2500000, 4000000, 4500000],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    fill: true,
+                    tension: 0.4
                 }]
             },
-            options: { responsive: true, maintainAspectRatio: false }
+            options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } } }
         });
     }
+
     const ctxObras = document.getElementById('chartObras');
     if (ctxObras) {
-        new Chart(ctxObras.getContext('2d'), {
-            type: 'bar',
+        new Chart(ctxObras, {
+            type: 'doughnut',
             data: {
-                labels: ['Óleo', 'Acrílico', 'Alto Relieve', 'Acuarela'],
+                labels: ['Óleos', 'Digital', 'Escultura'],
                 datasets: [{
-                    label: 'Visualizaciones',
-                    data: [450, 320, 600, 150],
-                    backgroundColor: ['#c5a059', '#a6864a', '#e2c285', '#d4b477'],
-                    borderRadius: 8
+                    data: [300, 50, 100],
+                    backgroundColor: ['#d4af37', '#8e6d1c', '#444']
                 }]
             },
-            options: { responsive: true, maintainAspectRatio: false }
+            options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: '#fff' } } } }
         });
     }
-});
 
-function verFichaObra(titulo, cliente, artista, descripcion, presupuesto, imagen) {
-    const modal = document.getElementById('modal-revision');
-    if (modal) {
-        document.getElementById('modal-obra-titulo').innerText = titulo;
-        document.getElementById('modal-cliente').innerText = cliente;
-        document.getElementById('modal-obra-artista').innerText = artista;
-        document.getElementById('modal-descripcion').innerText = descripcion;
-        document.getElementById('modal-presupuesto').innerText = presupuesto;
-        document.getElementById('modal-obra-img').src = imagen;
-        
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    // === 3. BÚSQUEDA EN TIEMPO REAL ===
+    const buscador = document.getElementById('user-search');
+    if (buscador) {
+        buscador.addEventListener('input', (e) => {
+            actualizarTabla(e.target.value);
+        });
     }
-}
 
-function cerrarModalRevision() {
-    const modal = document.getElementById('modal-revision');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-}
+    // === 4. ASIGNAR EVENTO AL FORMULARIO ===
+    const formUsuario = document.getElementById('form-usuario');
+    if (formUsuario) {
+        formUsuario.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-function enviarAlArtista(aprobado) {
-    if (aprobado) {
-        alert("Solicitud aprobada. Se ha enviado al panel del Artista.");
-    } else {
-        alert("Solicitud rechazada.");
-    }
-    cerrarModalRevision();
-}
-
-window.onclick = function(event) {
-    const modal = document.getElementById('modal-revision');
-    if (event.target == modal) {
-        cerrarModalRevision();
-    }
-}
-document.addEventListener('DOMContentLoaded', () => {
-    const botones = document.querySelectorAll('.sidebar-nav li');
-    const secciones = document.querySelectorAll('.content-section');
-
-    botones.forEach((btn) => {
-        btn.addEventListener('click', () => {
-           
-            botones.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            secciones.forEach(s => s.style.display = 'none');
-
-            const sectionName = btn.getAttribute('data-section');
-            const targetSection = document.getElementById('section-' + sectionName);
+            const index = document.getElementById('user-index').value;
             
-            if (targetSection) {
-                targetSection.style.display = 'block';
+            const datosUsuario = {
+                nombre: document.getElementById('user-nombre').value,
+                apellido: document.getElementById('user-apellido').value,
+                email: document.getElementById('user-email').value,
+                celular: document.getElementById('user-celular').value,
+                direccion: document.getElementById('user-direccion').value,
+                estado: document.getElementById('user-estado').value,
+                rol: "Cliente" // Rol asignado por defecto para esta sección
+            };
+
+            if (index === "") {
+                // Crear nuevo
+                usuarios.push(datosUsuario);
+            } else {
+                // Editar existente
+                usuarios[index] = datosUsuario;
             }
-        });
-    });
 
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
-    const buscador = document.getElementById('user-search');
-    if (buscador) {
-        buscador.addEventListener('keyup', (e) => {
-            const texto = e.target.value.toLowerCase();
-            const filasTabla = document.querySelectorAll('#lista-usuarios-body tr');
-
-            filasTabla.forEach(fila => {
-                const contenidoFila = fila.textContent.toLowerCase();
-                fila.style.display = contenidoFila.includes(texto) ? '' : 'none';
-            });
+            // Guardar en LocalStorage y refrescar
+            localStorage.setItem('kelmatica_usuarios', JSON.stringify(usuarios));
+            cerrarModalUsuario();
+            actualizarTabla();
         });
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
-    const ctxVentas = document.getElementById('chartVentas');
-    if (ctxVentas) {
-        new Chart(ctxVentas.getContext('2d'), {
-            type: 'line',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                datasets: [{
-                    label: 'Ventas 2026',
-                    data: [1200000, 1500000, 1900000, 2500000, 3000000, 2800000, 2500000, 3200000, 4200000, 4500000, 4800000, 5000000],
-                    borderColor: '#c5a059',
-                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false }
-        });
+    // Escuchar el clic del botón "Agregar" para abrir el modal limpio
+    const btnNuevoUsuario = document.querySelector('.btn-add-user');
+    if (btnNuevoUsuario) {
+        btnNuevoUsuario.addEventListener('click', () => abrirModalUsuario());
     }
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
-    const ctxObras = document.getElementById('chartObras');
-    if (ctxObras) {
-        new Chart(ctxObras.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Óleo', 'Acrílico', 'Alto Relieve', 'Acuarela'],
-                datasets: [{
-                    label: 'Visualizaciones',
-                    data: [450, 320, 600, 150],
-                    backgroundColor: ['#c5a059', '#a6864a', '#e2c285', '#d4b477'],
-                    borderRadius: 8
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false }
-        });
-    }
+    // Carga inicial de la tabla al abrir el panel
+    actualizarTabla();
 });
-<<<<<<< HEAD
 
-=======
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
-function verFichaObra(titulo, cliente, artista, descripcion, presupuesto, imagen) {
-    const modal = document.getElementById('modal-revision');
-    if (modal) {
-        document.getElementById('modal-obra-titulo').innerText = titulo;
-        document.getElementById('modal-cliente').innerText = cliente;
-        document.getElementById('modal-obra-artista').innerText = artista;
-        document.getElementById('modal-descripcion').innerText = descripcion;
-        document.getElementById('modal-presupuesto').innerText = presupuesto;
-        document.getElementById('modal-obra-img').src = imagen;
-        
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-}
+// === 5. PERSISTENCIA DE DATOS (GLOBAL) ===
+let usuarios = JSON.parse(localStorage.getItem('kelmatica_usuarios')) || [
+    { nombre: "Keith", apellido: "Galvan", email: "keisamg18@gmail.com", celular: "321654", direccion: "Cra 123", estado: "Activo", rol: "Cliente" }
+];
 
-function cerrarModalRevision() {
-    const modal = document.getElementById('modal-revision');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-}
+// === 6. FUNCIONES GLOBALES DEL CRUD Y MODALES ===
 
-function enviarAlArtista(aprobado) {
-    if (aprobado) {
-        alert("✅ Solicitud aprobada. Se ha enviado al panel del Artista.");
-    } else {
-        alert("❌ Solicitud rechazada.");
-    }
-    cerrarModalRevision();
-}
-
-window.onclick = function(event) {
-    const modal = document.getElementById('modal-revision');
-    if (event.target == modal) {
-        cerrarModalRevision();
-    }
-}
-<<<<<<< HEAD
-document.addEventListener('DOMContentLoaded', () => {
-  
-    const botones = document.querySelectorAll('.sidebar-nav li');
-    const secciones = document.querySelectorAll('.content-section');
-
-    botones.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          
-            botones.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
+window.abrirModalUsuario = (index = null) => {
+    const modal = document.getElementById('modal-usuario');
+    const form = document.getElementById('form-usuario');
+    const titulo = document.getElementById('modal-usuario-titulo');
     
-            secciones.forEach(s => s.style.display = 'none');
+    if (!modal || !form) return;
 
-          
-            const sectionName = btn.getAttribute('data-section');
-            const targetSection = document.getElementById('section-' + sectionName);
-            
-            if (targetSection) {
-                targetSection.style.display = 'block';
-            }
-        });
-    });
+    modal.style.display = 'flex';
+    form.reset(); // Limpia campos previos
 
-
-    const buscador = document.getElementById('user-search');
-    if (buscador) {
-        buscador.addEventListener('keyup', (e) => {
-            const texto = e.target.value.toLowerCase();
-            const filasTabla = document.querySelectorAll('#lista-usuarios-body tr');
-
-            filasTabla.forEach(fila => {
-                const contenidoFila = fila.textContent.toLowerCase();
-                fila.style.display = contenidoFila.includes(texto) ? '' : 'none';
-            });
-        });
-    }
-
- 
-    const ctxVentas = document.getElementById('chartVentas');
-    if (ctxVentas) {
-        new Chart(ctxVentas.getContext('2d'), {
-            type: 'line',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                datasets: [{
-                    label: 'Ventas 2026',
-                    data: [1200000, 1500000, 1900000, 2500000, 3000000, 2800000, 2500000, 3200000, 4200000, 4500000, 4800000, 5000000],
-                    borderColor: '#c5a059',
-                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false }
-        });
-    }
-
-  
-    const ctxObras = document.getElementById('chartObras');
-    if (ctxObras) {
-        new Chart(ctxObras.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Óleo', 'Acrílico', 'Alto Relieve', 'Acuarela'],
-                datasets: [{
-                    label: 'Visualizaciones',
-                    data: [450, 320, 600, 150],
-                    backgroundColor: ['#c5a059', '#a6864a', '#e2c285', '#d4b477'],
-                    borderRadius: 8
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false }
-        });
-    }
-});
-
-
-function verFichaObra(titulo, cliente, artista, descripcion, presupuesto, imagen) {
-    const modal = document.getElementById('modal-revision');
-    if (modal) {
-        document.getElementById('modal-obra-titulo').innerText = titulo;
-        document.getElementById('modal-cliente').innerText = cliente;
-        document.getElementById('modal-obra-artista').innerText = artista;
-        document.getElementById('modal-descripcion').innerText = descripcion;
-        document.getElementById('modal-presupuesto').innerText = presupuesto;
-        document.getElementById('modal-obra-img').src = imagen;
-        
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function cerrarModalRevision() {
-    const modal = document.getElementById('modal-revision');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-}
-
-function enviarAlArtista(aprobado) {
-    if (aprobado) {
-        alert("✅ Solicitud aprobada. Se ha enviado al panel del Artista.");
+    if (index !== null) {
+        // MODO EDICIÓN
+        if (titulo) titulo.innerText = "EDITAR PERFIL DE CLIENTE";
+        const user = usuarios[index];
+        document.getElementById('user-index').value = index;
+        document.getElementById('user-nombre').value = user.nombre;
+        document.getElementById('user-apellido').value = user.apellido;
+        document.getElementById('user-email').value = user.email;
+        document.getElementById('user-celular').value = user.celular;
+        document.getElementById('user-direccion').value = user.direccion;
+        document.getElementById('user-estado').value = user.estado;
     } else {
-        alert("❌ Solicitud rechazada.");
+        // MODO NUEVO
+        if (titulo) titulo.innerText = "AGREGAR NUEVO PERFIL";
+        document.getElementById('user-index').value = "";
     }
-    cerrarModalRevision();
-}
+};
 
-window.onclick = function(event) {
-    const modal = document.getElementById('modal-revision');
-    if (event.target == modal) {
-        cerrarModalRevision();
+window.cerrarModalUsuario = () => {
+    const modal = document.getElementById('modal-usuario');
+    const form = document.getElementById('form-usuario');
+    if (modal) modal.style.display = 'none';
+    if (form) form.reset();
+    const indexInput = document.getElementById('user-index');
+    if (indexInput) indexInput.value = "";
+};
+
+window.eliminarUsuario = (index) => {
+    if (confirm("¿Estás seguro de eliminar este usuario?")) {
+        usuarios.splice(index, 1);
+        localStorage.setItem('kelmatica_usuarios', JSON.stringify(usuarios));
+        actualizarTabla();
     }
-}
-// Funciones para Gestión de Usuarios
-function abrirModalUsuario() {
-    document.getElementById('modal-usuario-titulo').innerText = "Agregar Nuevo Perfil";
-    document.getElementById('form-usuario').reset();
-    document.getElementById('modal-usuario').style.display = 'flex';
-}
+};
 
-function cerrarModalUsuario() {
-    document.getElementById('modal-usuario').style.display = 'none';
-}
+window.actualizarTabla = (filtro = "") => {
+    // Soporta tanto 'tabla-usuarios-body' como 'lista-usuarios-body' según tu HTML
+    const tbody = document.getElementById('tabla-usuarios-body') || document.getElementById('lista-usuarios-body'); 
+    if (!tbody) return;
 
-function editarUsuario(nombre, rol, estado) {
-    document.getElementById('modal-usuario-titulo').innerText = "Editar Perfil";
-    document.getElementById('user-nombre').value = nombre;
-    document.getElementById('user-rol').value = rol;
-    document.getElementById('user-estado').value = estado;
-    document.getElementById('modal-usuario').style.display = 'flex';
-}
+    tbody.innerHTML = ""; // Limpiar filas
 
-function eliminarFila(boton) {
-    if (confirm("¿Estás seguro de que deseas eliminar este perfil? Esta acción no se puede deshacer.")) {
-        // Elimina la fila (tr) que contiene al botón
-        const fila = boton.closest('tr');
-        fila.remove();
-    }
-}
+    // Filtrar usuarios por nombre o rol si hay un criterio de búsqueda
+    const usuariosFiltrados = usuarios.filter(u => 
+        u.nombre.toLowerCase().includes(filtro.toLowerCase()) || 
+        u.rol.toLowerCase().includes(filtro.toLowerCase())
+    );
 
-// Manejar el envío del formulario (Agregar a la tabla)
-document.getElementById('form-usuario')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const nombre = document.getElementById('user-nombre').value;
-    const rol = document.getElementById('user-rol').value;
-    const estado = document.getElementById('user-estado').value;
-    const tabla = document.getElementById('lista-usuarios-body');
+    usuarios.forEach((user, index) => {
+        // Si no pasa el filtro de búsqueda, saltarlo en el render
+        if (filtro && !usuariosFiltrados.includes(user)) return;
 
-    // Aquí podrías diferenciar si es edición o nuevo, por ahora agregaremos uno nuevo:
-    const nuevaFila = `
-        <tr>
-            <td>${nombre}</td>
-            <td>${rol}</td>
-            <td><span class="${estado === 'Activo' ? 'status-active' : 'status-inactive'}">${estado}</span></td>
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${user.nombre} ${user.apellido}</td>
+            <td>${user.rol}</td>
+            <td><span class="status-${user.estado.toLowerCase()}">${user.estado}</span></td>
             <td>
-                <button class="btn-icon"><i class="fa-solid fa-eye"></i></button>
-                <button class="btn-icon" onclick="editarUsuario('${nombre}', '${rol}', '${estado}')"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn-icon btn-delete" onclick="eliminarFila(this)"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn-icon" onclick="abrirModalUsuario(${index})">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="btn-icon btn-delete" onclick="eliminarUsuario(${index})">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
             </td>
-        </tr>
-    `;
+        `;
+        tbody.appendChild(tr);
+    });
+};
 
-    tabla.innerHTML += nuevaFila;
-    cerrarModalUsuario();
-});
-=======
->>>>>>> 97354fc2cedd0feec997e692037aeae22c42ecab
+// === 7. GESTIÓN DE REVISIÓN DE OBRAS ===
+window.verFichaObra = (titulo, cliente, artista, desc, precio, img) => {
+    document.getElementById('modal-obra-titulo').innerText = titulo;
+    document.getElementById('modal-cliente').innerText = cliente;
+    document.getElementById('modal-obra-artista').innerText = artista;
+    document.getElementById('modal-descripcion').innerText = desc;
+    document.getElementById('modal-presupuesto').innerText = precio;
+    document.getElementById('modal-obra-img').src = img;
+    
+    document.getElementById('modal-revision').style.display = 'flex';
+};
+
+window.cerrarModalRevision = () => {
+    const modalRevision = document.getElementById('modal-revision');
+    if (modalRevision) modalRevision.style.display = 'none';
+};
+
+window.enviarAlArtista = (aprobado) => {
+    if (aprobado) {
+        alert("✅ Solicitud enviada al artista con éxito.");
+    } else {
+        alert("❌ Solicitud rechazada.");
+    }
+    cerrarModalRevision();
+};
+
+// Cerrar modales haciendo clic afuera del recuadro
+window.onclick = (event) => {
+    const modalUsuario = document.getElementById('modal-usuario');
+    const modalRevision = document.getElementById('modal-revision');
+    if (event.target === modalUsuario) cerrarModalUsuario();
+    if (event.target === modalRevision) cerrarModalRevision();
+};

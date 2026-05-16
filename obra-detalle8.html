@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.cliente.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.cart.css">
 </head>
 
 <body style="background-color: #0a0a0a; color: white;">
@@ -29,7 +30,8 @@
             </ul>
         </nav>
 
-        <div class="header-right">
+       <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
+            
             <div class="k-user-session-container" style="position: relative;">
                 
                 <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
@@ -55,9 +57,7 @@
                             <a href="cliente-pedidos.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
                             <a href="cliente-favoritos.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
                             <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
-                            
                             <div class="k-dropdown-divider"></div>
-                            
                             <a href="#" id="btn-logout" class="k-logout-link">
                                 <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
                             </a>
@@ -65,8 +65,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <div class="cart-icon-container" id="open-cart-btn" style="cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-counter" id="cart-counter">0</span>
+            </div>
+
+        </div> </div>
 </header>
 <div class="k-login-overlay" id="login-overlay">
     <button class="k-close-btn" id="close-login">&times;</button>
@@ -136,7 +141,7 @@
             
             <div class="detalle-visual" style="width: 100%;">
                 <div class="main-image-container" style="width: 100%; border: 1px solid #1a1a1a; box-shadow: 0 20px 40px rgba(0,0,0,0.6); background-color: #111; padding: 15px;">
-                    <img src="img/pintura 8.jpeg" alt="La Musa De Media Noche" style="width: 100%; height: auto; display: block;">
+                    <img src="img/pintura 8.jpeg" alt="La Musa de Media Noche" style="width: 100%; height: auto; display: block;">
                 </div>
             </div>
 
@@ -167,16 +172,23 @@
                     <p>Una pieza envuelta en misterio y elegancia nocturna. Esta obra juega con las sombras y los contrastes de luz para dar vida a una figura inspiradora, capturando ese momento de quietud y lucidez que solo llega con el silencio de la media noche.</p>
                 </div>
 
-                <a href="https://wa.me/573117397346?text=Hola,%20estoy%20interesado%20en%20la%20obra%20La%20Musa%20De%20Media%20Noche" class="btn-adquirir-v2" style="display: block; width: 100%; background-color: #ffffff; color: #000000; text-align: center; padding: 20px; text-decoration: none; font-family: 'Roboto', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; border: 1px solid #ffffff;">
-                    ADQUIRIR PIEZA
-                </a>
+                <button class="btn-add-to-cart" 
+                        id="btn-adquirir-detalle"
+                        data-id="obra_musa_medianoche_008" 
+                        data-titulo="La Musa de Media Noche" 
+                        data-precio="3000000" 
+                        data-img="img/pintura 8.jpeg"
+                        style="display: block; width: 100%; background-color: #ffffff; color: #000000; text-align: center; padding: 20px; font-family: 'Roboto', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; border: 1px solid #ffffff; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;">
+                    AGREGAR AL CARRITO
+                </button>
                 
                 <a href="galeria.html" class="back-link" style="color: #c5a059; text-decoration: none; font-family: 'Roboto', sans-serif; font-size: 0.8rem; letter-spacing: 1px;">&larr; VOLVER A LA GALERÍA</a>
             </div>
         </div>
     </section>
 </main>
-   <footer class="main-footer">
+
+<footer class="main-footer">
     <div class="footer-container">
         <div class="footer-brand">
             <h2 class="footer-logo">KELMÁTICA</h2>
@@ -212,26 +224,65 @@
     </div>
 </footer>
 
-<script src="js/script.js"></script>
+<div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-sidebar-header">
+        <h3>Tu Carrito</h3>
+        <button class="close-cart-btn" id="close-cart-sidebar">&times;</button>
+    </div>
+
+    <div class="cart-sidebar-content" id="carrito-items-container">
+        <p class="empty-cart-msg">Tu carrito está vacío.</p>
+    </div>
+
+    <div class="cart-sidebar-footer">
+        <div class="cart-total-row">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal-val">$0 COP</span>
+        </div>
+        <p class="tax-shipping-info">Impuestos y envío calculados al pagar.</p>
+        <button class="btn-checkout" id="btn-proceder-pago">Proceder al Pago</button>
+    </div>
+</div>
+
+<style>
+    #cart-sidebar.active {
+        right: 0 !important;
+    }
+</style>
+
 <script>
     const userBtn = document.getElementById('user-trigger');
     const overlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
 
-    // Abrir menú
-    userBtn.addEventListener('click', () => {
-        overlay.classList.add('show-overlay');
-    });
+    // Abrir menú login
+    if(userBtn && overlay) {
+        userBtn.addEventListener('click', () => overlay.classList.add('show-overlay'));
+    }
 
-    // Cerrar menú con la X
-    closeBtn.addEventListener('click', () => {
-        overlay.classList.remove('show-overlay');
-    });
+    // Cerrar menú login con la X
+    if(closeBtn && overlay) {
+        closeBtn.addEventListener('click', () => overlay.classList.remove('show-overlay'));
+    }
 
-    // Cerrar si hacen clic afuera del cuadro
+    // Cerrar login si hacen clic afuera
     window.addEventListener('click', (e) => {
         if (e.target === overlay) overlay.classList.remove('show-overlay');
     });
+
+    // Listener para cerrar el carrito usando la X
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnCerrarCarro = document.getElementById('close-cart-sidebar');
+        if (btnCerrarCarro) {
+            btnCerrarCarro.addEventListener('click', () => {
+                const sidebar = document.getElementById('cart-sidebar');
+                if (sidebar) sidebar.classList.remove('active');
+            });
+        }
+    });
 </script>
+
+<script src="js/script.js"></script>
+<script src="js/carrito.js"></script>
 </body>
 </html>

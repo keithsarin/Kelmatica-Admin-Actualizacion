@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="admin-container"> <aside class="sidebar">
-<div class="sidebar-logo">
-    <div class="logo-container">
-        <img src="img/logo.png" alt="Kelmática Logo" class="brand-logo">
-    </div>
-    <span class="panel-subtitle">PANEL ADMIN</span>
-</div>
+    <div class="admin-container"> 
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-container">
+                    <img src="img/logo.png" alt="Kelmática Logo" class="brand-logo">
+                </div>
+                <span class="panel-subtitle">PANEL ADMIN</span>
+            </div>
             <nav class="sidebar-nav">
                 <ul>
                     <li class="active" data-section="reportes"><i class="fa-solid fa-chart-pie"></i> Reportes</li>
@@ -35,7 +36,6 @@
         </aside>
 
         <main class="main-panel">
-            
             <section id="section-reportes" class="content-section">
                 <header class="panel-header">
                     <div class="header-info">
@@ -62,8 +62,8 @@
                 <div class="table-section">
                     <div class="table-header">
                         <div class="header-top">
-                            <h3>Lista de Usuarios</h3>
-                            <button class="btn-add-user"><i class="fa-solid fa-plus"></i> Nuevo Usuario</button>
+                            <h3>Gestión de Perfiles / Usuarios</h3>
+                            <button class="btn-add-user" id="btn-abrir-modal" onclick="abrirModalUsuario()"><i class="fa-solid fa-plus"></i> Nuevo Usuario</button>
                         </div>
                         <div class="header-bottom">
                             <div class="search-container">
@@ -77,104 +77,97 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Rol</th>
+                                <th>Correo</th>
+                                <th>Celular</th>
                                 <th>Estado</th>
+                                <th>Dirección</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="lista-usuarios-body">
-                            <tr>
-                                <td>Juan Perez</td>
-                                <td>Artista</td>
-                                <td><span class="status-active">Activo</span></td>
-                                <td>
-                                    <button class="btn-icon"><i class="fa-solid fa-eye"></i></button>
-                                    <button class="btn-icon"><i class="fa-solid fa-pen"></i></button>
-                                    <button class="btn-icon btn-delete"><i class="fa-solid fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </section>
 
-           <section id="section-obras" class="content-section" style="display:none;">
-    <div class="panel-header-simple">
-        <h2>Solicitudes de Clientes</h2>
-        <p>Tienes <span class="badge-gold">3 encargos pendientes</span> por validar</p>
-    </div>
-
-    <div class="obras-grid">
-        <div class="obra-card">
-            <div class="obra-img-container">
-                <img src="img/obra1.jpg" alt="Referencia cliente">
-                <span class="tag-status">Nuevo Pedido</span>
-            </div>
-            <div class="obra-info">
-                <h4>"Atardecer en Medellín"</h4>
-                <p>Para: <strong>Kelly Galván</strong></p>
-                <p>Cliente: Juan Delgado</p>
-                <div class="card-actions">
-                    <button class="btn-review" onclick="verFichaObra(
-                        'Atardecer en Medellín', 
-                        'Juan Delgado', 
-                        'Kelly Galván', 
-                        'Busco una interpretación al óleo de la vista desde el Metrocable al atardecer.', 
-                        '$1.500.000 COP', 
-                        'img/obra1.jpg')">
-                        Revisar Propuesta
-                    </button>
+            <section id="section-obras" class="content-section" style="display:none;">
+                <div class="panel-header-simple">
+                    <h2>Solicitudes de Clientes</h2>
+                    <p>Tienes <span class="badge-gold">3 encargos pendientes</span> por validar</p>
                 </div>
-            </div>
-        </div>
 
-        <div class="obra-card">
-            <div class="obra-img-container">
-                <img src="img/obra2.jpg" alt="Referencia cliente">
-                <span class="tag-status">Nuevo Pedido</span>
-            </div>
-            <div class="obra-info">
-                <h4>"Abstracción Neón"</h4>
-                <p>Para: <strong>Kelly Galván</strong></p>
-                <p>Cliente: María Paulina</p>
-                <div class="card-actions">
-                    <button class="btn-review" onclick="verFichaObra(
-                        'Abstracción Neón', 
-                        'María Paulina', 
-                        'Kelly Galván', 
-                        'Quiero una pieza digital con colores vibrantes para un local de diseño.', 
-                        '$850.000 COP', 
-                        'img/obra2.jpg')">
-                        Revisar Propuesta
-                    </button>
-                </div>
-            </div>
-        </div>
+                <div class="obras-grid">
+                    <div class="obra-card">
+                        <div class="obra-img-container">
+                            <img src="img/obra1.jpg" alt="Referencia cliente">
+                            <span class="tag-status">Nuevo Pedido</span>
+                        </div>
+                        <div class="obra-info">
+                            <h4>"Atardecer en Medellín"</h4>
+                            <p>Para: <strong>Kelly Galván</strong></p>
+                            <p>Cliente: Juan Delgado</p>
+                            <div class="card-actions">
+                                <button class="btn-review" onclick="verFichaObra(
+                                    'Atardecer en Medellín', 
+                                    'Juan Delgado', 
+                                    'Kelly Galván', 
+                                    'Busco una interpretación al óleo de la vista desde el Metrocable al atardecer.', 
+                                    '$1.500.000 COP', 
+                                    'img/obra1.jpg')">
+                                    Revisar Propuesta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="obra-card">
-            <div class="obra-img-container">
-                <img src="img/obra3.jpg" alt="Referencia cliente">
-                <span class="tag-status">Nuevo Pedido</span>
-            </div>
-            <div class="obra-info">
-                <h4>"Silencio de Montaña"</h4>
-                <p>Para: <strong>Kelly Galván</strong></p>
-                <p>Cliente: Carlos Restrepo</p>
-                <div class="card-actions">
-                    <button class="btn-review" onclick="verFichaObra(
-                        'Silencio de Montaña', 
-                        'Carlos Restrepo', 
-                        'Kelly Galván', 
-                        'Acuarela minimalista de los farallones. Es para un regalo de bodas.', 
-                        '$1.200.000 COP', 
-                        'img/obra3.jpg')">
-                        Revisar Propuesta
-                    </button>
+                    <div class="obra-card">
+                        <div class="obra-img-container">
+                            <img src="img/obra2.jpg" alt="Referencia cliente">
+                            <span class="tag-status">Nuevo Pedido</span>
+                        </div>
+                        <div class="obra-info">
+                            <h4>"Abstracción Neón"</h4>
+                            <p>Para: <strong>Kelly Galván</strong></p>
+                            <p>Cliente: María Paulina</p>
+                            <div class="card-actions">
+                                <button class="btn-review" onclick="verFichaObra(
+                                    'Abstracción Neón', 
+                                    'María Paulina', 
+                                    'Kelly Galván', 
+                                    'Quiero una pieza digital con colores vibrantes para un local de diseño.', 
+                                    '$850.000 COP', 
+                                    'img/obra2.jpg')">
+                                    Revisar Propuesta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="obra-card">
+                        <div class="obra-img-container">
+                            <img src="img/obra3.jpg" alt="Referencia cliente">
+                            <span class="tag-status">Nuevo Pedido</span>
+                        </div>
+                        <div class="obra-info">
+                            <h4>"Silencio de Montaña"</h4>
+                            <p>Para: <strong>Kelly Galván</strong></p>
+                            <p>Cliente: Carlos Restrepo</p>
+                            <div class="card-actions">
+                                <button class="btn-review" onclick="verFichaObra(
+                                    'Silencio de Montaña', 
+                                    'Carlos Restrepo', 
+                                    'Kelly Galván', 
+                                    'Acuarela minimalista de los farallones. Es para un regalo de bodas.', 
+                                    '$1.200.000 COP', 
+                                    'img/obra3.jpg')">
+                                    Revisar Propuesta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </section>
+
             <section id="section-ventas" class="content-section" style="display:none;">
                 <div class="panel-header-simple">
                     <h2>Gestión de Ventas</h2>
@@ -190,7 +183,7 @@
                         <span class="stat-value highlight">4</span>
                     </div>
                 </div>
-                </section>
+            </section>
 
             <section id="section-mensajes" class="content-section" style="display:none;">
                 <header class="panel-header">
@@ -221,73 +214,96 @@
             </section>
         </main>
     </div> 
-    <div id="modal-revision" class="k-modal-overlay">
-    <div class="k-modal-content">
-        <button class="k-close-modal" onclick="cerrarModalRevision()">×</button>
-        
-        <div class="k-modal-body">
-            <div class="k-modal-visual">
-                <img src="" alt="Obra a revisar" id="modal-obra-img">
+
+    <div id="modal-revision" class="k-modal-overlay" style="display: none;">
+        <div class="k-modal-content">
+            <button class="k-close-modal" onclick="cerrarModalRevision()">&times;</button>
+            <div class="k-modal-body">
+                <div class="k-modal-visual">
+                    <img src="" alt="Obra a revisar" id="modal-obra-img">
+                </div>
+                <div class="k-modal-info">
+                    <span class="k-modal-tag">Nueva Solicitud de Encargo</span>
+                    <h2 id="modal-obra-titulo">"Título de la Idea"</h2>
+                    
+                    <div class="k-modal-details-box">
+                        <p><strong><i class="fa-solid fa-user-tag"></i> Cliente:</strong> <span id="modal-cliente">Juan Restrepo</span></p>
+                        <p><strong><i class="fa-solid fa-paint-brush"></i> Artista Solicitado:</strong> <span id="modal-obra-artista" class="badge-gold">Kelly Galván</span></p>
+                        <p><strong><i class="fa-solid fa-comment-dots"></i> Descripción/Parámetros:</strong><br>
+                            <span id="modal-descripcion" style="font-style: italic; color: #aaa;">"Quiero un retrato de mi mascota con estilo barroco..."</span>
+                        </p>
+                        <p><strong><i class="fa-solid fa-money-bill-1-wave"></i> Presupuesto Cliente:</strong> <span id="modal-presupuesto">$500.000 COP</span></p>
+                    </div>
+                    
+                    <div class="k-modal-actions">
+                        <button class="btn-approve" onclick="enviarAlArtista(true)">
+                            <i class="fa-solid fa-paper-plane"></i> APROBAR Y ENVIAR AL ARTISTA
+                        </button>
+                        <button class="btn-reject" onclick="enviarAlArtista(false)">
+                            <i class="fa-solid fa-trash-can"></i> RECHAZAR SOLICITUD
+                        </button>
+                    </div>
+                </div>
             </div>
-            
-           <div class="k-modal-info">
-    <span class="k-modal-tag">Nueva Solicitud de Encargo</span>
-    <h2 id="modal-obra-titulo">"Título de la Idea"</h2>
-    
-    <div class="k-modal-details-box">
-        <p><strong><i class="fa-solid fa-user-tag"></i> Cliente:</strong> <span id="modal-cliente">Juan Restrepo</span></p>
-        <p><strong><i class="fa-solid fa-paint-brush"></i> Artista Solicitado:</strong> <span id="modal-obra-artista" class="badge-gold">Kelly Galván</span></p>
-        <p><strong><i class="fa-solid fa-comment-dots"></i> Descripción/Parámetros:</strong><br>
-            <span id="modal-descripcion" style="font-style: italic; color: #aaa;">"Quiero un retrato de mi mascota con estilo barroco..."</span>
-        </p>
-        <p><strong><i class="fa-solid fa-money-bill-1-wave"></i> Presupuesto Cliente:</strong> <span id="modal-presupuesto">$500.000 COP</span></p>
-    </div>
-    
-    <div class="k-modal-actions">
-        <button class="btn-approve" onclick="enviarAlArtista(true)">
-            <i class="fa-solid fa-paper-plane"></i> APROBAR Y ENVIAR AL ARTISTA
-        </button>
-        <button class="btn-reject" onclick="enviarAlArtista(false)">
-            <i class="fa-solid fa-trash-can"></i> RECHAZAR SOLICITUD
-        </button>
-    </div>
-</div>
         </div>
     </div>
-</div>>
-<div id="modal-usuario" class="k-modal-overlay" style="display:none;">
-    <div class="k-modal-content" style="max-width: 500px;">
-        <button class="k-close-modal" onclick="cerrarModalUsuario()">×</button>
-        <div class="k-modal-info" style="padding: 20px;">
-            <h2 id="modal-usuario-titulo">Agregar Nuevo Perfil</h2>
-            <form id="form-usuario" style="margin-top: 20px;">
-                <div class="input-group-admin" style="margin-bottom: 15px;">
-                    <label>Nombre Completo</label>
-                    <input type="text" id="user-nombre" placeholder="Ej: Kelly Galván" required style="width: 100%; padding: 10px;">
+
+    <div id="modal-usuario" class="k-modal-overlay" style="display:none;">
+        <div class="k-modal-content admin-gold-border">
+            <button class="k-close-modal" onclick="cerrarModalUsuario()">×</button>
+            
+            <div class="k-modal-header">
+                <h2 id="modal-usuario-titulo">REGISTRAR NUEVO CLIENTE</h2>
+                <p class="subtitle-gold">Panel de Control de Membresías Kelmática</p>
+            </div>
+
+            <form id="form-usuario" class="k-form-grid">
+                <input type="hidden" id="user-index">
+                
+                <div class="form-section-title">Información Personal</div>
+                
+                <div class="input-group-admin">
+                    <label>Nombre</label>
+                    <input type="text" id="user-nombre" placeholder="Ej. Ana" required>
                 </div>
-                <div class="input-group-admin" style="margin-bottom: 15px;">
-                    <label>Rol de Usuario</label>
-                    <select id="user-rol" style="width: 100%; padding: 10px; background: #222; color: white; border: 1px solid #444;">
-                        <option value="Artista">Artista</option>
-                        <option value="Cliente">Cliente</option>
+                <div class="input-group-admin">
+                    <label>Apellido</label>
+                    <input type="text" id="user-apellido" placeholder="Ej. Pérez" required>
+                </div>
+
+                <div class="form-section-title">Contacto y Ubicación</div>
+
+                <div class="input-group-admin full-width">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="user-email" placeholder="correo@ejemplo.com" required>
+                </div>
+                
+                <div class="input-group-admin">
+                    <label>Número de Celular</label>
+                    <input type="tel" id="user-celular" placeholder="+57 300..." required>
+                </div>
+                <div class="input-group-admin">
+                    <label>Estado de Cuenta</label>
+                    <select id="user-estado">
+                        <option value="Activo">ACTIVO</option>
+                        <option value="Inactivo">INACTIVO</option>
                     </select>
                 </div>
-                <div class="input-group-admin" style="margin-bottom: 15px;">
-                    <label>Estado</label>
-                    <select id="user-estado" style="width: 100%; padding: 10px; background: #222; color: white; border: 1px solid #444;">
-                        <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
-                    </select>
+
+                <div class="input-group-admin full-width">
+                    <label>Dirección de Residencia</label>
+                    <input type="text" id="user-direccion" placeholder="Calle, Carrera, Ciudad..." required>
                 </div>
-                <div class="k-modal-actions" style="margin-top: 25px;">
-                    <button type="submit" class="btn-approve" style="width: 100%;">
-                        <i class="fa-solid fa-floppy-disk"></i> GUARDAR CAMBIOS
+
+                <div class="k-modal-actions full-width">
+                    <button type="submit" class="btn-save-gold">
+                        <i class="fa-solid fa-crown"></i> GUARDAR CLIENTE
                     </button>
                 </div>
             </form>
         </div>
     </div>
-</div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/admin.js"></script>
 </body>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.cliente.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.cart.css">
 </head>
 <body>
 <header class="main-header">
@@ -27,8 +28,8 @@
                 <li class="nav-item"><a href="galeria.html">GALERIA</a></li>
             </ul>
         </nav>
-
-        <div class="header-right">
+        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
+            
             <div class="k-user-session-container" style="position: relative;">
                 
                 <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
@@ -62,8 +63,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <div class="cart-icon-container" id="open-cart-btn" style="cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-counter" id="cart-counter">0</span>
+            </div>
+        </div> </div>
 </header>
 <div class="k-login-overlay" id="login-overlay">
     <button class="k-close-btn" id="close-login">&times;</button>
@@ -316,7 +321,28 @@
         <p>&copy; 2026 KELMÁTICA Art. Todos los derechos reservados. Creado por Keith Sarin.</p>
     </div>
 </footer>
+<div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-sidebar-header">
+        <h3>Tu Carrito</h3>
+        <button class="close-cart-btn" id="close-cart-btn">&times;</button>
+    </div>
 
+    <div class="cart-sidebar-content" id="cart-items-container">
+        <p class="empty-cart-msg">Tu carrito está vacío.</p>
+    </div>
+
+    <div class="cart-sidebar-footer">
+        <div class="cart-total-row">
+            <span>Subtotal:</span>
+            <span id="cart-sidebar-subtotal">$0 COP</span>
+        </div>
+        <p class="tax-shipping-info">Impuestos y envío calculados al pagar.</p>
+        <button class="btn-checkout" id="checkout-btn">Proceder al Pago</button>
+    </div>
+</div>
+
+<div class="cart-overlay" id="cart-overlay"></div>
 <script src="js/script.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>

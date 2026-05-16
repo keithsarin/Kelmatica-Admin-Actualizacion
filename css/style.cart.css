@@ -1,0 +1,226 @@
+/* ==========================================
+   ESTILOS GENERALES DEL CARRITO (KELMÁTICA)
+   ========================================== */
+
+/* Contenedor del Ícono en el Nav */
+.cart-icon-container {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #fff;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin-left: 15px; /* Ajusta según tu espacio */
+}
+
+.cart-icon-container:hover {
+    color: #d4af37; /* Dorado Kelmática */
+}
+
+/* Contador flotante (Círculo Dorado) */
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #d4af37;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Panel Lateral Deslizable */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -420px; /* Escondido por defecto */
+    width: 400px;
+    height: 100vh;
+    background-color: #0b0b0b; /* Fondo ultra oscuro */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transición suave */
+    border-left: 1px solid #1a1a1a;
+}
+
+/* Clase que inyectaremos con JS para mostrarlo */
+.cart-sidebar.open {
+    right: 0;
+}
+
+/* Encabezado del Carrito */
+.cart-sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-sidebar-header h3 {
+    font-size: 1.4rem;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.close-cart-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-cart-btn:hover {
+    color: #fff;
+}
+
+/* Contenido / Lista de Productos */
+.cart-sidebar-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* Scroll si hay muchos productos */
+}
+
+.empty-cart-msg {
+    color: #666;
+    text-align: center;
+    margin-top: 40px;
+    font-style: italic;
+}
+
+/* Tarjeta de cada Ítem dentro del Carrito */
+.cart-item {
+    display: flex;
+    align-items: center;
+    background-color: #121212;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #1c1c1c;
+    position: relative;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+    border: 1px solid #333;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-details h4 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 0 0 5px 0;
+}
+
+.cart-item-details p {
+    font-size: 0.85rem;
+    color: #a8a8a8;
+    margin: 0;
+}
+
+.btn-remove-item {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    padding: 5px;
+}
+
+.btn-remove-item:hover {
+    color: #e74c3c; /* Rojo suave para borrar */
+}
+
+/* Parte Inferior (Footer Fijo) */
+.cart-sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #1a1a1a;
+    background-color: #0e0e0e;
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.cart-total-row #cart-sidebar-subtotal {
+    color: #d4af37;
+}
+
+.tax-shipping-info {
+    font-size: 0.75rem;
+    color: #555;
+    margin: 0 0 15px 0;
+}
+
+/* Botón de Checkout */
+.btn-checkout {
+    width: 100%;
+    background-color: #d4af37;
+    color: #000;
+    border: none;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-checkout:hover {
+    background-color: #bfa030;
+}
+
+.btn-checkout:active {
+    transform: scale(0.98);
+}
+
+/* Capa Transparente de Fondo Oscuro */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px); /* Efecto difuminado moderno */
+    z-index: 1999;
+    display: none;
+}
+
+.cart-overlay.show {
+    display: block;
+}
+
+/* Ajustes Responsive rápidos */
+@media (max-width: 450px) {
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+}
