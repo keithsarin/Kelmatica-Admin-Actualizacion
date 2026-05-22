@@ -48,26 +48,57 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Sincronizar el estado de la interfaz apenas cargue el documento por primera vez
+document.addEventListener('DOMContentLoaded', () => {
+    actualizarInterfazVisual();
+});
+
+function agregarAlCarrito(producto) {
+    const existe = carrito.some(item => item.id === producto.id);
+
+    // Si ya existe la obra, no mandamos alert; solo actualizamos y abrimos la ventana
+    if (existe) {
+        actualizarInterfazVisual();
+        abrirLaVentanaDelCarrito();
+        return;
+    }
+
+    // Insertar la obra de arte al almacenamiento local
+    carrito.push(producto);
+    localStorage.setItem('kelmatica_cart', JSON.stringify(carrito));
+    
+    // Renderizar e inmediatamente abrir la ventana de forma fluida
+    actualizarInterfazVisual();
+    abrirLaVentanaDelCarrito();
+}
+
+function eliminarDelCarrito(id) {
+    carrito = carrito.filter(item => item.id !== id);
+    localStorage.setItem('kelmatica_cart', JSON.stringify(carrito));
+    actualizarInterfazVisual();
+}
+
+function abrirLaVentanaDelCarrito() {
+    const cartSidebar = document.getElementById('cart-sidebar');
+    if (cartSidebar) {
+        cartSidebar.classList.add('active');
+    }
+}
+
+// FUNCIÓN PRINCIPAL: Pinta la obra dentro de tu caja negra y actualiza los indicadores
 function actualizarInterfazVisual() {
-    // 1. Intentamos buscar el contenedor con ambos nombres posibles para evitar fallas entre páginas
-    const contenedor = document.getElementById('carrito-items-container') || document.getElementById('cart-items-container');
+    const contenedor = document.getElementById('carrito-items-container');
+    const txtSubtotal = document.getElementById('cart-subtotal-val');
     
-    // Intentamos buscar el campo del subtotal con ambos nombres posibles
-    const txtSubtotal = document.getElementById('cart-subtotal-val') || document.getElementById('cart-sidebar-subtotal');
-    
-    // Buscamos cualquier variante del contador del header
-    const contadorMenu = document.getElementById('cart-counter') || document.getElementById('cart-count') || document.querySelector('.badge') || document.querySelector('.shopping-cart-badge');
+    // Buscamos dinámicamente cualquier indicador de contador que tenga tu interfaz
+    const contadorMenu = document.getElementById('cart-counter') || document.getElementById('cart-count') || document.querySelector('.badge');
 
     // Actualizar el número del contador sobre la bolsa del header si existe
     if (contadorMenu) {
         contadorMenu.textContent = carrito.length;
     }
 
-    // SI NO ENCUENTRA NINGÚN CONTENEDOR, MANDAMOS UN AVISO CONTROLADO A LA CONSOLA PARA SABER QUÉ PASA
-    if (!contenedor) {
-        console.warn("KELMÁTICA ERROR: No se encontró el contenedor del carrito en esta página. Revisa si el ID es 'carrito-items-container' o 'cart-items-container'.");
-        return;
-    }
+    if (!contenedor) return;
 
     // Si está vacío, muestra el mensaje por defecto
     if (carrito.length === 0) {
