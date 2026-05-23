@@ -3,76 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelmática - Mi Perfil</title>
+    <title>Kelmática - Panel de Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.cliente.css">
 </head>
 <body class="client-dashboard">
 
-    <header class="k-header">
-        </header>
-
     <main class="k-container">
-        <header class="k-welcome-header">
-            <h1>Configuración</h1>
-        </header>
-
         <div class="dashboard-grid">
+            
             <aside class="dashboard-sidebar">
+                <div class="k-sidebar-profile-box">
+                    <img src="https://i.pravatar.cc/150?u=cliente" alt="Fotografía del Coleccionista" class="k-profile-avatar">
+                    <h2 class="k-profile-tag">COLECCIONISTA</h2>
+                </div>
+                
                 <nav class="dashboard-nav">
-                    <a href="cliente-compra.html" class="nav-link">
+                    <a href="#" class="nav-link active" data-tab="compras">
                         <i class="fa-solid fa-bag-shopping"></i> Mis Compras
                     </a>
-                    <a href="cliente-pedidos.html" class="nav-link">
+                    <a href="#" class="nav-link" data-tab="pedidos">
                         <i class="fa-solid fa-truck"></i> Mis Pedidos
                     </a>
-                    <a href="cliente-favoritos.html" class="nav-link">
+                    <a href="#" class="nav-link" data-tab="favoritos">
                         <i class="fa-solid fa-heart"></i> Favoritos
                     </a>
-                    <a href="cliente-perfil.html" class="nav-link active"> <i class="fa-solid fa-user-pen"></i> Mi Perfil
-                        <div style="height: 1px; background: #eee; margin: 10px 0;"></div>
-
-<a href="index.html" class="nav-link logout-style">
-    <i class="fa-solid fa-right-from-bracket"></i> Salir al Inicio
-</a>
+                    <a href="#" class="nav-link" data-tab="perfil">
+                        <i class="fa-solid fa-user-pen"></i> Editar mi perfil
+                    </a>
+                    <a href="index.html" class="nav-link logout-style">
+                        <i class="fa-solid fa-right-from-bracket"></i> Salir al Inicio
                     </a>
                 </nav>
             </aside>
-            <section class="dashboard-content">
-                <div class="tab-content active">
-                    <h3><i class="fa-solid fa-user-gear"></i> Información de mi Perfil</h3>
-                    
-                    <form class="k-profile-form">
-                        <div class="form-group-flex">
-                            <div class="form-group">
-                                <label>Nombre Completo</label>
-                                <input type="text" class="k-input-field" placeholder="Tu nombre" value="Usuario Ejemplo">
+
+            <div class="dashboard-right-container">
+                
+                <header class="k-welcome-header">
+                    <h1 id="dynamic-dashboard-title">Mis Compras</h1>
+                    <p class="k-welcome-subtitle">Bienvenido de nuevo, Coleccionista</p>
+                </header>
+
+                <section id="tab-compras" class="dashboard-content tab-section active">
+                    <div class="tab-content">
+                        <h3><i class="fa-solid fa-bag-shopping"></i> Historial de Compras</h3>
+                        <div class="k-empty-state">
+                            <p class="empty-state-icon"><i class="fa-solid fa-basket-shopping"></i></p>
+                            <p class="empty-state-text">Aún no has realizado ninguna compra.</p>
+                            <a href="index.html" class="k-btn-action">Ir a la tienda</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-pedidos" class="dashboard-content tab-section">
+                    <div class="tab-content">
+                        <h3><i class="fa-solid fa-truck"></i> Seguimiento de Pedidos</h3>
+                        <div class="k-empty-state">
+                            <p class="empty-state-icon"><i class="fa-solid fa-box-open"></i></p>
+                            <p class="empty-state-text">No tienes pedidos en curso en este momento.</p>
+                            <p class="empty-state-subtext">Cuando realices un pedido, podrás rastrear su estado aquí.</p>
+                            <a href="index.html" class="k-btn-action">Realizar un pedido</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-favoritos" class="dashboard-content tab-section">
+                    <div class="tab-content">
+                        <h3><i class="fa-solid fa-heart"></i> Mis Diseños Favoritos</h3>
+                        <div class="k-empty-state">
+                            <p class="empty-state-icon"><i class="fa-solid fa-heart-crack"></i></p>
+                            <p class="empty-state-text">Aún no has guardado ningún diseño en tus favoritos.</p>
+                            <p class="empty-state-subtext">¡Explora nuestra galería y guarda lo que más te guste!</p>
+                            <a href="galeria.html" class="k-btn-action">Explorar Galería</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-perfil" class="dashboard-content tab-section">
+                    <div class="tab-content">
+                        <h3><i class="fa-solid fa-user-pen"></i> Datos de tu Cuenta</h3>
+                        <form class="k-profile-form" onsubmit="event.preventDefault();">
+                            <div class="form-group-flex">
+                                <div class="form-group">
+                                    <label>Nombre Completo</label>
+                                    <input type="text" class="k-input-field" value="Kelly Galván">
+                                </div>
+                                <div class="form-group">
+                                    <label>Correo Electrónico</label>
+                                    <input type="email" class="k-input-field" value="coleccionista@kelmatica.com">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Correo Electrónico</label>
-                                <input type="email" class="k-input-field" placeholder="tu@correo.com" value="usuario@ejemplo.com">
+                            <div class="form-group-flex">
+                                <div class="form-group">
+                                    <label>Nueva Contraseña</label>
+                                    <input type="password" class="k-input-field" placeholder="••••••••">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirmar Contraseña</label>
+                                    <input type="password" class="k-input-field" placeholder="••••••••">
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Dirección de Envío</label>
-                            <input type="text" class="k-input-field" placeholder="Calle, Número, Ciudad" value="">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Teléfono</label>
-                            <input type="tel" class="k-input-field" placeholder="+57 300 000 0000">
-                        </div>
-
-                        <div style="margin-top: 30px; display: flex; gap: 15px;">
-                            <button type="submit" class="k-btn-save">Guardar Cambios</button>
-                            <button type="button" class="k-btn-cancel">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
+                            <div style="margin-top: 15px; display: flex; gap: 15px;">
+                                <button type="submit" class="k-btn-save">Guardar Cambios</button>
+                                <button type="button" class="k-btn-cancel">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
         </div>
     </main>
+
     <script src="js/cliente.js"></script>
 </body>
 </html>

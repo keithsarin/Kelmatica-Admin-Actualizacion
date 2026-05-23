@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+    
 
     // --- 7. PANEL DE CONTROL: TABS (PESTAÑAS) ---
     const dashboardTabs = document.querySelectorAll('.nav-link');

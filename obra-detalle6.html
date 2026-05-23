@@ -32,39 +32,41 @@
 
        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
             
-            <div class="k-user-session-container" style="position: relative;">
-                
-                <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
-                    <i class="fa-solid fa-user"></i>
-                </div>
+           <div class="k-user-session-container" style="position: relative;">
+    
+    <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
+        <i class="fa-solid fa-user"></i>
+    </div>
 
-                <div id="profile-trigger" class="k-profile-circle" style="display: none;">
-                    <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" id="profile-img-btn">
-                    
-                    <div class="k-profile-dropdown" id="profile-dropdown">
-                        <div class="k-dropdown-header">
-                            <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil">
-                            <div class="k-header-info">
-                                <p class="k-user-name">Cliente Kelmática</p>
-                                <p class="k-user-email">cliente@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="k-dropdown-divider"></div>
-                        
-                        <nav class="k-dropdown-nav">
-                            <a href="cliente-compra.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
-                            <a href="cliente-pedidos.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
-                            <a href="cliente-favoritos.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
-                            <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
-                            <div class="k-dropdown-divider"></div>
-                            <a href="#" id="btn-logout" class="k-logout-link">
-                                <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
-                            </a>
-                        </nav>
-                    </div>
+    <div id="profile-trigger" class="k-profile-circle-container" style="position: relative; display: none; cursor: pointer;">
+        <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" class="k-nav-avatar">
+        
+        <div class="k-profile-dropdown" id="profile-dropdown">
+            <div class="k-dropdown-header">
+                <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil">
+                <div class="k-header-info">
+                    <p class="k-user-name">Cliente Kelmática</p>
+                    <p class="k-user-email">cliente@gmail.com</p>
                 </div>
             </div>
+            
+            <div class="k-dropdown-divider"></div>
+            
+            <nav class="k-dropdown-nav">
+                <a href="cliente-compra.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
+                <a href="cliente-pedidos.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
+                <a href="cliente-favoritos.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
+                <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
+                
+                <div class="k-dropdown-divider"></div>
+                
+                <a href="#" id="btn-logout" class="k-logout-link">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                </a>
+            </nav>
+        </div>
+    </div>
+</div>
 
             <div class="cart-icon-container" id="open-cart-btn" style="cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center;">
                 <i class="fa-solid fa-bag-shopping"></i>
@@ -223,65 +225,48 @@
     </div>
 </footer>
 
-<div class="cart-sidebar" id="cart-sidebar">
+<div id="cart-sidebar" class="cart-sidebar">
     <div class="cart-sidebar-header">
         <h3>Tu Carrito</h3>
-        <button class="close-cart-btn" id="close-cart-sidebar">&times;</button>
+        <button id="close-cart" class="close-cart-btn">&times;</button>
     </div>
-
-    <div class="cart-sidebar-content" id="carrito-items-container">
-        <p class="empty-cart-msg">Tu carrito está vacío.</p>
-    </div>
+    
+    <div id="cart-items-container" class="cart-sidebar-content">
+        </div>
 
     <div class="cart-sidebar-footer">
         <div class="cart-total-row">
             <span>Subtotal:</span>
-            <span id="cart-subtotal-val">$0 COP</span>
+            <span id="cart-sidebar-subtotal">$0 COP</span>
         </div>
-        <p class="tax-shipping-info">Impuestos y envío calculados al pagar.</p>
-        <button class="btn-checkout" id="btn-proceder-pago">Proceder al Pago</button>
+        <p class="tax-shipping-info">Impuestos y gastos de envío calculados al finalizar la compra.</p>
+        <button id="btn-proceder-pago" class="btn-checkout">Proceder al Pago</button>
     </div>
 </div>
 
-<style>
-    #cart-sidebar.active {
-        right: 0 !important;
-    }
-</style>
+<div class="cart-overlay" id="cart-overlay"></div>
 
 <script>
+    // Lógica del modal de Login/User
     const userBtn = document.getElementById('user-trigger');
     const overlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
 
-    // Abrir menú login
     if(userBtn && overlay) {
         userBtn.addEventListener('click', () => overlay.classList.add('show-overlay'));
     }
 
-    // Cerrar menú login con la X
     if(closeBtn && overlay) {
         closeBtn.addEventListener('click', () => overlay.classList.remove('show-overlay'));
     }
 
-    // Cerrar login si hacen clic afuera
     window.addEventListener('click', (e) => {
         if (e.target === overlay) overlay.classList.remove('show-overlay');
-    });
-
-    // Listener para cerrar el carrito usando la X
-    document.addEventListener('DOMContentLoaded', () => {
-        const btnCerrarCarro = document.getElementById('close-cart-sidebar');
-        if (btnCerrarCarro) {
-            btnCerrarCarro.addEventListener('click', () => {
-                const sidebar = document.getElementById('cart-sidebar');
-                if (sidebar) sidebar.classList.remove('active');
-            });
-        }
     });
 </script>
 
 <script src="js/script.js"></script>
-<script src="js/carrito.js"></script>
+<script src="js/cart.js"></script>
+
 </body>
 </html>

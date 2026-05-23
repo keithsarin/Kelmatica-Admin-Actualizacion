@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Coleccionista - KELMÁTICA</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.cliente.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body style="background-color: #0a0a0a; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
+
+    <header class="main-header" style="border-bottom: 1px solid #1a1a1a;">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Logo KELMATICA">
+                </a>
+            </div>
+            <a href="index.html" style="color: #c5a059; text-decoration: none; font-family: 'Roboto', sans-serif; font-size: 0.9rem; letter-spacing: 1px;">
+                <i class="fa-solid fa-arrow-left"></i> VOLVER AL INICIO
+            </a>
+        </div>
+    </header>
+
+    <main style="display: flex; justify-content: center; align-items: center; padding: 60px 20px; flex-grow: 1;">
+        <div class="k-login-box" style="width: 100%; max-width: 550px; background-color: #111111; border: 1px solid #1a1a1a; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); text-align: center;">
+            
+            <div class="k-icon-gold" style="color: #c5a059; font-size: 2.5rem; margin-bottom: 20px;">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+            
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #ffffff; margin-bottom: 10px; font-weight: 400;">Únete como Coleccionista</h2>
+            <p style="font-family: 'Roboto', sans-serif; color: #888; font-size: 0.95rem; margin-bottom: 35px;">Crea tu cuenta para gestionar tus obras favoritas y agilizar tus adquisiciones.</p>
+
+            <form id="form-registro-cliente" style="display: flex; flex-direction: column; gap: 18px; text-align: left;">
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label style="display: block; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #c5a059; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Nombre</label>
+                        <input type="text" id="reg-nombre" placeholder="Ej. Kelly" class="k-input-field" required style="width: 100%;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #c5a059; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Apellidos</label>
+                        <input type="text" id="reg-apellidos" placeholder="Ej. Galván" class="k-input-field" required style="width: 100%;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label style="display: block; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #c5a059; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Número de Celular</label>
+                        <input type="tel" id="reg-celular" placeholder="311 739 7346" class="k-input-field" required style="width: 100%;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #c5a059; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Ciudad</label>
+                        <input type="text" id="reg-ciudad" placeholder="Ej. Medellín" class="k-input-field" required style="width: 100%;">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display: block; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #c5a059; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Correo Electrónico</label>
+                    <input type="email" id="reg-correo" placeholder="cliente@gmail.com" class="k-input-field" required style="width: 100%;">
+                </div>
+
+                <div>
+                    <label style="display: block; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #c5a059; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Contraseña</label>
+                    <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" class="k-input-field" required style="width: 100%;">
+                </div>
+
+                <button type="submit" class="k-btn-main" style="width: 100%; margin-top: 15px; font-weight: 700; letter-spacing: 2px;">CREAR MI CUENTA</button>
+                
+                <div id="reg-error-msg" style="color: #ff4d4d; font-size: 0.85rem; text-align: center; display: none; margin-top: 5px; font-family: 'Roboto', sans-serif;"></div>
+            </form>
+
+            <div class="k-login-help" style="margin-top: 25px; font-family: 'Roboto', sans-serif; font-size: 0.9rem; color: #666;">
+                ¿Ya tienes una cuenta? <a href="index.html" style="color: #c5a059; text-decoration: none;">Inicia sesión aquí</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 20px; border-top: 1px solid #1a1a1a; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #555;">
+        <p>&copy; 2026 KELMÁTICA Art. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('form-registro-cliente').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorDiv = document.getElementById('reg-error-msg');
+            const nombre = document.getElementById('reg-nombre').value.trim();
+            const apellidos = document.getElementById('reg-apellidos').value.trim();
+            const celular = document.getElementById('reg-celular').value.trim();
+            const ciudad = document.getElementById('reg-ciudad').value.trim();
+            const correo = document.getElementById('reg-correo').value.trim();
+            const password = document.getElementById('reg-password').value.trim();
+
+            if (password.length < 6) {
+                errorDiv.textContent = "La contraseña debe tener al menos 6 caracteres.";
+                errorDiv.style.display = "block";
+                return;
+            }
+
+            // Creamos el objeto del nuevo usuario coleccionista
+            const nuevoColeccionista = {
+                nombre: nombre,
+                apellidos: apellidos,
+                celular: celular,
+                ciudad: ciudad,
+                correo: correo,
+                password: password // En un entorno real esto se encriptaría en Backend
+            };
+
+            // Simulamos guardar en base de datos usando localStorage
+            localStorage.setItem('kelmatica_user_registered', JSON.stringify(nuevoColeccionista));
+            
+            // Auto-logueamos al usuario recién creado para mejorar la experiencia
+            localStorage.setItem('kelmatica_logged_in', JSON.stringify(true));
+
+            alert("¡Registro exitoso! Bienvenido a Kelmática, " + nombre + ".");
+            
+            // Redireccionamos a la galería para que pueda comprar de una vez
+            window.location.href = 'galeria.html';
+        });
+    </script>
+
+</body>
+</html>

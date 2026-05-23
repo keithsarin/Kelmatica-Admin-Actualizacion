@@ -31,40 +31,41 @@
 
        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
             
-            <div class="k-user-session-container" style="position: relative;">
-                
-                <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
-                    <i class="fa-solid fa-user"></i>
-                </div>
+           <div class="k-user-session-container" style="position: relative;">
+    
+    <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
+        <i class="fa-solid fa-user"></i>
+    </div>
 
-                <div id="profile-trigger" class="k-profile-circle" style="display: none;">
-                    <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" id="profile-img-btn">
-                    
-                    <div class="k-profile-dropdown" id="profile-dropdown">
-                        <div class="k-dropdown-header">
-                            <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil">
-                            <div class="k-header-info">
-                                <p class="k-user-name">Cliente Kelmática</p>
-                                <p class="k-user-email">cliente@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="k-dropdown-divider"></div>
-                        
-                        <nav class="k-dropdown-nav">
-                            <a href="cliente-compra.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
-                            <a href="cliente-pedidos.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
-                            <a href="cliente-favoritos.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
-                            <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
-                            <div class="k-dropdown-divider"></div>
-                            <a href="#" id="btn-logout" class="k-logout-link">
-                                <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
-                            </a>
-                        </nav>
-                    </div>
+    <div id="profile-trigger" class="k-profile-circle-container" style="position: relative; display: none; cursor: pointer;">
+        <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" class="k-nav-avatar">
+        
+        <div class="k-profile-dropdown" id="profile-dropdown">
+            <div class="k-dropdown-header">
+                <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil">
+                <div class="k-header-info">
+                    <p class="k-user-name">Cliente Kelmática</p>
+                    <p class="k-user-email">cliente@gmail.com</p>
                 </div>
             </div>
-
+            
+            <div class="k-dropdown-divider"></div>
+            
+            <nav class="k-dropdown-nav">
+                <a href="cliente-compra.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
+                <a href="cliente-pedidos.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
+                <a href="cliente-favoritos.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
+                <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
+                
+                <div class="k-dropdown-divider"></div>
+                
+                <a href="#" id="btn-logout" class="k-logout-link">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                </a>
+            </nav>
+        </div>
+    </div>
+</div>
             <div class="cart-icon-container" id="open-cart-btn" style="cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center;">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-counter" id="cart-counter">0</span>

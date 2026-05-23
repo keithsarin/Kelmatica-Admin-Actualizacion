@@ -1,337 +1,457 @@
-:root {
-    --k-bg-light: #f4f7f6;
-    --k-white: #ffffff;
-    --k-text-main: #333;
-    --k-gold: #c5a059;
-    --k-dark: #121212;
-    --k-border: #e1e4e8;
-    --k-accent: linear-gradient(135deg, #6e8efb, #a777e3);
-}
+/* ========================================================
+   KELMÁTICA - HOJA DE ESTILOS DE PRECISIÓN (CLIENTE UNIFICADO)
+   ======================================================== */
+
+/* --------------------------------------------------------
+   1. FUENTES E IMPORTACIONES GLOBALES
+   -------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
+
 body.client-dashboard {
-    background: #f4f7f6 !important; /* El gris clarito de Kelmática */
-    min-height: 100vh;
-}
-.k-profile-circle {
-    width: 42px;
-    height: 42px;
-    position: relative;
-    cursor: pointer;
-}
-
-.k-profile-circle img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid var(--k-gold);
-    object-fit: cover;
-    transition: 0.3s;
-}
-
-.k-profile-dropdown {
-    position: absolute;
-    top: 55px;
-    right: 0;
-    width: 260px;
-    background: var(--k-dark);
-    border: 1px solid #333;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    display: none;
-    z-index: 1000;
-    overflow: hidden;
-}
-
-.k-profile-dropdown.active {
-    display: block;
-    animation: fadeIn 0.2s ease-out;
-}
-
-.k-dropdown-header {
-    padding: 20px;
-    text-align: center;
-    background: #1a1a1a;
-}
-
-.k-dropdown-header img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    border: 2px solid var(--k-gold);
-}
-
-.k-user-name { color: white; font-weight: bold; margin: 0; }
-.k-user-email { color: #888; font-size: 0.8rem; margin-top: 4px; }
-
-.k-dropdown-nav { padding: 10px; }
-.k-dropdown-nav a {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: #ddd;
-    text-decoration: none;
-    padding: 12px 15px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    transition: 0.2s;
-}
-
-.k-dropdown-nav a i { color: var(--k-gold); width: 20px; }
-.k-dropdown-nav a:hover { background: #222; color: var(--k-gold); }
-
-.k-logout-link:hover { background: rgba(255, 77, 77, 0.1) !important; color: #ff4d4d !important; }
-
-/* 
- 3. PANEL DE CLIENTE (Diseño de la imagen - Dashboard)
-   */
-.client-dashboard {
-background-color: var(--k-bg-light);
-    min-height: 100vh;
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    padding-top: 110px; /* Ajuste para el header */
+    padding: 0;
 }
 
+/* Contenedor Principal */
+.k-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* Encabezado del Panel */
+.k-welcome-header h1 {
+    font-family: 'Playfair Display', serif ;
+    font-size: 2.8rem;
+    font-weight: 610;
+    color: #ffffff;
+    letter-spacing: -0.5px !important;  /* Unifica las letras como en el admin */
+    text-transform: none !important;    /* Evita que se distorsione pasándose a mayúsculas sostenidas */
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    
+    /* Suavizado premium para pantallas de alta resolución (Texto blanco sobre fondo negro) */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estructura en Rejilla (Grid Principal) */
 .dashboard-grid {
     display: grid;
     grid-template-columns: 280px 1fr;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    gap: 40px;
     align-items: start;
 }
 
-/* Sidebar lateral */
-.dashboard-sidebar {
-    background: var(--k-white);
-    padding: 25px 15px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+/* --------------------------------------------------------
+   2. DROPDOWN DE USUARIO (NAVBAR INTERACTIVO)
+   -------------------------------------------------------- */
+
+/* Contenedor del botón circular en el Navbar */
+.k-profile-circle-container {
+    display: inline-block;
 }
 
+/* La foto pequeña que se ve fija en el Navbar */
+.k-nav-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    border: 1px solid #c5a059 !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+/* CAJA FLOTANTE DEL MENÚ DESPLEGABLE (Se activa por CLIC mediante JS) */
+.k-profile-dropdown {
+    position: absolute !important;
+    top: 50px !important;
+    right: 0 !important;
+    background-color: #0d0d0d !important;
+    border: 1px solid #1a1a1a !important;
+    padding: 20px 15px !important;
+    width: 250px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7) !important;
+    border-radius: 8px !important;
+    z-index: 9999 !important;
+    display: none; 
+    flex-direction: column !important;
+}
+
+/* Despliegue controlado únicamente por la clase active del evento click */
+.k-profile-dropdown.active {
+    display: flex !important;
+}
+
+/* Encabezado interno del menú (Foto + Textos) */
+.k-dropdown-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-align: left !important;
+    padding-bottom: 5px !important;
+}
+
+/* La foto mediana dentro del menú */
+.k-dropdown-header img {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    border: 1px solid #c5a059 !important;
+    object-fit: cover !important;
+}
+
+/* Textos informativos de sesión */
+.k-header-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+}
+
+.k-user-name {
+    font-family: 'Playfair Display', serif !important;
+    color: #ffffff !important;
+    font-size: 0.95rem !important;
+    font-weight: 400 !important;
+    margin: 0 !important;
+}
+
+.k-user-email {
+    font-family: 'Roboto', sans-serif !important;
+    color: #666666 !important;
+    font-size: 0.8rem !important;
+    margin: 0 !important;
+}
+
+/* Líneas divisorias internas del dropdown */
+.k-dropdown-divider {
+    height: 1px !important;
+    background-color: #1a1a1a !important;
+    margin: 15px 0 !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+/* Enlaces del Navegador Desplegable */
+.k-dropdown-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    text-align: left !important;
+}
+
+.k-dropdown-nav a {
+    font-family: 'Roboto', sans-serif !important;
+    color: #cccccc !important;
+    text-decoration: none !important;
+    font-size: 0.85rem !important;
+    padding: 8px 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+.k-dropdown-nav a i {
+    color: #c5a059 !important;
+    font-size: 0.9rem !important;
+    width: 16px !important;
+    text-align: center !important;
+}
+
+.k-dropdown-nav a:hover {
+    color: #c5a059 !important;
+    background-color: #141414 !important;
+}
+
+/* Enlace de Cerrar Sesión del navbar */
+.k-logout-link {
+    color: #ff4d4d !important;
+}
+
+.k-logout-link i {
+    color: #ff4d4d !important;
+}
+
+.k-logout-link:hover {
+    background-color: rgba(255, 77, 77, 0.05) !important;
+    color: #ff6666 !important;
+}
+
+/* --------------------------------------------------------
+   3. PANEL DE CLIENTE (VISTA DE CONTENIDO - ESTILO ADMIN)
+   -------------------------------------------------------- */
+
+/* BARRA LATERAL (SIDEBAR) - ESTILO PREMIUM ADMIN */
+.dashboard-sidebar {
+    background-color: #050505; /* Fondo ultra oscuro idéntico al admin */
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Bloque Superior del Perfil (Simula la zona de marca del administrador) */
+.k-sidebar-profile-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #000000;
+    margin-bottom: 20px;
+}
+
+/* Foto de perfil circular en la barra lateral */
+.k-profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #c5a059;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+
+.k-profile-tag {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #c5a059;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Menú de Navegación Lateral */
 .dashboard-nav {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2px;
+    padding: 0 10px;
 }
 
-/* Botones del menú lateral */
-.nav-link {
+/* Enlaces del menú lateral */
+.dashboard-nav .nav-link {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 14px 20px;
-    border: none;
-    background: transparent;
-    color: #666;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-align: left;
+    padding: 16px 20px;
+    color: #888888;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
 }
 
-.nav-link i { font-size: 1.2rem; width: 25px; color: #999; }
-
-.nav-link:hover { background-color: #f0f2f5; }
-
-/* Pestaña Activa con tu gradiente azul/morado */
-.nav-link.active {
-    background: var(--k-accent);
-    color: white !important;
-    box-shadow: 0 8px 15px rgba(110, 142, 251, 0.3);
+.dashboard-nav .nav-link i {
+    font-size: 1.1rem;
+    width: 24px;
+    color: inherit;
 }
 
-.nav-link.active i { color: white !important; }
+/* Estado Hover y Activo Dorados */
+.dashboard-nav .nav-link:hover,
+.dashboard-nav .nav-link.active {
+    color: #c5a059 !important;
+    background-color: transparent;
+    border-left: 3px solid #c5a059;
+}
 
-/* Área Blanca de Contenido */
+/* Botón Salir en el menú de la Barra Lateral */
+.dashboard-nav .logout-style {
+    color: #ff4d4d !important;
+    margin-top: 20px;
+}
+
+.dashboard-nav .logout-style:hover {
+    border-left-color: #ff4d4d;
+    color: #ff6666 !important;
+}
+
+/* SECCIÓN DE CONTENIDO (TARJETA CONTENEDORA DERECHA) */
 .dashboard-content {
-    background: var(--k-white);
+    background-color: #111111;
+    border: 1px solid #1a1a1a;
     padding: 40px;
-    border-radius: 25px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    min-height: 500px;
+    border-radius: 12px;
 }
-
-.tab-content { display: none; }
-.tab-content.active { display: block; animation: fadeInTab 0.4s ease; }
 
 .tab-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    color: #222;
-    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #c5a059;
+    margin-top: 0;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
 }
 
-/* Formulario */
-.k-input-field {
-    width: 100%;
-    padding: 12px 15px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    margin: 10px 0 20px 0;
-    background: #fafafa;
+/* Compatibilidad para estados vacíos de compras/pedidos */
+.dashboard-content .empty-cart-msg,
+.dashboard-content p {
+    color: #888888 !important;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* Estado Vacío */
-.k-empty-state {
-    border: 2px dashed #eee;
-    padding: 60px;
-    text-align: center;
-    border-radius: 20px;
-    color: #aaa;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInTab {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsivo */
-@media (max-width: 900px) {
-    .dashboard-grid { grid-template-columns: 1fr; }
-    .client-dashboard { padding-top: 100px; }
-}
-.nav-link {
-    text-decoration: none; /* Quita el subrayado de los enlaces */
-    display: flex;
-    align-items: center;
-}
-
-/* Base del Dashboard */
-.client-dashboard {
-    background-color: var(--k-bg-light);
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    padding-top: 100px; /* Para que el header no tape el contenido */
-}
-
-.k-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.k-welcome-header h1 {
-    font-size: 2rem;
-    color: #222;
-    margin-bottom: 25px;
-}
-
-/* Grid Principal */
-.dashboard-grid {
+/* FORMULARIOS DE PERFIL INTERNOS */
+.k-profile-form .form-group-flex {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 30px;
-    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-/* Sidebar */
-.dashboard-sidebar {
-    background: var(--k-white);
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+.k-profile-form .form-group {
+    margin-bottom: 22px;
 }
 
-.dashboard-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.nav-link {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 14px 20px;
-    color: #666;
-    font-weight: 600;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.nav-link i {
-    width: 20px;
-    font-size: 1.1rem;
-}
-
-.nav-link:hover {
-    background: #f0f2f5;
-}
-
-/* Botón Activo */
-.nav-link.active {
-    background: var(--k-accent);
-    color: white !important;
-    box-shadow: 0 8px 15px rgba(110, 142, 251, 0.3);
-}
-
-.nav-link.active i {
-    color: white !important;
-}
-
-/* Caja de Contenido */
-.dashboard-content {
-    background: var(--k-white);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    min-height: 450px;
-}
-
-/* Estado Vacío */
-.k-empty-state {
-    text-align: center;
-    padding: 50px 0;
-    color: #999;
-}
-
-.k-empty-state i {
-    font-size: 4rem;
-    margin-bottom: 20px;
+.k-profile-form label {
     display: block;
-    opacity: 0.3;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .dashboard-grid { grid-template-columns: 1fr; }
+.k-profile-form .k-input-field {
+    width: 100%;
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+    border: 1px solid #222222 !important;
+    padding: 14px 16px !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    border-radius: 6px !important;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
-/* CLIENTE-FAVORITOS*/
-.k-empty-state i.fa-heart-crack {
-    color: #ffb3b3; /* Un rojo muy clarito para el icono vacío */
-    opacity: 0.6;
-}
-/*CLIENTE - PEDIDOS*/
-.k-empty-state i.fa-box-open {
-    color: #a5d8ff;
-    opacity: 0.7;
-}
-/* ESTILO BOTON DE SALIR*/
 
-/* Estilo para el botón de salir al inicio */
-.nav-link.logout-style {
-    margin-top: 10px;
-    color: #888; /* Un color más suave */
+.k-profile-form .k-input-field:focus {
+    border-color: #c5a059 !important;
+    outline: none;
+}
+
+/* BOTONES DE ACCIÓN (Estilo píldora como 'Guardar Reporte') */
+.k-btn-save,
+.dashboard-content button:not(.k-btn-cancel),
+.dashboard-content a[class*="btn"] {
+    background-color: transparent !important;
+    color: #c5a059 !important;
+    border: 1px solid #c5a059 !important;
+    padding: 10px 24px !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    border-radius: 20px !important;
+    text-transform: normal !important;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.nav-link.logout-style:hover {
-    background-color: #fff0f0; /* Un fondo rojizo muy leve */
-    color: #ff4d4d; /* Texto en rojo para indicar salida */
+.k-btn-save:hover,
+.dashboard-content button:not(.k-btn-cancel):hover,
+.dashboard-content a[class*="btn"]:hover {
+    background-color: #c5a059 !important;
+    color: #000000 !important;
 }
 
-.nav-link.logout-style:hover i {
-    color: #ff4d4d;
-    transform: translateX(-3px); /* Pequeña animación hacia la izquierda */
+/* Botón Cancelar */
+.k-btn-cancel {
+    background-color: transparent !important;
+    color: #666666 !important;
+    border: 1px solid transparent !important;
+    padding: 10px 24px !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.k-btn-cancel:hover {
+    color: #ffffff !important;
+}
+/* ========================================================
+   CONTROL DE VISIBILIDAD DE PESTAÑAS (TABS)
+   ======================================================== */
+.tab-section {
+    display: none !important;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.tab-section.active {
+    display: block !important;
+    opacity: 1;
+}
+
+/* ========================================================
+   ESTILIZACIÓN DE ESTADOS VACÍOS (EMPTY STATE) PREMIUM
+   ======================================================== */
+.k-empty-state {
+    text-align: center;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-state-icon {
+    font-size: 2.2rem !important;
+    color: #333333 !important;
+    margin: 0 0 15px 0 !important;
+}
+
+.empty-state-text {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 1rem !important;
+    color: #888888 !important;
+    margin: 0 0 8px 0 !important;
+}
+
+.empty-state-subtext {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 0.85rem !important;
+    color: #555555 !important;
+    margin: 0 0 20px 0 !important;
+}
+
+/* Botones de acción tipo cápsula dorada ('Ir a la tienda', 'Explorar Galería') */
+.k-btn-action {
+    background-color: transparent !important;
+    color: #c5a059 !important;
+    border: 1px solid #c5a059 !important;
+    padding: 10px 24px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.9rem !important;
+    border-radius: 20px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.k-btn-action:hover {
+    background-color: #c5a059 !important;
+    color: #000000 !important;
+}
+.k-profile-dropdown.active {
+    display: block !important;
 }

@@ -19,7 +19,6 @@
                 <img src="img/logo.png" alt="Logo KELMATICA">
             </a>
         </div>
-
         <nav class="nav-menu">
             <ul class="nav-list">
                 <li class="nav-item"><a href="index.html">INICIO</a></li>
@@ -28,17 +27,15 @@
                 <li class="nav-item active"><a href="galeria.html">GALERIA</a></li>
             </ul>
         </nav>
-
-       <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
-            
+        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
             <div class="k-user-session-container" style="position: relative;">
-                
+
                 <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
                     <i class="fa-solid fa-user"></i>
                 </div>
 
-                <div id="profile-trigger" class="k-profile-circle" style="display: none;">
-                    <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" id="profile-img-btn">
+                <div id="profile-trigger" class="k-profile-circle-container" style="position: relative; display: none; cursor: pointer;">
+                    <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" class="k-nav-avatar">
                     
                     <div class="k-profile-dropdown" id="profile-dropdown">
                         <div class="k-dropdown-header">
@@ -52,11 +49,13 @@
                         <div class="k-dropdown-divider"></div>
                         
                         <nav class="k-dropdown-nav">
-                            <a href="cliente-compra.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
-                            <a href="cliente-pedidos.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
-                            <a href="cliente-favoritos.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
+                            <a href="cliente-perfil.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
+                            <a href="cliente-perfil.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
+                            <a href="cliente-perfil.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
                             <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
+                            
                             <div class="k-dropdown-divider"></div>
+                            
                             <a href="#" id="btn-logout" class="k-logout-link">
                                 <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
                             </a>
@@ -69,8 +68,8 @@
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-counter" id="cart-counter">0</span>
             </div>
-
-        </div> </div>
+        </div> 
+    </div>
 </header>
 <div class="k-login-overlay" id="login-overlay">
     <button class="k-close-btn" id="close-login">&times;</button>
@@ -145,7 +144,7 @@
 
 <section class="obras-gallery">
     <div class="container-gallery">
-        <div class="gallery-grid">
+<div class="gallery-grid">
             <div class="k-obra-card-v2">
                 <div class="k-obra-img-container-v2">
                     <img src="img/pintura 1.jpg" alt="El Pirata">
@@ -157,6 +156,12 @@
                     <h3 class="k-obra-titulo-v2">El Pirata</h3>
                     <p class="k-obra-detalles-v2">Óleo y Acrílico sobre Lienzo</p>
                     <p class="k-obra-precio-v2">$3'000.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_pirata_001" 
+                            data-titulo="El Pirata" 
+                            data-precio="3000000" 
+                            data-img="img/pintura 1.jpg"> 
+                    </button>
                 </div>
             </div>
 
@@ -171,6 +176,12 @@
                     <h3 class="k-obra-titulo-v2">Alas de Ternura</h3>
                     <p class="k-obra-detalles-v2">Acrílico sobre Lienzo</p>
                     <p class="k-obra-precio-v2">$1'500.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_alas_002" 
+                            data-titulo="Alas de Ternura" 
+                            data-precio="1500000" 
+                            data-img="img/pintura 2.jpg"> 
+                    </button>
                 </div>
             </div>
 
@@ -185,6 +196,12 @@
                     <h3 class="k-obra-titulo-v2">El Secreto Del Estanque</h3>
                     <p class="k-obra-detalles-v2">Acrílico en Lienzo</p>
                     <p class="k-obra-precio-v2">$1'900.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_secreto_003" 
+                            data-titulo="El Secreto Del Estanque" 
+                            data-precio="1900000" 
+                            data-img="img/pintura 3.jpg"> 
+                    </button>
                 </div>
             </div>
 
@@ -199,6 +216,12 @@
                     <h3 class="k-obra-titulo-v2">El Baile De Los Colores</h3>
                     <p class="k-obra-detalles-v2">Acrílico en Lienzo</p>
                     <p class="k-obra-precio-v2">$800.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_baile_004" 
+                            data-titulo="El Baile De Los Colores" 
+                            data-precio="800000" 
+                            data-img="img/pintura 4.jpg"> 
+                    </button>
                 </div>
             </div>
 
@@ -213,6 +236,12 @@
                     <h3 class="k-obra-titulo-v2">El Dominio Del Dragon</h3>
                     <p class="k-obra-detalles-v2">Acrílico en Lienzo</p>
                     <p class="k-obra-precio-v2">$2'450.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_dragon_005" 
+                            data-titulo="El Dominio Del Dragon" 
+                            data-precio="2450000" 
+                            data-img="img/pintura 5.jpg" > 
+                    </button>
                 </div>
             </div>
 
@@ -227,6 +256,12 @@
                     <h3 class="k-obra-titulo-v2">Ventana Al Paraiso</h3>
                     <p class="k-obra-detalles-v2">Óleo en Lienzo</p>
                     <p class="k-obra-precio-v2">$3'750.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_ventana_006" 
+                            data-titulo="Ventana Al Paraiso" 
+                            data-precio="3750000" 
+                            data-img="img/pintura 6.jpg"> 
+                    </button>
                 </div>
             </div>
 
@@ -241,9 +276,16 @@
                     <h3 class="k-obra-titulo-v2">Reflejos del Alma</h3>
                     <p class="k-obra-detalles-v2">Óleo/Acrílico sobre Lienzo</p>
                     <p class="k-obra-precio-v2">$2'200.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_reflejos_007" 
+                            data-titulo="Reflejos del Alma" 
+                            data-precio="2200000" 
+                            data-img="img/pintura 7.jpeg"> 
+                    </button>
                 </div>
             </div>
-        <div class="k-obra-card-v2">
+
+            <div class="k-obra-card-v2">
                 <div class="k-obra-img-container-v2">
                     <img src="img/pintura 8.jpeg" alt="La Musa de Medianoche">
                     <div class="k-obra-overlay-v2">
@@ -254,10 +296,15 @@
                     <h3 class="k-obra-titulo-v2">La Musa de Medianoche</h3>
                     <p class="k-obra-detalles-v2">Técnica Mixta sobre Lienzo</p>
                     <p class="k-obra-precio-v2">$3'100.000 COP</p>
+                    <button class="btn-add-to-cart k-btn-add-gallery" 
+                            data-id="obra_musa_008" 
+                            data-titulo="La Musa de Medianoche" 
+                            data-precio="3100000" 
+                            data-img="img/pintura 8.jpeg" > 
+                    </button>
                 </div>
             </div> 
         </div>
-     </div> 
     </section>
  </main> 
  <footer class="main-footer">
@@ -293,25 +340,26 @@
         <p>&copy; 2026 KELMÁTICA Art. Todos los derechos reservados. Creado por Keith Sarin.</p>
     </div>
 </footer>
-<div class="cart-sidebar" id="cart-sidebar">
+<div id="cart-sidebar" class="cart-sidebar">
     <div class="cart-sidebar-header">
         <h3>Tu Carrito</h3>
-        <button class="close-cart-btn" id="close-cart-btn">&times;</button>
+        <button id="close-cart" class="close-cart-btn">&times;</button>
     </div>
-
-    <div class="cart-sidebar-content" id="cart-items-container">
-        <p class="empty-cart-msg">Tu carrito está vacío.</p>
-    </div>
+    
+    <div id="cart-items-container" class="cart-sidebar-content">
+        </div>
 
     <div class="cart-sidebar-footer">
         <div class="cart-total-row">
             <span>Subtotal:</span>
             <span id="cart-sidebar-subtotal">$0 COP</span>
         </div>
-        <p class="tax-shipping-info">Impuestos y envío calculados al pagar.</p>
-        <button class="btn-checkout" id="checkout-btn">Proceder al Pago</button>
+        <p class="tax-shipping-info">Impuestos y gastos de envío calculados al finalizar la compra.</p>
+        <button id="btn-proceder-pago" class="btn-checkout">Proceder al Pago</button>
     </div>
 </div>
+
+<div class="cart-overlay" id="cart-overlay"></div>
 <script src="js/script.js"></script>
 <script src="js/cliente.js"></script>
 <script src="js/cart.js"></script>

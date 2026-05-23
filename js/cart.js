@@ -1,127 +1,86 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // === ELEMENTOS INTERFACES DEL CARRITO ===
-    const openCartBtn = document.getElementById('open-cart-btn');
-    const closeCartBtn = document.getElementById('close-cart-btn');
-    const cartSidebar = document.getElementById('cart-sidebar');
-    const cartOverlay = document.getElementById('cart-overlay');
-
-    // === EVENTOS PARA ABRIR Y CERRAR ===
-
-    // Abrir Carrito
-    if (openCartBtn) {
-        openCartBtn.addEventListener('click', () => {
-            cartSidebar.classList.add('open');
-            cartOverlay.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Evita scroll de fondo
-        });
-    }
-
-    // Función Centralizada para Cerrar
-    const closeCart = () => {
-        cartSidebar.classList.remove('open');
-        cartOverlay.classList.remove('show');
-        document.body.style.overflow = ''; // Devuelve el scroll normal
-    };
-
-    // Cerrar al hacer clic en la equis (X)
-    if (closeCartBtn) {
-        closeCartBtn.addEventListener('click', closeCart);
-    }
-
-    // Cerrar al hacer clic en la capa oscura exterior
-    if (cartOverlay) {
-        cartOverlay.addEventListener('click', closeCart);
-    }
-});
-// === 5. ESCUCHAR LOS CLICS EN LA GALERÍA ===
-    document.addEventListener('click', (e) => {
-        if (e.target && e.target.classList.contains('btn-add-to-cart')) {
-            const btn = e.target;
-            
-            const productData = {
-                id: btn.getAttribute('data-id'),
-                titulo: btn.getAttribute('data-titulo'),
-                precio: parseFloat(btn.getAttribute('data-precio')),
-                img: btn.getAttribute('data-img')
-            };
-
-            addToCart(productData);
-
-            // [NUEVO] Feedback visual premium si es el botón de la vista de detalle
-            if (btn.id === 'btn-adquirir-detalle') {
-                const textoOriginal = btn.innerText;
-                btn.innerText = "¡AÑADIDO AL CARRITO! ✓";
-                btn.style.backgroundColor = "#bfa030"; // Un tono dorado más oscuro de confirmación
-                btn.style.color = "#fff";
-                btn.disabled = true;
-
-                // Regresa a su estado normal después de 2 segundos
-                setTimeout(() => {
-                    btn.innerText = textoOriginal;
-                    btn.style.backgroundColor = ""; // Regresa al CSS original
-                    btn.style.color = "";
-                    btn.disabled = false;
-                }, 2000);
-            }
-        }
-    });
-    // ========================================================
-// KELMÁTICA - SCRIPT DE CARRITO INTEGRADO A TU INTERFAZ
+// ========================================================
+// KELMÁTICA - SCRIPT DE CARRITO UNIFICADO Y PERSISTENTE
 // ========================================================
 
 let usuarioLogueado = JSON.parse(localStorage.getItem('kelmatica_logged_in')) || false;
 let carrito = JSON.parse(localStorage.getItem('kelmatica_cart')) || [];
 
-document.addEventListener('DOMContentLoaded', () => {
-    initCarritoEstructural();
+// === MANEJADOR GLOBAL DE CLICS (Delegación de Eventos) ===
+document.addEventListener('click', (e) => {
+    
+    // 1. CAPTURAR CLIC EN "AGREGAR AL CARRITO"
+    if (e.target && (e.target.id === 'btn-adquirir-detalle' || e.target.classList.contains('btn-add-to-cart'))) {
+        e.preventDefault();
+        const boton = e.target;
+        
+        const item = {
+            id: boton.getAttribute('data-id') || 'obra_001',
+            titulo: boton.getAttribute('data-titulo') || 'Obra de Arte',
+            precio: parseFloat(boton.getAttribute('data-precio')) || 0,
+            img: boton.getAttribute('data-img') || 'img/pintura 1.jpg'
+        };
+        
+        agregarAlCarrito(item);
+
+        // Feedback de botón blanco a dorado
+        if (boton.id === 'btn-adquirir-detalle') {
+            const textoOriginal = boton.innerText;
+            boton.innerText = "¡AÑADIDO! ✓";
+            boton.style.backgroundColor = "#bfa030"; 
+            boton.style.color = "#fff";
+            boton.style.borderColor = "#bfa030";
+
+            setTimeout(() => {
+                boton.innerText = textoOriginal;
+                boton.style.backgroundColor = "#ffffff"; 
+                boton.style.color = "#000000";
+                boton.style.borderColor = "#ffffff";
+            }, 1500);
+        }
+    }
+
+    // 2. CAPTURAR CLIC EN EL ICONO DE LA BOLSA EN EL HEADER
+    if (e.target && (e.target.id === 'open-cart-btn' || e.target.closest('#open-cart-btn'))) {
+        e.preventDefault();
+        actualizarInterfazVisual();
+        abrirLaVentanaDelCarrito();
+    }
+
+    // 3. CAPTURAR CLIC EN EL BOTÓN "PROCEDER AL PAGO"
+    if (e.target && (e.target.classList.contains('btn-checkout') || e.target.id === 'btn-proceder-pago')) {
+        e.preventDefault();
+        if (carrito.length === 0) {
+            alert("Tu carrito está vacío. Selecciona una obra de arte para continuar.");
+            return;
+        }
+
+        if (!usuarioLogueado) {
+            alert("Para proceder con la adquisición de la obra, por favor inicia sesión.");
+            window.location.href = 'login.html'; 
+        } else {
+            window.location.href = 'checkout.html'; 
+        }
+    }
+    
+    // 4. CAPTURAR CLIC EN LA "X" O EN EL OVERLAY PARA CERRAR
+    // SOLUCIÓN: Ahora escucha tanto 'close-cart' como 'close-cart-btn' y estructuras internas
+    if (e.target && (
+        e.target.id === 'close-cart' || 
+        e.target.classList.contains('close-cart-btn') || 
+        e.target.closest('#close-cart') || 
+        e.target.id === 'cart-overlay'
+    )) {
+        e.preventDefault();
+        cerrarLaVentanaDelCarrito();
+    }
 });
 
-function initCarritoEstructural() {
-    // 1. Detectar el botón "ADQUIRIR PIEZA" de las páginas de detalle
-    const btnAdquirir = document.getElementById('btn-adquirir-detalle');
-    if (btnAdquirir) {
-        btnAdquirir.addEventListener('click', (e) => {
-            e.preventDefault();
-            const item = {
-                id: btnAdquirir.getAttribute('data-id'),
-                titulo: btnAdquirir.getAttribute('data-titulo'),
-                precio: parseFloat(btnAdquirir.getAttribute('data-precio')),
-                img: btnAdquirir.getAttribute('data-img')
-            };
-            agregarAlCarrito(item);
-        });
-    }
-
-    // 2. FUNCIÓN PEDIDA: Al darle clic al icono de la bolsa abre el carrito siempre
-    const btnBolsaMenu = document.getElementById('open-cart-btn');
-    if (btnBolsaMenu) {
-        btnBolsaMenu.addEventListener('click', (e) => {
-            e.preventDefault();
-            abrirLaVentanaDelCarrito();
-        });
-    }
-
-    // 3. Lógica del botón Dorado "PROCEDER AL PAGO"
-    const btnPago = document.getElementById('btn-proceder-pago');
-    if (btnPago) {
-        btnPago.addEventListener('click', () => {
-            if (carrito.length === 0) {
-                alert("Tu carrito está vacío. Selecciona una obra de arte para continuar.");
-                return;
-            }
-
-            if (!usuarioLogueado) {
-                alert("Para proceder con la adquisición de la obra, por favor inicia sesión.");
-                window.location.href = 'login.html'; 
-            } else {
-                window.location.href = 'checkout.html'; 
-            }
-        });
-    }
-
-    // Dibujar el estado inicial y poner el contador del menú en su lugar al cargar
+// Sincronizar el estado de la UI al cargar cualquier página
+document.addEventListener('DOMContentLoaded', () => {
     actualizarInterfazVisual();
-}
+});
+
+// === FUNCIONES DE LÓGICA Y ALMACENAMIENTO ===
 
 function agregarAlCarrito(producto) {
     const existe = carrito.some(item => item.id === producto.id);
@@ -131,53 +90,60 @@ function agregarAlCarrito(producto) {
         return;
     }
 
-    // Insertar la obra de arte única
     carrito.push(producto);
     localStorage.setItem('kelmatica_cart', JSON.stringify(carrito));
     
-    // Renderizar e inmediatamente abrir la ventana para dar feedback visual
     actualizarInterfazVisual();
     abrirLaVentanaDelCarrito();
 }
 
-function eliminarDelCarrito(id) {
+window.eliminarDelCarrito = function(id) {
     carrito = carrito.filter(item => item.id !== id);
     localStorage.setItem('kelmatica_cart', JSON.stringify(carrito));
     actualizarInterfazVisual();
-}
+};
 
 function abrirLaVentanaDelCarrito() {
     const cartSidebar = document.getElementById('cart-sidebar');
-    if (cartSidebar) {
-        cartSidebar.classList.add('active');
-    }
+    const cartOverlay = document.getElementById('cart-overlay');
+    if (cartSidebar) cartSidebar.classList.add('open');    
+    if (cartOverlay) cartOverlay.classList.add('active');  
+    document.body.style.overflow = 'hidden';               
 }
 
-// FUNCIÓN PRINCIPAL: Pinta la obra dentro de tu caja negra y actualiza el contador del menú
+function cerrarLaVentanaDelCarrito() {
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartOverlay = document.getElementById('cart-overlay');
+    if (cartSidebar) cartSidebar.classList.remove('open');
+    if (cartOverlay) cartOverlay.classList.remove('active');
+    document.body.style.overflow = '';                     
+}
+
+// === RENDERIZADO VISUAL CON PARCHE PARA PÁGINAS SIN PANEL ===
 function actualizarInterfazVisual() {
-    const contenedor = document.getElementById('carrito-items-container');
-    const txtSubtotal = document.getElementById('cart-subtotal-val');
+    const contenedor = document.getElementById('cart-items-container');
+    const txtSubtotal = document.getElementById('cart-sidebar-subtotal');
     const contadorMenu = document.getElementById('cart-counter');
 
-    // Actualizar la burbuja del menú del header inmediatamente (el número sobre la bolsa)
+    // 1. EL CONTADOR SIEMPRE SE ACTUALIZA (No importa la página en la que estés)
     if (contadorMenu) {
         contadorMenu.textContent = carrito.length;
     }
 
+    // 2. ESCUDO OPTIMIZADO: Si la página actual no tiene el panel lateral (como la galería o detalles),
+    // nos salimos tranquilamente porque el contador ya fue actualizado arriba.
     if (!contenedor) return;
 
-    // Si está vacío, mantener tu texto original en cursiva y gris
+    // 3. Renderizar mensaje si no hay pinturas seleccionadas
     if (carrito.length === 0) {
         contenedor.innerHTML = `
-            <div style="text-align: center; padding: 60px 20px; font-family: sans-serif; color: #777; font-style: italic;">
-                Tu carrito está vacío.
-            </div>
+            <p class="empty-cart-msg">Tu carrito está vacío.</p>
         `;
         if (txtSubtotal) txtSubtotal.textContent = "$0 COP";
         return;
     }
 
-    // Limpiar para renderizar las obras activas
+    // Limpiar para renderizar el estado actual
     contenedor.innerHTML = '';
     let subtotalAcumulado = 0;
 
@@ -191,25 +157,15 @@ function actualizarInterfazVisual() {
         }).format(item.precio).replace(/\u00a0/g, ' ');
 
         const filaObra = document.createElement('div');
-        filaObra.style.cssText = `
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #1a1a1a;
-        `;
+        filaObra.className = 'cart-item'; 
 
         filaObra.innerHTML = `
-            <div style="width: 65px; height: 65px; background-color: #111; border: 1px solid #222; padding: 2px; flex-shrink: 0;">
-                <img src="${item.img}" alt="${item.titulo}" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="${item.img}" alt="${item.titulo}">
+            <div class="cart-item-details">
+                <h4>${item.titulo}</h4>
+                <p>${formatoPrecio}</p>
             </div>
-            
-            <div style="flex-grow: 1; font-family: 'Roboto', sans-serif;">
-                <h4 style="color: #ffffff; margin: 0 0 4px 0; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">${item.titulo}</h4>
-                <p style="color: #e4be6b; margin: 0; font-size: 0.9rem; font-weight: bold;">${formatoPrecio}</p>
-            </div>
-            
-            <button onclick="eliminarDelCarrito('${item.id}')" style="background: none; border: none; color: #555; cursor: pointer; font-size: 1.2rem; transition: color 0.2s;" onmouseover="this.style.color='#ff4444'" onmouseout="this.style.color='#555'">
+            <button class="btn-remove-item" onclick="eliminarDelCarrito('${item.id}')">
                 &times;
             </button>
         `;
