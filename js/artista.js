@@ -79,3 +79,7 @@ if (linkPerfil) {
     
     linkPerfil.click(); 
 }
+function cerrarSesion() {
+    localStorage.removeItem('kelmatica_logged_in');
+    window.location.href = 'index.html';
+}

@@ -28,12 +28,10 @@
                     <li data-section="configuracion"><i class="fa-solid fa-gear"></i> Configuración</li>
                 </ul>
             </nav>
-            <div class="sidebar-footer">
-                <a href="index.html" class="logout-link">
-                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
-                </a>
-            </div>
-        </aside>
+           <button class="btn-cerrar-sesion" onclick="window.location.href='index.html'">
+             <i class="fa-solid fa-arrow-left"></i> Cerrar Sesión
+            </button>
+             </aside>
 
         <main class="main-panel">
             <section id="section-reportes" class="content-section">
@@ -99,7 +97,7 @@
                 <div class="obras-grid">
                     <div class="obra-card">
                         <div class="obra-img-container">
-                            <img src="img/obra1.jpg" alt="Referencia cliente">
+                            <img src="img/referencia cliente 1.jpg" alt="Referencia cliente">
                             <span class="tag-status">Nuevo Pedido</span>
                         </div>
                         <div class="obra-info">
@@ -122,16 +120,16 @@
 
                     <div class="obra-card">
                         <div class="obra-img-container">
-                            <img src="img/obra2.jpg" alt="Referencia cliente">
+                            <img src="img/referencia cliente 2.jpg" alt="Referencia cliente">
                             <span class="tag-status">Nuevo Pedido</span>
                         </div>
                         <div class="obra-info">
-                            <h4>"Abstracción Neón"</h4>
+                            <h4>"Realismo"</h4>
                             <p>Para: <strong>Kelly Galván</strong></p>
                             <p>Cliente: María Paulina</p>
                             <div class="card-actions">
                                 <button class="btn-review" onclick="verFichaObra(
-                                    'Abstracción Neón', 
+                                    'Realismo', 
                                     'María Paulina', 
                                     'Kelly Galván', 
                                     'Quiero una pieza digital con colores vibrantes para un local de diseño.', 
@@ -145,7 +143,7 @@
 
                     <div class="obra-card">
                         <div class="obra-img-container">
-                            <img src="img/obra3.jpg" alt="Referencia cliente">
+                            <img src="img/referencia cliente 3.jpg" alt="Referencia cliente">
                             <span class="tag-status">Nuevo Pedido</span>
                         </div>
                         <div class="obra-info">
@@ -294,6 +292,17 @@
                     <label>Dirección de Residencia</label>
                     <input type="text" id="user-direccion" placeholder="Calle, Carrera, Ciudad..." required>
                 </div>
+                <div class="form-section-title">Seguridad</div>
+
+            <div class="input-group-admin full-width">
+               <label>Nueva Contraseña</label>
+         <input type="password" id="user-password" placeholder="Dejar vacío para no cambiar">
+            </div>
+
+            <div class="input-group-admin full-width">
+          <label>Confirmar Contraseña</label>
+         <input type="password" id="user-password-confirm" placeholder="Repite la nueva contraseña">
+            </div>
 
                 <div class="k-modal-actions full-width">
                     <button type="submit" class="btn-save-gold">

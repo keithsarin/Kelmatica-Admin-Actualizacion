@@ -30,9 +30,6 @@ document.addEventListener('click', (e) => {
         actualizarInterfazVisual();
         abrirLaVentanaDelCarrito();
     }
-
-    // 3. CAPTURAR EL CLIC EN EL BOTÓN DORADO "PROCEDER AL PAGO"
-    // Buscamos tanto 'checkout-btn' (el de tu HTML) como 'btn-proceder-pago'
     if (e.target && (e.target.id === 'checkout-btn' || e.target.id === 'btn-proceder-pago')) {
         e.preventDefault();
         if (carrito.length === 0) {

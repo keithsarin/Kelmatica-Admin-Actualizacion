@@ -58,7 +58,7 @@ document.addEventListener('click', (e) => {
             alert("Para proceder con la adquisición de la obra, por favor inicia sesión.");
             window.location.href = 'login.html'; 
         } else {
-            window.location.href = 'checkout.html'; 
+            window.location.href = 'compra.html'; 
         }
     }
     

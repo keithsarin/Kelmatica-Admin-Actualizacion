@@ -1,18 +1,24 @@
-/* --- VARIABLES DE MARCA KELMÁTICA --- */
+/* ==========================================================================
+   PANEL ARTISTA - KELMÁTICA
+   Sidebar idéntico al Panel Admin
+   ========================================================================== */
+
+/* --- VARIABLES --- */
 :root {
-    --bg-black: #0a0a0a;
+    --bg-black:      #0a0a0a;
     --sidebar-black: #000000;
-    --card-bg: #111111;
-    --gold: #c5a059;
-    --gold-dim: #8e723f;
-    --white: #ffffff;
-    --text-gray: #a0a0a0;
-    --border: #222222;
-    --transition: 0.3s ease;
+    --card-bg:       #111111;
+    --gold:          #c5a059;
+    --gold-dim:      #8e723f;
+    --gold-soft:     rgba(197, 160, 89, 0.05);
+    --white:         #ffffff;
+    --text-gray:     #a0a0a0;
+    --border:        #222222;
+    --transition:    0.3s ease;
 }
 
-/* --- RESET Y BASES --- */
-* {
+/* --- RESET --- */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -25,12 +31,19 @@ body {
     overflow-x: hidden;
 }
 
+/* ==========================================================================
+   LAYOUT PRINCIPAL
+   ========================================================================== */
+
 .dashboard-wrapper {
     display: flex;
     min-height: 100vh;
 }
 
-/* --- SIDEBAR --- */
+/* ==========================================================================
+   SIDEBAR — IDÉNTICO AL ADMIN
+   ========================================================================== */
+
 .sidebar-artista {
     width: 280px;
     background-color: var(--sidebar-black);
@@ -42,25 +55,35 @@ body {
     z-index: 100;
 }
 
+/* Logo y rol */
 .sidebar-header {
     padding: 40px 30px;
     text-align: center;
+    background-color: var(--sidebar-black);
 }
 
 .logo-panel {
-    max-width: 150px;
+    max-width: 125px;
+    height: auto;
     margin-bottom: 10px;
+    filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.2));
 }
 
 .role-tag {
+    display: block;
     color: var(--gold);
     font-size: 0.7rem;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     text-transform: uppercase;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
 }
 
+/* Menú de navegación */
 .sidebar-menu ul {
     list-style: none;
+    padding: 0;
+    margin-top: 10px;
 }
 
 .sidebar-menu li a {
@@ -70,35 +93,85 @@ body {
     color: var(--text-gray);
     text-decoration: none;
     font-size: 0.85rem;
+    font-weight: 300;
     letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
     transition: var(--transition);
     border-left: 3px solid transparent;
+    background: transparent;
 }
 
-.sidebar-menu li.active a,
 .sidebar-menu li a:hover {
+    color: var(--white);
+    background-color: var(--gold-soft);
+    border-left-color: transparent;
+}
+
+.sidebar-menu li.active a {
     color: var(--gold);
-    background-color: rgba(197, 160, 89, 0.05);
+    background-color: transparent;
     border-left: 3px solid var(--gold);
+    font-weight: 500;
 }
 
 .sidebar-menu i {
     margin-right: 15px;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
+/* Logout */
 .sidebar-logout {
+    margin-top: auto;
     padding: 30px;
     border-top: 1px solid var(--border);
 }
 
-/* --- ÁREA DE TRABAJO --- */
+.btn-cerrar-sesion {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: var(--transition);
+}
+
+.btn-cerrar-sesion:hover {
+    border-bottom-color: var(--gold);
+    gap: 14px;
+}
+
+.btn-cerrar-sesion i {
+    transition: transform var(--transition);
+}
+
+.btn-cerrar-sesion:hover i {
+    transform: translateX(-4px);
+}
+
+/* ==========================================================================
+   ÁREA DE TRABAJO PRINCIPAL
+   ========================================================================== */
+
 .main-workspace {
     margin-left: 280px;
     flex-grow: 1;
     padding: 60px;
 }
 
+/* Header */
 .workspace-header {
     display: flex;
     justify-content: space-between;
@@ -109,9 +182,17 @@ body {
 .user-welcome h1 {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
+    font-weight: 700;
     margin-bottom: 5px;
+    color: var(--white);
 }
 
+.user-welcome p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Mini estadísticas */
 .stats-mini-grid {
     display: flex;
     gap: 20px;
@@ -134,83 +215,65 @@ body {
     margin-bottom: 5px;
 }
 
-/* --- PERFIL ESTILO MUSEO (LO NUEVO) --- */
-.artist-profile-container {
-    display: flex;
-    gap: 60px;
-    padding: 40px;
-    background: var(--card-bg);
-    border-radius: 15px;
-    border: 1px solid var(--border);
+.stat-value {
+    color: var(--gold);
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
-.image-frame {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    border: 1px solid var(--gold);
-    padding: 12px;
+/* ==========================================================================
+   SECCIONES / TABS
+   ========================================================================== */
+
+.tab-content {
+    display: none;
 }
 
-.artist-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(30%);
+.tab-content.active {
+    display: block;
 }
 
-.display-name {
-    font-size: 3.5rem;
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 20px;
-    color: var(--white);
+.k-section-header {
+    margin-bottom: 30px;
 }
 
-.detail-item label, .bio-container label {
+.k-tag {
     display: block;
     color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 8px;
-    font-weight: 700;
 }
 
-/* --- BOTÓN PREMIUM --- */
-.btn-kelmatica-gold {
-    background: transparent;
-    border: 1px solid var(--gold);
+.k-display-name {
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
     color: var(--white);
-    padding: 15px 35px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: var(--transition);
-    margin-top: 20px;
+    margin: 10px 0;
+    letter-spacing: 1px;
 }
 
-.btn-kelmatica-gold:hover {
-    background: var(--gold);
-    color: var(--sidebar-black);
-}
+/* ==========================================================================
+   PERFIL DEL ARTISTA
+   ========================================================================== */
 
-/* --- RESET PARA EL CONTENEDOR KELMÁTICA --- */
 .kelmatica-profile-wrapper {
-    display: flex !important; /* Forzamos el flujo horizontal */
-    flex-direction: row !important; 
+    display: flex;
+    flex-direction: row;
     align-items: flex-start;
     gap: 50px;
     padding: 40px;
-    background: #111; /* Color base de tus tarjetas */
-    border: 1px solid #222;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 15px;
     max-width: 1000px;
 }
 
-/* --- COLUMNA FOTO --- */
+/* Columna foto */
 .k-column-left {
-    flex: 0 0 320px; /* Tamaño fijo para la columna de la foto */
+    flex: 0 0 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -219,8 +282,8 @@ body {
 
 .k-image-frame {
     width: 100%;
-    height: 400px;
-    border: 1px solid #c5a059; /* Dorado Kelmática */
+    height: 380px;
+    border: 1px solid var(--gold);
     padding: 10px;
     background-color: #000;
 }
@@ -228,95 +291,142 @@ body {
 .k-artist-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cambia a 'contain' si prefieres ver la foto entera sin recortes */
+    object-fit: cover;
     filter: grayscale(20%);
 }
 
-/* --- COLUMNA TEXTO --- */
-.k-column-right {
-    flex: 1; /* Ocupa el resto del espacio */
+.k-photo-actions {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    text-align: left; /* Alineación a la izquierda */
+    align-items: center;
+    gap: 15px;
+    width: 100%;
 }
 
-.k-display-name {
-    font-size: 2.2rem;
-    font-family: 'Playfair Display', serif;
-    color: #fff;
-    margin: 10px 0;
-    letter-spacing: 1px;
+.k-update-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-gray);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'Roboto', sans-serif;
+    transition: var(--transition);
 }
 
-.k-tag {
-    color: #c5a059;
-    letter-spacing: 4px;
-    font-size: 0.7rem;
-    font-weight: bold;
-}
-
-.k-info-item label, .k-bio-section label {
-    display: block;
-    color: #c5a059;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
+.k-update-btn:hover {
+    color: var(--gold);
 }
 
 .k-social-links {
     display: flex;
     gap: 20px;
     font-size: 1.2rem;
+}
+
+.k-social-links a {
+    color: var(--white);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.k-social-links a:hover {
+    color: var(--gold);
+}
+
+/* Columna texto */
+.k-column-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: left;
+}
+
+.k-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.k-info-item label,
+.k-bio-section label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.k-info-item p,
+.k-bio-section p {
+    color: var(--white);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Botón premium */
+.btn-kelmatica-gold {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     margin-top: 10px;
 }
 
-.k-social-links a { color: #fff; transition: 0.3s; }
-.k-social-links a:hover { color: #c5a059; }
-
-.k-update-btn {
-    background: transparent;
-    border: none;
-    color: #a0a0a0;
-    cursor: pointer;
-    font-size: 0.85rem;
+.btn-kelmatica-gold:hover {
+    background: var(--gold);
+    color: var(--sidebar-black);
 }
-/* --- ESTILO FORMULARIO SUBIR OBRA --- */
+
+/* ==========================================================================
+   FORMULARIO SUBIR OBRA
+   ========================================================================== */
 
 .k-form-wrapper {
-    background: #111; /* Consistencia con el perfil */
+    background: var(--card-bg);
     padding: 40px;
-    border: 1px solid #222;
+    border: 1px solid var(--border);
     border-radius: 15px;
 }
 
 .k-form-container {
     display: grid;
-    grid-template-columns: 1fr 1.2fr; /* Foto a la izquierda, campos a la derecha */
+    grid-template-columns: 1fr 1.2fr;
     gap: 50px;
 }
 
 .k-field-label {
     display: block;
-    color: #c5a059; /* Dorado Kelmática */
+    color: var(--gold);
     font-size: 0.65rem;
     letter-spacing: 3px;
+    text-transform: uppercase;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-/* Zona de Carga Estilizada */
 .k-upload-box {
     width: 100%;
     height: 350px;
-    border: 1px dashed #c5a059;
+    border: 1px dashed var(--gold);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 15px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transition);
     background: rgba(197, 160, 89, 0.02);
 }
 
@@ -325,27 +435,36 @@ body {
     border-style: solid;
 }
 
-.k-upload-box i { font-size: 2.5rem; color: #c5a059; }
-.k-upload-box p { font-size: 0.9rem; color: #fff; }
+.k-upload-box i    { font-size: 2.5rem; color: var(--gold); }
+.k-upload-box p    { font-size: 0.9rem; color: var(--white); }
 .k-upload-box span { font-size: 0.7rem; color: #666; }
 
-/* Inputs Estilo Minimalista */
-.k-details-column input, 
-.k-details-column select, 
+.k-input-group {
+    margin-bottom: 20px;
+}
+
+.k-details-column input,
+.k-details-column select,
 .k-details-column textarea {
     width: 100%;
     background: #000;
-    border: 1px solid #222;
-    padding: 15px;
-    color: #fff;
+    border: 1px solid var(--border);
+    padding: 14px 15px;
+    color: var(--white);
     font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
     outline: none;
-    margin-bottom: 20px;
-    transition: 0.3s;
+    transition: var(--transition);
 }
 
-.k-details-column input:focus {
-    border-color: #c5a059;
+.k-details-column input:focus,
+.k-details-column select:focus,
+.k-details-column textarea:focus {
+    border-color: var(--gold);
+}
+
+.k-details-column select option {
+    background: #111;
 }
 
 .k-input-row {
@@ -354,7 +473,28 @@ body {
     gap: 20px;
 }
 
-/* Botones de Acción */
+.k-radio-group {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.k-radio-option {
+    color: var(--white);
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.k-radio-option input[type="radio"] {
+    accent-color: var(--gold);
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
 .k-form-actions {
     display: flex;
     gap: 20px;
@@ -364,48 +504,31 @@ body {
 .btn-borrador {
     background: transparent;
     border: 1px solid #333;
-    color: #a0a0a0;
-    padding: 15px 25px;
+    color: var(--text-gray);
+    padding: 14px 25px;
     cursor: pointer;
     letter-spacing: 2px;
     font-size: 0.75rem;
-    transition: 0.3s;
+    font-family: 'Roboto', sans-serif;
+    transition: var(--transition);
 }
 
 .btn-borrador:hover {
-    border-color: #fff;
-    color: #fff;
-}
-/* Estilo para los botones de selección circular */
-.k-radio-group {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 20px;
+    border-color: var(--white);
+    color: var(--white);
 }
 
-.k-radio-option {
-    color: #fff;
-    font-size: 0.85rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.k-radio-option input[type="radio"] {
-    accent-color: #c5a059; /* Color dorado para el círculo */
-    width: 18px;
-    height: 18px;
-    margin: 0;
-}
-/* --- GESTIÓN DE CATÁLOGO --- */
+/* ==========================================================================
+   GESTIÓN DE CATÁLOGO
+   ========================================================================== */
 
 .k-filter-bar {
     display: flex;
     gap: 15px;
     margin-bottom: 40px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .k-filter-btn {
@@ -415,13 +538,16 @@ body {
     padding: 8px 15px;
     font-size: 0.7rem;
     letter-spacing: 2px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: 0.3s;
+    font-family: 'Roboto', sans-serif;
+    transition: var(--transition);
 }
 
-.k-filter-btn.active, .k-filter-btn:hover {
-    color: #c5a059;
-    border-color: #c5a059;
+.k-filter-btn.active,
+.k-filter-btn:hover {
+    color: var(--gold);
+    border-color: var(--gold);
 }
 
 .k-catalog-grid {
@@ -431,15 +557,15 @@ body {
 }
 
 .k-artwork-card {
-    background: #111;
-    border: 1px solid #222;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 10px;
     overflow: hidden;
-    transition: 0.4s;
+    transition: var(--transition);
 }
 
 .k-artwork-card:hover {
-    border-color: #c5a059;
+    border-color: var(--gold);
     transform: translateY(-5px);
 }
 
@@ -454,7 +580,6 @@ body {
     object-fit: cover;
 }
 
-/* Badges de Estado */
 .k-status-badge {
     position: absolute;
     top: 15px;
@@ -466,32 +591,31 @@ body {
     border-radius: 4px;
 }
 
-.status-venta { background: #c5a059; color: #000; }
-.status-revision { background: #555; color: #fff; }
-.status-vendidas { background: #1a4a1d; color: #fff; }
+.status-venta    { background: var(--gold); color: #000; }
+.status-revision { background: #555; color: var(--white); }
+.status-vendidas { background: #1a4a1d; color: var(--white); }
 
 .k-artwork-info {
     padding: 20px;
-    text-align: left;
 }
 
 .k-artwork-info h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 5px;
+    color: var(--white);
 }
 
 .k-artwork-price {
-    color: #c5a059;
+    color: var(--gold);
     font-size: 0.9rem;
     margin-bottom: 20px;
 }
 
-/* Botones de Acción Rápidos */
 .k-artwork-actions {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #222;
+    border-top: 1px solid var(--border);
     padding-top: 15px;
 }
 
@@ -500,17 +624,21 @@ body {
     border: none;
     color: #666;
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transition);
     font-size: 1rem;
+    padding: 5px;
 }
 
-.k-action-icon:hover { color: #fff; }
+.k-action-icon:hover          { color: var(--white); }
 .k-action-icon.k-delete:hover { color: #ff4d4d; }
-/* --- GESTIÓN DE PEDIDOS --- */
+
+/* ==========================================================================
+   GESTIÓN DE PEDIDOS
+   ========================================================================== */
 
 .k-orders-container {
-    background: #111;
-    border: 1px solid #222;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 15px;
     padding: 20px;
     overflow-x: auto;
@@ -523,23 +651,25 @@ body {
 }
 
 .k-orders-table th {
-    color: #c5a059; /* Dorado Kelmática */
+    color: var(--gold);
     font-size: 0.7rem;
     letter-spacing: 2px;
+    text-transform: uppercase;
     padding: 15px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
 }
 
 .k-orders-table td {
     padding: 20px 15px;
     border-bottom: 1px solid #1a1a1a;
-    color: #fff;
+    color: var(--white);
     font-size: 0.9rem;
 }
 
 .k-client-info strong {
     display: block;
     font-size: 1rem;
+    margin-bottom: 4px;
 }
 
 .k-client-info span {
@@ -547,22 +677,21 @@ body {
     font-size: 0.8rem;
 }
 
-/* Estados Dinámicos */
 .k-order-status {
     padding: 5px 12px;
     font-size: 0.65rem;
     font-weight: bold;
     border-radius: 20px;
     letter-spacing: 1px;
+    display: inline-block;
 }
 
-.status-pago { background: rgba(197, 160, 89, 0.2); color: #c5a059; border: 1px solid #c5a059; }
-.status-camino { background: rgba(0, 123, 255, 0.1); color: #007bff; border: 1px solid #007bff; }
-.status-entregado { background: rgba(40, 167, 69, 0.1); color: #28a745; border: 1px solid #28a745; }
+.status-pago      { background: rgba(197,160,89,0.15); color: var(--gold);    border: 1px solid var(--gold); }
+.status-camino    { background: rgba(0,123,255,0.1);   color: #007bff;        border: 1px solid #007bff; }
+.status-entregado { background: rgba(40,167,69,0.1);   color: #28a745;        border: 1px solid #28a745; }
 
-/* Botón de Acción Logística */
 .btn-order-action {
-    background: #c5a059;
+    background: var(--gold);
     color: #000;
     border: none;
     padding: 8px 15px;
@@ -570,22 +699,26 @@ body {
     font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
-    transition: 0.3s;
+    font-family: 'Roboto', sans-serif;
+    transition: var(--transition);
 }
 
 .btn-order-action:hover {
-    background: #fff;
+    background: var(--white);
 }
-/* --- ESTILO DE NOTIFICACIONES --- */
+
+/* ==========================================================================
+   NOTIFICACIONES
+   ========================================================================== */
 
 .k-notifications-wrapper {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background: #111;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 15px;
-    border: 1px solid #222;
+    border: 1px solid var(--border);
 }
 
 .k-notification-item {
@@ -596,7 +729,7 @@ body {
     background: #0a0a0a;
     border-radius: 10px;
     border-left: 3px solid transparent;
-    transition: 0.3s;
+    transition: var(--transition);
     position: relative;
 }
 
@@ -604,9 +737,8 @@ body {
     background: #161616;
 }
 
-/* Indicador de no leído */
 .k-notification-item.unread {
-    border-left-color: #c5a059; /* Dorado Kelmática */
+    border-left-color: var(--gold);
 }
 
 .k-notif-icon {
@@ -618,11 +750,13 @@ body {
     justify-content: center;
     font-size: 1.2rem;
     flex-shrink: 0;
+    background: rgba(197, 160, 89, 0.1);
+    color: var(--gold);
 }
 
 .k-notif-content {
-    text-align: left;
-    color: #fff;
+    flex: 1;
+    color: var(--white);
     font-size: 0.95rem;
 }
 
@@ -632,7 +766,7 @@ body {
 }
 
 .k-notif-content strong {
-    color: #c5a059;
+    color: var(--gold);
 }
 
 .k-notif-time {
@@ -645,7 +779,7 @@ body {
 .k-notif-dot {
     width: 8px;
     height: 8px;
-    background: #c5a059;
+    background: var(--gold);
     border-radius: 50%;
     position: absolute;
     right: 20px;

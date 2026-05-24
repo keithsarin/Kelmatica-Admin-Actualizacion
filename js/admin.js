@@ -70,7 +70,46 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const index = document.getElementById('user-index').value;
-            
+            const password        = document.getElementById('user-password').value;
+const passwordConfirm = document.getElementById('user-password-confirm').value;
+
+if (password !== '' && password !== passwordConfirm) {
+    alert('Las contraseñas no coinciden.');
+    return;
+}
+formUsuario.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const index = document.getElementById('user-index').value;
+    const password        = document.getElementById('user-password').value;
+    const passwordConfirm = document.getElementById('user-password-confirm').value;
+
+    if (password !== '' && password !== passwordConfirm) {
+        alert('Las contraseñas no coinciden.');
+        return;
+    }
+
+    const datosUsuario = {
+        nombre:    document.getElementById('user-nombre').value,
+        apellido:  document.getElementById('user-apellido').value,
+        email:     document.getElementById('user-email').value,
+        celular:   document.getElementById('user-celular').value,
+        direccion: document.getElementById('user-direccion').value,
+        estado:    document.getElementById('user-estado').value,
+        rol:       "Cliente",
+        password:  password !== '' ? password : (index !== "" ? usuarios[index].password : '')
+    };
+
+    if (index === "") {
+        usuarios.push(datosUsuario);
+    } else {
+        usuarios[index] = datosUsuario;
+    }
+
+    localStorage.setItem('kelmatica_usuarios', JSON.stringify(usuarios));
+    cerrarModalUsuario();
+    actualizarTabla();
+});
             const datosUsuario = {
                 nombre: document.getElementById('user-nombre').value,
                 apellido: document.getElementById('user-apellido').value,
@@ -159,32 +198,34 @@ window.eliminarUsuario = (index) => {
 };
 
 window.actualizarTabla = (filtro = "") => {
-    // Soporta tanto 'tabla-usuarios-body' como 'lista-usuarios-body' según tu HTML
-    const tbody = document.getElementById('tabla-usuarios-body') || document.getElementById('lista-usuarios-body'); 
+    const tbody = document.getElementById('tabla-usuarios-body') 
+               || document.getElementById('lista-usuarios-body');
     if (!tbody) return;
 
-    tbody.innerHTML = ""; // Limpiar filas
+    tbody.innerHTML = "";
 
-    // Filtrar usuarios por nombre o rol si hay un criterio de búsqueda
-    const usuariosFiltrados = usuarios.filter(u => 
-        u.nombre.toLowerCase().includes(filtro.toLowerCase()) || 
+    const usuariosFiltrados = usuarios.filter(u =>
+        u.nombre.toLowerCase().includes(filtro.toLowerCase()) ||
+        u.apellido.toLowerCase().includes(filtro.toLowerCase()) ||
         u.rol.toLowerCase().includes(filtro.toLowerCase())
     );
 
-    usuarios.forEach((user, index) => {
-        // Si no pasa el filtro de búsqueda, saltarlo en el render
-        if (filtro && !usuariosFiltrados.includes(user)) return;
+    usuariosFiltrados.forEach((user, index) => {
+        // Recuperar el índice real en el array original
+        const indexReal = usuarios.indexOf(user);
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${user.nombre} ${user.apellido}</td>
-            <td>${user.rol}</td>
+            <td>${user.email || '—'}</td>
+            <td>${user.celular || '—'}</td>
             <td><span class="status-${user.estado.toLowerCase()}">${user.estado}</span></td>
+            <td>${user.direccion || '—'}</td>
             <td>
-                <button class="btn-icon" onclick="abrirModalUsuario(${index})">
+                <button class="btn-icon" title="Editar" onclick="abrirModalUsuario(${indexReal})">
                     <i class="fa-solid fa-pen"></i>
                 </button>
-                <button class="btn-icon btn-delete" onclick="eliminarUsuario(${index})">
+                <button class="btn-icon btn-delete" title="Eliminar" onclick="eliminarUsuario(${indexReal})">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </td>

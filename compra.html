@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago | Kelmática</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.compra.css"> </head>
+<body>
+
+    <main class="contenedor-compra">
+        <section class="seccion-formulario-compra">
+            <h1 class="titulo-compra">Finalizar Compra</h1>
+
+            <div class="tarjeta-compra">
+                <div class="encabezado-tarjeta">
+                    <span class="numero-paso">1</span>
+                    <h2>Información de Envío</h2>
+                </div>
+                <div class="cuerpo-tarjeta">
+                    <div class="fila-formulario">
+                        <div class="grupo-formulario">
+                            <label for="compra-nombre">Nombre completo</label>
+                            <input type="text" id="compra-nombre" placeholder="Ej. Valeria Corrales" required>
+                        </div>
+                    </div>
+                    <div class="fila-formulario">
+                        <div class="grupo-formulario">
+                            <label for="compra-correo">Correo electrónico</label>
+                            <input type="email" id="compra-correo" placeholder="ejemplo@kelmatica.com" required>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="compra-telefono">Teléfono / Celular</label>
+                            <input type="tel" id="compra-telefono" placeholder="Ej. +57 300..." required>
+                        </div>
+                    </div>
+                    <div class="fila-formulario">
+                        <div class="grupo-formulario">
+                            <label for="compra-direccion">Dirección de entrega</label>
+                            <input type="text" id="compra-direccion" placeholder="Calle, Carrera, Edificio, Apto..." required>
+                        </div>
+                    </div>
+                    <div class="fila-formulario total-3-columnas">
+                        <div class="grupo-formulario">
+                            <label for="compra-ciudad">Ciudad</label>
+                            <input type="text" id="compra-ciudad" placeholder="Ej. Medellín" required>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="compra-departamento">Departamento / Estado</label>
+                            <input type="text" id="compra-departamento" placeholder="Ej. Antioquia" required>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="compra-codigo-postal">Código Postal</label>
+                            <input type="text" id="compra-codigo-postal" placeholder="Opcional">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta-compra">
+                <div class="encabezado-tarjeta">
+                    <span class="numero-paso">2</span>
+                    <h2>Método de Entrega</h2>
+                </div>
+                <div class="cuerpo-tarjeta opciones-envio">
+                    <label class="radio-envio activo">
+                        <input type="radio" name="metodo-envio" value="estandar" checked>
+                        <div class="contenido-radio">
+                            <span class="titulo-radio">Envío Nacional Asegurado</span>
+                            <span class="descripcion-radio">Entrega de 3 a 5 días hábiles (Embalaje de seguridad especial para arte)</span>
+                        </div>
+                        <span class="precio-radio">$15.000</span>
+                    </label>
+                    <label class="radio-envio">
+                        <input type="radio" name="metodo-envio" value="rapido">
+                        <div class="contenido-radio">
+                            <span class="titulo-radio">Envío Express / Prioritario</span>
+                            <span class="descripcion-radio">Entrega en 24-48 horas en capitales y ciudades principales</span>
+                        </div>
+                        <span class="precio-radio">$30.000</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="tarjeta-compra">
+                <div class="encabezado-tarjeta">
+                    <span class="numero-paso">3</span>
+                    <h2>Método de Pago</h2>
+                </div>
+                <div class="cuerpo-tarjeta opciones-pago">
+                    <div class="pestanas-pago">
+                        <button type="button" class="boton-pestana activo" data-objetivo="tarjeta-credito">
+                            <i class="fa-solid fa-credit-card"></i> Tarjeta de Crédito
+                        </button>
+                        <button type="button" class="boton-pestana" data-objetivo="transferencia-bancaria">
+                            <i class="fa-solid fa-building-columns"></i> Transferencia / PSE
+                        </button>
+                    </div>
+
+                    <div id="tarjeta-credito" class="contenido-pestana-pago activo">
+                        <div class="fila-formulario">
+                            <div class="grupo-formulario">
+                                <label for="tarjeta-numero">Número de la tarjeta</label>
+                                <div class="envoltura-icono-input">
+                                    <input type="text" id="tarjeta-numero" placeholder="0000 0000 0000 0000">
+                                    <i class="fa-solid fa-lock icono-input"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fila-formulario">
+                            <div class="grupo-formulario">
+                                <label for="tarjeta-vencimiento">Fecha de vencimiento</label>
+                                <input type="text" id="tarjeta-vencimiento" placeholder="MM/AA">
+                            </div>
+                            <div class="grupo-formulario">
+                                <label for="tarjeta-cvc">Código CVC / CVV</label>
+                                <input type="text" id="tarjeta-cvc" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="transferencia-bancaria" class="contenido-pestana-pago">
+                        <p class="aviso-pago">Al confirmar tu pedido, serás redireccionado de manera totalmente segura a la plataforma autorizada de PSE o entidad bancaria para autorizar tu transferencia directa a Kelmática.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="seccion-resumen-compra">
+            <div class="tarjeta-resumen-fija">
+                <h2>Resumen del Pedido</h2>
+                
+                <div class="lista-items-resumen" id="items-resumen-compra">
+                    </div>
+
+                <div class="envoltura-cupon">
+                    <input type="text" id="codigo-cupon" placeholder="Código de descuento">
+                    <button type="button" id="boton-aplicar-cupon">Aplicar</button>
+                </div>
+
+                <hr class="divisor-resumen">
+
+                <div class="totales-resumen">
+                    <div class="fila-total">
+                        <span>Subtotal</span>
+                        <span id="resumen-subtotal">$0</span>
+                    </div>
+                    <div class="fila-total">
+                        <span>Envío</span>
+                        <span id="resumen-envio">$15.000</span>
+                    </div>
+                    <hr class="divisor-resumen divisor-secundario">
+                    <div class="fila-total gran-total">
+                        <span>Total a pagar</span>
+                        <span id="resumen-total">$0</span>
+                    </div>
+                </div>
+
+                <button type="button" class="boton-pagar-ahora" id="boton-finalizar-pedido">
+                    <i class="fa-solid fa-shield-halved"></i> Realizar Pago Seguro
+                </button>
+                
+                <p class="pie-seguro"><i class="fa-solid fa-lock"></i> Conexión cifrada SSL de 256 bits. Arte 100% garantizado.</p>
+            </div>
+        </aside>
+        <div class="pie-pagina-compra">
+    <a href="galeria.html" class="boton-volver-galeria">
+        <i class="fa-solid fa-arrow-left"></i> Volver a la Galería
+    </a>
+</div>
+    </main>
+
+    <script src="js/compra.js"></script>
+</body>
+</html>

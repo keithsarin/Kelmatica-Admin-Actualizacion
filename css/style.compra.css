@@ -1,0 +1,586 @@
+/* ==========================================================================
+   ESTILOS DE PASARELA DE PAGO - KELMÁTICA
+   ========================================================================== */
+
+:root {
+    --fondo-oscuro: #0a0a0c;
+    --fondo-tarjeta: rgba(18, 18, 22, 0.75);
+    --dorado-principal: #d4af37;
+    --brillo-dorado: rgba(212, 175, 55, 0.2);
+    --texto-claro: #f3f4f6;
+    --texto-mutado: #9ca3af;
+    --borde-color: rgba(212, 175, 55, 0.15);
+    --borde-enfoque: #d4af37;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--fondo-oscuro);
+    color: var(--texto-claro);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL
+   ========================================================================== */
+
+.contenedor-compra {
+    width: 100%;
+    max-width: 1100px;
+    margin: 28px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
+}
+
+.seccion-formulario-compra {
+    min-width: 0; /* evita overflow en grid */
+}
+
+.seccion-resumen-compra {
+    min-width: 0;
+}
+
+/* ==========================================================================
+   TÍTULO
+   ========================================================================== */
+
+.titulo-compra {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--texto-claro);
+    margin: 0 0 22px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--dorado-principal);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   TARJETAS DE PASOS
+   ========================================================================== */
+
+.tarjeta-compra {
+    background: var(--fondo-tarjeta);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--borde-color);
+    border-radius: 10px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.tarjeta-compra:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.encabezado-tarjeta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.numero-paso {
+    background: var(--dorado-principal);
+    color: #000;
+    font-weight: bold;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px var(--brillo-dorado);
+}
+
+.encabezado-tarjeta h2 {
+    font-size: 1.05rem;
+    margin: 0;
+    color: var(--texto-claro);
+    font-weight: 600;
+}
+
+.cuerpo-tarjeta {
+    padding: 20px;
+}
+
+/* ==========================================================================
+   CAMPOS DE FORMULARIO
+   ========================================================================== */
+
+.fila-formulario {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.fila-formulario:last-child {
+    margin-bottom: 0;
+}
+
+.total-3-columnas {
+    gap: 12px;
+}
+
+.grupo-formulario {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.grupo-formulario label {
+    font-size: 0.75rem;
+    color: var(--texto-mutado);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.grupo-formulario input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 10px 13px;
+    color: #fff;
+    font-size: 0.88rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.grupo-formulario input::placeholder {
+    color: rgba(156, 163, 175, 0.6);
+}
+
+.grupo-formulario input:focus {
+    outline: none;
+    border-color: var(--borde-enfoque);
+    box-shadow: 0 0 8px var(--brillo-dorado);
+}
+
+/* ==========================================================================
+   MÉTODOS DE ENVÍO
+   ========================================================================== */
+
+.opciones-envio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.radio-envio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-envio input[type="radio"] {
+    accent-color: var(--dorado-principal);
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.contenido-radio {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.titulo-radio {
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.descripcion-radio {
+    font-size: 0.75rem;
+    color: var(--texto-mutado);
+    line-height: 1.4;
+}
+
+.precio-radio {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--dorado-principal);
+    margin-left: 12px;
+    white-space: nowrap;
+}
+
+.radio-envio:hover,
+.radio-envio.activo {
+    border-color: rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.03);
+}
+
+/* ==========================================================================
+   PESTAÑAS DE PAGO
+   ========================================================================== */
+
+.pestanas-pago {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.boton-pestana {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--texto-mutado);
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.88rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.boton-pestana.activo,
+.boton-pestana:hover {
+    border-color: var(--dorado-principal);
+    color: var(--dorado-principal);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.contenido-pestana-pago {
+    display: none;
+}
+
+.contenido-pestana-pago.activo {
+    display: block;
+}
+
+.envoltura-icono-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.envoltura-icono-input input {
+    width: 100%;
+    padding-right: 38px;
+}
+
+.icono-input {
+    position: absolute;
+    right: 13px;
+    color: var(--texto-mutado);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.aviso-pago {
+    font-size: 0.85rem;
+    color: var(--texto-mutado);
+    line-height: 1.6;
+    background: rgba(212, 175, 55, 0.05);
+    padding: 14px;
+    border-left: 3px solid var(--dorado-principal);
+    border-radius: 4px;
+    margin: 0;
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA — RESUMEN FIJO
+   ========================================================================== */
+
+.tarjeta-resumen-fija {
+    position: sticky;
+    top: 28px;
+    background: rgba(14, 14, 18, 0.95);
+    border: 1px solid var(--dorado-principal);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.tarjeta-resumen-fija h2 {
+    font-size: 1.1rem;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.5px;
+    color: var(--texto-claro);
+}
+
+.lista-items-resumen {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    padding-right: 4px;
+}
+
+.lista-items-resumen::-webkit-scrollbar {
+    width: 4px;
+}
+
+.lista-items-resumen::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 4px;
+}
+
+.item-resumen {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.item-resumen img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.detalles-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.detalles-item h3 {
+    font-size: 0.85rem;
+    margin: 0 0 3px 0;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.detalles-item p {
+    font-size: 0.75rem;
+    color: var(--texto-mutado);
+    margin: 0;
+}
+
+.precio-item {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--texto-claro);
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   CUPÓN
+   ========================================================================== */
+
+.envoltura-cupon {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.envoltura-cupon input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 9px 11px;
+    color: #fff;
+    font-size: 0.85rem;
+    min-width: 0;
+}
+
+.envoltura-cupon input::placeholder {
+    color: rgba(156, 163, 175, 0.6);
+}
+
+.envoltura-cupon button {
+    background: transparent;
+    border: 1px solid var(--dorado-principal);
+    color: var(--dorado-principal);
+    padding: 0 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.envoltura-cupon button:hover {
+    background: var(--dorado-principal);
+    color: #000;
+}
+
+/* ==========================================================================
+   TOTALES
+   ========================================================================== */
+
+.divisor-resumen {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 12px 0;
+}
+
+.totales-resumen {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fila-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: var(--texto-mutado);
+}
+
+.gran-total {
+    font-size: 1.05rem;
+    color: var(--texto-claro);
+    font-weight: 700;
+}
+
+.gran-total span:last-child {
+    color: var(--dorado-principal);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/* ==========================================================================
+   BOTÓN PAGAR
+   ========================================================================== */
+
+.boton-pagar-ahora {
+    width: 100%;
+    background: var(--dorado-principal);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 13px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--brillo-dorado);
+}
+
+.boton-pagar-ahora:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+}
+
+.pie-seguro {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--texto-mutado);
+    margin: 12px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 860px) {
+    .contenedor-compra {
+        grid-template-columns: 1fr;
+        margin: 16px auto;
+        gap: 16px;
+    }
+
+    .tarjeta-resumen-fija {
+        position: static;
+    }
+
+    .titulo-compra {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .fila-formulario {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .total-3-columnas {
+        flex-direction: column;
+    }
+
+    .pestanas-pago {
+        gap: 8px;
+    }
+
+    .boton-pestana {
+        padding: 8px 12px;
+        font-size: 0.82rem;
+    }
+}
+.pie-pagina-compra {
+    grid-column: 1 / -1;
+    padding: 10px 0 40px 0;
+    display: flex;
+    align-items: center;
+}
+
+.boton-volver-galeria {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--dorado-principal);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.boton-volver-galeria:hover {
+    border-bottom-color: var(--dorado-principal);
+    gap: 14px;
+}
+
+.boton-volver-galeria i {
+    transition: transform 0.3s ease;
+}
+
+.boton-volver-galeria:hover i {
+    transform: translateX(-4px);
+}
