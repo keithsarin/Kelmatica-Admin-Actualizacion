@@ -86,7 +86,7 @@
             <div class="k-photo-actions">
                 <button class="k-update-btn"><i class="fa-solid fa-camera"></i> Actualizar Imagen</button>
                 <div class="k-social-links">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/kelma_tica?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fa-brands fa-instagram" ></i></a>
                     <a href="#"><i class="fa-brands fa-behance"></i></a>
                     <a href="#"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="k-info-item">
                     <label>ESPECIALIDAD</label>
-                    <p>Óleo y Arte Digital</p>
+                    <p>Óleo y Acrilico</p>
                 </div>
             </div>
 
@@ -324,6 +324,63 @@
         </div>
     </div>
 </section>
+<div id="modal-editar-perfil" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.88); backdrop-filter:blur(6px); z-index:9999; justify-content:center; align-items:center;">
+    <div style="background:#0a0a0a; border:1px solid rgba(197,160,89,0.4); width:90%; max-width:600px; max-height:90vh; overflow-y:auto; padding:40px; position:relative; border-radius:4px;">
+        
+        <button onclick="cerrarModalPerfil()" style="position:absolute; top:15px; right:20px; background:none; border:none; color:#555; font-size:1.8rem; cursor:pointer; transition:0.3s;" onmouseover="this.style.color='#c5a059'; this.style.transform='rotate(90deg)'" onmouseout="this.style.color='#555'; this.style.transform='rotate(0)'">×</button>
+
+        <div style="text-align:center; border-bottom:1px solid rgba(197,160,89,0.15); padding-bottom:20px; margin-bottom:28px;">
+            <h2 style="font-family:'Playfair Display',serif; color:#c5a059; font-size:1.5rem; letter-spacing:2px; margin:0 0 6px 0;">EDITAR PERFIL</h2>
+            <p style="color:#555; font-size:0.8rem; margin:0;">Actualiza tu información como artista</p>
+        </div>
+
+        <form id="form-editar-perfil" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            
+            <div style="grid-column:span 2; color:#c5a059; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; border-left:2px solid #c5a059; padding-left:10px;">Información Personal</div>
+
+            <div class="input-group-perfil">
+                <label>Nombre Completo</label>
+                <input type="text" id="perfil-nombre" placeholder="Ej. Kelly Galván">
+            </div>
+            <div class="input-group-perfil">
+                <label>Especialidad</label>
+                <input type="text" id="perfil-especialidad" placeholder="Ej. Óleo y Acrílico">
+            </div>
+            <div class="input-group-perfil">
+                <label>Ubicación</label>
+                <input type="text" id="perfil-ubicacion" placeholder="Ej. Medellín, Colombia">
+            </div>
+            <div class="input-group-perfil">
+                <label>Correo de Contacto</label>
+                <input type="email" id="perfil-correo" placeholder="artista@kelmatica.com">
+            </div>
+
+            <div style="grid-column:span 2; color:#c5a059; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; border-left:2px solid #c5a059; padding-left:10px; margin-top:8px;">Redes Sociales</div>
+
+            <div class="input-group-perfil">
+                <label>Instagram</label>
+                <input type="text" id="perfil-instagram" placeholder="@usuario">
+            </div>
+            <div class="input-group-perfil">
+                <label>Behance</label>
+                <input type="text" id="perfil-behance" placeholder="behance.net/usuario">
+            </div>
+
+            <div style="grid-column:span 2; color:#c5a059; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; border-left:2px solid #c5a059; padding-left:10px; margin-top:8px;">Mi Historia</div>
+
+            <div class="input-group-perfil" style="grid-column:span 2;">
+                <label>Biografía</label>
+                <textarea id="perfil-bio" rows="4" placeholder="Cuéntanos sobre ti y tu arte..."></textarea>
+            </div>
+
+            <div style="grid-column:span 2; margin-top:8px;">
+                <button type="submit" style="width:100%; background:#c5a059; border:none; color:#000; font-weight:700; padding:14px; font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer; font-family:'Roboto',sans-serif; transition:all 0.3s ease;">
+                    <i class="fa-solid fa-floppy-disk"></i> GUARDAR CAMBIOS
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
  <script src="js/artista.js"></script>
 </body>
 </html>
