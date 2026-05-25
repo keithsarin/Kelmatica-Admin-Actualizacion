@@ -1888,3 +1888,14 @@ body {
 .btn-save-gold i {
     font-size: 0.95rem;
 }
+.chart-card .k-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    max-width: 100%;
+}
+
+.chart-card .input-group-admin input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}

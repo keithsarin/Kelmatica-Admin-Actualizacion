@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelmática - Panel de Control</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.cliente.css">
@@ -81,39 +82,49 @@
                 </section>
 
                 <section id="tab-perfil" class="dashboard-content tab-section">
-                    <div class="tab-content">
-                        <h3><i class="fa-solid fa-user-pen"></i> Datos de tu Cuenta</h3>
-                        <form class="k-profile-form" onsubmit="event.preventDefault();">
-                            <div class="form-group-flex">
-                                <div class="form-group">
-                                    <label>Nombre Completo</label>
-                                    <input type="text" class="k-input-field" value="Kelly Galván">
-                                </div>
-                                <div class="form-group">
-                                    <label>Correo Electrónico</label>
-                                    <input type="email" class="k-input-field" value="coleccionista@kelmatica.com">
-                                </div>
-                            </div>
-                            <div class="form-group-flex">
-                                <div class="form-group">
-                                    <label>Nueva Contraseña</label>
-                                    <input type="password" class="k-input-field" placeholder="••••••••">
-                                </div>
-                                <div class="form-group">
-                                    <label>Confirmar Contraseña</label>
-                                    <input type="password" class="k-input-field" placeholder="••••••••">
-                                </div>
-                            </div>
-                            <div style="margin-top: 15px; display: flex; gap: 15px;">
-                                <button type="submit" class="k-btn-save">Guardar Cambios</button>
-                                <button type="button" class="k-btn-cancel">Cancelar</button>
-                            </div>
-                        </form>
-                    </div>
-                </section>
+    <div class="tab-content">
+        <h3><i class="fa-solid fa-user-pen"></i> Datos de tu Cuenta</h3>
+        <form class="k-profile-form" onsubmit="event.preventDefault();">
+            <div class="form-group-flex">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" class="k-input-field" value="Kelly Galván">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" class="k-input-field" value="coleccionista@kelmatica.com">
+                </div>
             </div>
-        </div>
-    </main>
+
+            <!-- ← AGREGAR ESTO -->
+            <div class="form-group-flex">
+                <div class="form-group">
+                    <label>Número de Celular</label>
+                    <input type="tel" class="k-input-field" placeholder="+57 300...">
+                </div>
+                <div class="form-group">
+                    <label>Dirección de Residencia</label>
+                    <input type="text" class="k-input-field" placeholder="Calle, Carrera, Ciudad...">
+                </div>
+            </div>
+        
+            <div class="form-group-flex">
+                <div class="form-group">
+                    <label>Nueva Contraseña</label>
+                    <input type="password" class="k-input-field" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Contraseña</label>
+                    <input type="password" class="k-input-field" placeholder="••••••••">
+                </div>
+            </div>
+            <div style="margin-top: 15px; display: flex; gap: 15px;">
+                <button type="submit" class="k-btn-save">Guardar Cambios</button>
+                <button type="button" class="k-btn-cancel">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</section>
 
     <script src="js/cliente.js"></script>
 </body>

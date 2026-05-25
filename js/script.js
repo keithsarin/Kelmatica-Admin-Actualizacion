@@ -1,4 +1,3 @@
-/* KELMÁTICA - SCRIPT MAESTRO INTEGRADO 2026 */
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. SELECCIÓN DE ELEMENTOS GLOBALES ---
@@ -51,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (user === "cliente@gmail.com" && pass === "789") {
                 localStorage.setItem('sesionKelmatica', 'activa');
+                localStorage.setItem('kelmatica_logged_in', JSON.stringify(true));
                 loginOverlay.classList.remove('active', 'show-overlay');
                 if (userIcon) userIcon.style.display = 'none'; 
                 if (profileTrigger) profileTrigger.style.display = 'block'; 
@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnLogout.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('sesionKelmatica');
+            localStorage.removeItem('kelmatica_logged_in');
             window.location.reload();
         });
     }
@@ -172,5 +173,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (adminErrorMsg) adminErrorMsg.style.display = "none";
         });
     });
-
+// --- 8. ABRIR LOGIN AUTOMÁTICAMENTE SI VIENE DEL CARRITO ---
+    if (window.location.hash === '#abrir-login') {
+        setTimeout(() => {
+            if (loginOverlay) {
+                loginOverlay.classList.add('active', 'show-overlay');
+            }
+            history.replaceState(null, '', window.location.pathname);
+        }, 300);
+    }
 });

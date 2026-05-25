@@ -1,14 +1,9 @@
-// ========================================================
-// KELMÁTICA - SCRIPT DE CARRITO UNIFICADO Y PERSISTENTE
-// ========================================================
 
 let usuarioLogueado = JSON.parse(localStorage.getItem('kelmatica_logged_in')) || false;
 let carrito = JSON.parse(localStorage.getItem('kelmatica_cart')) || [];
 
-// === MANEJADOR GLOBAL DE CLICS (Delegación de Eventos) ===
 document.addEventListener('click', (e) => {
-    
-    // 1. CAPTURAR CLIC EN "AGREGAR AL CARRITO"
+
     if (e.target && (e.target.id === 'btn-adquirir-detalle' || e.target.classList.contains('btn-add-to-cart'))) {
         e.preventDefault();
         const boton = e.target;
@@ -39,7 +34,6 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    // 2. CAPTURAR CLIC EN EL ICONO DE LA BOLSA EN EL HEADER
     if (e.target && (e.target.id === 'open-cart-btn' || e.target.closest('#open-cart-btn'))) {
         e.preventDefault();
         actualizarInterfazVisual();
@@ -54,9 +48,12 @@ document.addEventListener('click', (e) => {
             return;
         }
 
-        if (!usuarioLogueado) {
+        const sesionActiva = localStorage.getItem('sesionKelmatica') === 'activa' 
+                  || JSON.parse(localStorage.getItem('kelmatica_logged_in')) === true;
+
+            if (!sesionActiva) {
             alert("Para proceder con la adquisición de la obra, por favor inicia sesión.");
-            window.location.href = 'login.html'; 
+            window.location.href = 'index.html#abrir-login'; 
         } else {
             window.location.href = 'compra.html'; 
         }

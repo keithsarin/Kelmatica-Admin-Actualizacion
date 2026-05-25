@@ -236,9 +236,7 @@ function mostrarFeedbackCupon(mensaje, exito) {
     feedbackEl.style.color = exito ? '#4ade80' : '#f87171';
 }
 
-// ========================================================
 // 7. BOTÓN FINALIZAR PEDIDO
-// ========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
     const botonFinalizar = document.getElementById('boton-finalizar-pedido');
@@ -282,10 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ========================================================
 // UTILIDAD: FORMATEAR PRECIO EN COP
-// ========================================================
-
 function formatearPrecioCOP(valor) {
     return new Intl.NumberFormat('es-CO', {
         style: 'currency',

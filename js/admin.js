@@ -234,7 +234,6 @@ window.actualizarTabla = (filtro = "") => {
     });
 };
 
-// === 7. GESTIÓN DE REVISIÓN DE OBRAS ===
 window.verFichaObra = (titulo, cliente, artista, desc, precio, img) => {
     document.getElementById('modal-obra-titulo').innerText = titulo;
     document.getElementById('modal-cliente').innerText = cliente;

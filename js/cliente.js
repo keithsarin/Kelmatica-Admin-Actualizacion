@@ -1,13 +1,6 @@
-/* ========================================================
-   KELMÁTICA - LOGIC CONTROL PANEL (CLIENTE UNIFICADO)
-   ======================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // --------------------------------------------------------
-    // 1. CONTROL DE LOGIN Y TRIGGERS DE INTERFAZ
-    // --------------------------------------------------------
-    // NOTA: Asegúrate de que las variables 'user' y 'pass' existan globalmente o vengan de tu sesión.
+
     if (typeof user !== 'undefined' && typeof pass !== 'undefined') {
         if (user === "cliente@gmail.com" && pass === "789") {
             const userTrigger = document.getElementById('user-trigger');
@@ -19,10 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (loginOverlay) loginOverlay.style.display = 'none';
         }
     }
-
-    // --------------------------------------------------------
-    // 2. DROPDOWN DE NAVBAR (MÉTODO 1: Por ID)
-    // --------------------------------------------------------
     const profileBtn = document.getElementById('profile-trigger');
     const dropdown = document.getElementById('profile-dropdown');
     
@@ -33,9 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --------------------------------------------------------
-    // 3. DROPDOWN DE NAVBAR (MÉTODO 2: Por Clases K-Profile)
-    // --------------------------------------------------------
     const profileCircle = document.querySelector('.k-profile-circle');
     const profileDropdown = document.querySelector('.k-profile-dropdown');
 
@@ -56,9 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --------------------------------------------------------
-    // 4. SISTEMA DINÁMICO DE PESTAÑAS (TAB SECTIONS)
-    // --------------------------------------------------------
     const navLinks = document.querySelectorAll(".dashboard-nav .nav-link[data-tab]");
     const tabSections = document.querySelectorAll(".tab-section");
     const dashboardTitle = document.getElementById("dynamic-dashboard-title");
@@ -101,5 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+    }
+    // Abrir modal de login automáticamente si viene del carrito
+    if (window.location.hash === '#abrir-login') {
+        const userTrigger = document.getElementById('user-trigger');
+        if (userTrigger) userTrigger.click();
+        history.replaceState(null, '', window.location.pathname);
     }
 });
