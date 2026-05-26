@@ -1,15 +1,7 @@
-// ========================================================
-// KELMÁTICA - PANEL DE ARTISTA (artista.js)
-// ========================================================
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ====================================================
-    // 1. NAVEGACIÓN DEL SIDEBAR
-    // ====================================================
     const menuLinks = document.querySelectorAll('.sidebar-menu li a');
     const secciones = document.querySelectorAll('.tab-content');
-
     menuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -31,9 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ====================================================
-    // 2. UPLOAD DE IMAGEN CON PREVIEW (Subir Obra)
-    // ====================================================
     const dropArea   = document.getElementById('drop-area');
     const fileInput  = document.getElementById('file-selector');
     const previewBox = document.getElementById('image-preview');
@@ -95,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             previewBox.style.display = 'block';
             dropArea.style.display   = 'none';
-
             document.getElementById('btn-quitar-img').addEventListener('click', () => {
                 previewBox.style.display = 'none';
                 previewBox.innerHTML     = '';
@@ -106,9 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(file);
     }
 
-    // ====================================================
-    // 3. ACTUALIZAR FOTO DE PERFIL DEL ARTISTA
-    // ====================================================
     const btnActualizarImg = document.querySelector('.k-update-btn');
     if (btnActualizarImg) {
         const inputFotoPerfil = document.createElement('input');
@@ -134,16 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Recuperar foto guardada al cargar
     const fotoGuardada = localStorage.getItem('kelmatica_foto_artista');
     if (fotoGuardada) {
         const foto = document.querySelector('.k-artist-photo');
         if (foto) foto.src = fotoGuardada;
     }
 
-    // ====================================================
-    // 4. FILTROS DEL CATÁLOGO
-    // ====================================================
     const filterBtns  = document.querySelectorAll('.k-filter-btn');
     const artworkCards = document.querySelectorAll('.k-artwork-card');
 
@@ -160,9 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ====================================================
-    // 5. FORMULARIO SUBIR OBRA
-    // ====================================================
     const formSubir = document.getElementById('form-subir-obra');
     if (formSubir) {
         formSubir.addEventListener('submit', (e) => {
@@ -199,9 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ====================================================
-    // 6. GUARDAR Y RECUPERAR BORRADOR
-    // ====================================================
     const btnBorrador = document.querySelector('.btn-borrador');
     if (btnBorrador) {
         btnBorrador.addEventListener('click', () => {
@@ -236,9 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ====================================================
-    // 7. ACCIONES DEL CATÁLOGO
-    // ====================================================
     document.querySelectorAll('.k-action-icon').forEach(btn => {
         btn.addEventListener('click', () => {
             const card   = btn.closest('.k-artwork-card');
@@ -270,9 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ====================================================
-    // 8. BOTONES DE PEDIDOS
-    // ====================================================
     document.querySelectorAll('.btn-order-action').forEach(btn => {
         btn.addEventListener('click', () => {
             const fila    = btn.closest('tr');
@@ -289,9 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ====================================================
-    // 9. NOTIFICACIONES — MARCAR COMO LEÍDAS
-    // ====================================================
     document.querySelectorAll('.k-notification-item').forEach(item => {
         item.addEventListener('click', () => {
             item.classList.remove('unread');
@@ -300,9 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ====================================================
-    // 10. MODAL EDITAR PERFIL — SUBMIT
-    // ====================================================
     const formPerfil = document.getElementById('form-editar-perfil');
     if (formPerfil) {
         formPerfil.addEventListener('submit', (e) => {
@@ -316,13 +279,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const behance      = document.getElementById('perfil-behance').value.trim();
             const linkedin     = document.getElementById('perfil-linkedin')?.value.trim() || '';
 
-            // Actualizar perfil en pantalla
+           
             if (nombre)       document.querySelector('.k-display-name').textContent = nombre;
             if (especialidad) document.querySelector('.k-info-item:nth-child(2) p').textContent = especialidad;
             if (ubicacion)    document.querySelector('.k-info-item:nth-child(1) p').textContent = ubicacion;
             if (bio)          document.querySelector('.k-bio-section p').textContent = bio;
 
-            // Actualizar links de redes sociales
+       
             const links = document.querySelectorAll('.k-social-links a');
             if (links[0] && instagram) {
                 links[0].href = instagram.startsWith('http') ? instagram : `https://instagram.com/${instagram.replace('@', '')}`;
@@ -334,7 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 links[2].href = linkedin.startsWith('http') ? linkedin : `https://linkedin.com/in/${linkedin}`;
             }
 
-            // Guardar en localStorage
             localStorage.setItem('kelmatica_perfil_artista', JSON.stringify({ nombre, especialidad, ubicacion, bio }));
             localStorage.setItem('kelmatica_redes', JSON.stringify({ instagram, behance, linkedin }));
 
@@ -343,17 +305,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Conectar botón EDITAR PERFIL
     const btnEditarPerfil = document.querySelector('.btn-kelmatica-gold');
     if (btnEditarPerfil) {
         btnEditarPerfil.addEventListener('click', abrirModalPerfil);
     }
 
-    // ====================================================
-    // 11. RECUPERAR DATOS GUARDADOS AL CARGAR
-    // ====================================================
-
-    // Datos del perfil
     const perfilGuardado = JSON.parse(localStorage.getItem('kelmatica_perfil_artista'));
     if (perfilGuardado) {
         if (perfilGuardado.nombre)       document.querySelector('.k-display-name').textContent = perfilGuardado.nombre;
@@ -362,7 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (perfilGuardado.bio)          document.querySelector('.k-bio-section p').textContent = perfilGuardado.bio;
     }
 
-    // Redes sociales
     const redesGuardadas = JSON.parse(localStorage.getItem('kelmatica_redes'));
     if (redesGuardadas) {
         const links = document.querySelectorAll('.k-social-links a');
@@ -381,10 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// ========================================================
-// FUNCIONES GLOBALES
-// ========================================================
-
 function cerrarSesion() {
     localStorage.removeItem('kelmatica_logged_in');
     localStorage.removeItem('sesionKelmatica');
@@ -395,13 +346,11 @@ function abrirModalPerfil() {
     const modal = document.getElementById('modal-editar-perfil');
     if (modal) modal.style.display = 'flex';
 
-    // Prellenar con datos actuales del DOM
     document.getElementById('perfil-nombre').value       = document.querySelector('.k-display-name')?.textContent.trim() || '';
     document.getElementById('perfil-especialidad').value = document.querySelector('.k-info-item:nth-child(2) p')?.textContent.trim() || '';
     document.getElementById('perfil-ubicacion').value    = document.querySelector('.k-info-item:nth-child(1) p')?.textContent.trim() || '';
     document.getElementById('perfil-bio').value          = document.querySelector('.k-bio-section p')?.textContent.trim() || '';
 
-    // Prellenar redes guardadas
     const redes = JSON.parse(localStorage.getItem('kelmatica_redes'));
     if (redes) {
         if (document.getElementById('perfil-instagram')) document.getElementById('perfil-instagram').value = redes.instagram || '';

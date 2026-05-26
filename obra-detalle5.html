@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.cart.css">
 </head>
-
 <body style="background-color: #0a0a0a; color: white;">
 <header class="main-header">
     <div class="header-container">
@@ -20,7 +19,6 @@
                 <img src="img/logo.png" alt="Logo KELMATICA">
             </a>
         </div>
-
         <nav class="nav-menu">
             <ul class="nav-list">
                 <li class="nav-item"><a href="index.html">INICIO</a></li>
@@ -29,18 +27,13 @@
                 <li class="nav-item active"><a href="galeria.html">GALERIA</a></li>
             </ul>
         </nav>
-
        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
-            
            <div class="k-user-session-container" style="position: relative;">
-    
     <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
         <i class="fa-solid fa-user"></i>
     </div>
-
     <div id="profile-trigger" class="k-profile-circle-container" style="position: relative; display: none; cursor: pointer;">
         <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" class="k-nav-avatar">
-        
         <div class="k-profile-dropdown" id="profile-dropdown">
             <div class="k-dropdown-header">
                 <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil">
@@ -49,18 +42,13 @@
                     <p class="k-user-email">cliente@gmail.com</p>
                 </div>
             </div>
-            
             <div class="k-dropdown-divider"></div>
-            
             <nav class="k-dropdown-nav">
                 <a href="cliente-perfil.html"><i class="fa-solid fa-bag-shopping"></i> Ver mis compras</a>
                 <a href="cliente-perfil.html"><i class="fa-solid fa-truck"></i> Ver mis pedidos</a>
                 <a href="cliente-perfil.html"><i class="fa-solid fa-heart"></i> Favoritos</a>
                 <a href="cliente-perfil.html"><i class="fa-solid fa-user-pen"></i> Editar mi perfil</a>
-                
-                
                 <div class="k-dropdown-divider"></div>
-                
                 <a href="#" id="btn-logout" class="k-logout-link">
                     <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
                 </a>
@@ -72,18 +60,15 @@
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-counter" id="cart-counter">0</span>
             </div>
-
         </div> </div>
 </header>
 <div class="k-login-overlay" id="login-overlay">
     <button class="k-close-btn" id="close-login">&times;</button>
     <div class="k-login-content">
-        
         <div class="k-login-box">
             <div class="k-icon-gold"><i class="fa-solid fa-gem"></i></div>
             <h2>Soy amante del arte, un coleccionista</h2>
             <p>Ingresa para ver tus favoritos o crea una cuenta nueva.</p>
-            
             <div class="k-email-login-group" style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
                 <input type="email" id="client-user-direct" placeholder="cliente@gmail.com" class="k-input-field">
                 
@@ -99,20 +84,16 @@
                     <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
                 </div>
             </div>
-
             <span class="k-sep">o</span>
-            
             <div class="k-socials">
                 <button class="k-btn-social"><i class="fa-brands fa-google"></i> Continuar con Google</button>
                 <button class="k-btn-social"><i class="fa-brands fa-facebook-f"></i> Continuar con Facebook</button>
             </div>
         </div>
-
         <div class="k-login-box">
             <div class="k-icon-gold"><i class="fa-solid fa-palette"></i></div>
             <h2>Ingreso Profesional</h2>
             <p>Gestión exclusiva para Artistas y Administradores del sistema.</p>
-            
             <div class="k-admin-form" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
                 <div class="k-input-group" style="text-align: left;">
                     <select id="user-role" class="k-input-field k-select" style="width: 100%;">
@@ -121,7 +102,6 @@
                         <option value="administrador">Administrador</option>
                     </select>
                 </div>
-
                 <input type="text" id="admin-user" placeholder="Usuario" class="k-input-field">
                 <input type="password" id="admin-pass" placeholder="Contraseña" class="k-input-field">
                 
@@ -138,15 +118,12 @@
 </div>
 <main style="background-color: #0a0a0a; color: white;">
     <section class="detalle-obra" style="padding: 110px 0; background-color: #0a0a0a;">
-        
         <div class="container-detalle-corregido" style="max-width: 1200px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: start;">
-            
             <div class="detalle-visual" style="width: 100%;">
                 <div class="main-image-container" style="width: 100%; border: 1px solid #1a1a1a; box-shadow: 0 20px 40px rgba(0,0,0,0.6); background-color: #111; padding: 15px;">
                     <img src="img/pintura 5.jpg" alt="El Dominio del Dragón" style="width: 100%; height: auto; display: block;">
                 </div>
             </div>
-
             <div class="detalle-info" style="display: flex; flex-direction: column; padding-top: 15px;">
                 
                 <span class="subtitle-gold" style="color: #c5a059; font-family: 'Roboto', sans-serif; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">PINTURAS AL ÓLEO Y ACRÍLICOS</span>
@@ -169,11 +146,9 @@
                         <span>Inmediata</span>
                     </div>
                 </div>
-
                 <div class="obra-descripcion" style="font-family: 'Roboto', sans-serif; font-size: 0.95rem; color: #ffffff; line-height: 1.7; margin-bottom: 45px;">
                     <p>Esta pieza destaca por su composición detallada y el uso de colores vibrantes que contrastan con la fuerza mística de la criatura. Una obra que captura la narrativa fantástica con la elegancia técnica de Kelmática.</p>
                 </div>
-
                 <button class="btn-add-to-cart" 
                         id="btn-adquirir-detalle"
                         data-id="obra_dominio_dragon_005" 
@@ -183,13 +158,11 @@
                         style="display: block; width: 100%; background-color: #ffffff; color: #000000; text-align: center; padding: 20px; font-family: 'Roboto', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; border: 1px solid #ffffff; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease;">
                     AGREGAR AL CARRITO
                 </button>
-                
                 <a href="galeria.html" class="back-link" style="color: #c5a059; text-decoration: none; font-family: 'Roboto', sans-serif; font-size: 0.8rem; letter-spacing: 1px;">&larr; VOLVER A LA GALERÍA</a>
             </div>
         </div>
     </section>
 </main>
-
 <footer class="main-footer">
     <div class="footer-container">
         <div class="footer-brand">
@@ -200,7 +173,6 @@
                 <a href="https://wa.me/573117397346" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
-
         <div class="footer-links">
             <h3>Explorar</h3>
             <ul>
@@ -231,10 +203,8 @@
         <h3>Tu Carrito</h3>
         <button id="close-cart" class="close-cart-btn">&times;</button>
     </div>
-    
     <div id="cart-items-container" class="cart-sidebar-content">
         </div>
-
     <div class="cart-sidebar-footer">
         <div class="cart-total-row">
             <span>Subtotal:</span>
@@ -244,11 +214,8 @@
         <button id="btn-proceder-pago" class="btn-checkout">Proceder al Pago</button>
     </div>
 </div>
-
 <div class="cart-overlay" id="cart-overlay"></div>
-
 <script>
-    // Lógica del modal de Login/User
     const userBtn = document.getElementById('user-trigger');
     const overlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
@@ -265,9 +232,7 @@
         if (e.target === overlay) overlay.classList.remove('show-overlay');
     });
 </script>
-
 <script src="js/script.js"></script>
 <script src="js/cart.js"></script>
-
 </body>
 </html>

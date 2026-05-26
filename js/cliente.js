@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Cierre global para cualquiera de los dos Dropdowns al hacer clic fuera
     document.addEventListener('click', (e) => {
         if (dropdown && !profileBtn?.contains(e.target)) {
             dropdown.classList.remove('active');
@@ -49,28 +48,24 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navLinks.length > 0) {
         navLinks.forEach(link => {
             link.addEventListener("click", (e) => {
-                e.preventDefault(); // Detiene la recarga de página por heredar '#'
+                e.preventDefault(); 
 
-                // A. Alternar estados visuales en los botones de navegación
                 navLinks.forEach(item => item.classList.remove("active"));
                 link.classList.add("active");
 
-                // B. Ocultar todas las secciones del panel actual
                 tabSections.forEach(section => {
                     section.classList.remove("active");
-                    section.style.display = "none"; // Refuerzo de ocultación directa
+                    section.style.display = "none"; 
                 });
 
-                // C. Buscar y activar la sección solicitada por el data-tab
                 const targetTabId = `tab-${link.getAttribute("data-tab")}`;
                 const targetSection = document.getElementById(targetTabId);
                 
                 if (targetSection) {
                     targetSection.classList.add("active");
-                    targetSection.style.display = "block"; // Asegura el renderizado
+                    targetSection.style.display = "block";
                 }
 
-                // D. Mapeo estructural de títulos (Estilo tipografía premium del Admin)
                 const titleMapping = {
                     compras: "Mis Compras",
                     pedidos: "Mis Pedidos",
@@ -85,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-    // Abrir modal de login automáticamente si viene del carrito
     if (window.location.hash === '#abrir-login') {
         const userTrigger = document.getElementById('user-trigger');
         if (userTrigger) userTrigger.click();

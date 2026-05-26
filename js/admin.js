@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // === 1. NAVEGACIÓN DEL PANEL ===
     const menuItems = document.querySelectorAll('.sidebar-nav li');
     const sections = document.querySelectorAll('.content-section');
 
@@ -7,11 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', () => {
             const targetSection = item.getAttribute('data-section');
 
-            // Quitar clase activa de todos los botones y secciones
             menuItems.forEach(i => i.classList.remove('active'));
             sections.forEach(s => s.style.display = 'none');
 
-            // Activar el botón clicado y mostrar la sección correspondiente
             item.classList.add('active');
             const targetElement = document.getElementById(`section-${targetSection}`);
             if (targetElement) {
@@ -20,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === 2. LÓGICA DE GRÁFICOS (CHART.JS) ===
     const ctxVentas = document.getElementById('chartVentas');
     if (ctxVentas) {
         new Chart(ctxVentas, {
@@ -55,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 3. BÚSQUEDA EN TIEMPO REAL ===
     const buscador = document.getElementById('user-search');
     if (buscador) {
         buscador.addEventListener('input', (e) => {
@@ -63,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 4. ASIGNAR EVENTO AL FORMULARIO ===
     const formUsuario = document.getElementById('form-usuario');
     if (formUsuario) {
         formUsuario.addEventListener('submit', function(e) {
@@ -117,40 +111,34 @@ formUsuario.addEventListener('submit', function(e) {
                 celular: document.getElementById('user-celular').value,
                 direccion: document.getElementById('user-direccion').value,
                 estado: document.getElementById('user-estado').value,
-                rol: "Cliente" // Rol asignado por defecto para esta sección
+                rol: "Cliente" 
             };
 
             if (index === "") {
-                // Crear nuevo
+               
                 usuarios.push(datosUsuario);
             } else {
-                // Editar existente
+                
                 usuarios[index] = datosUsuario;
             }
 
-            // Guardar en LocalStorage y refrescar
             localStorage.setItem('kelmatica_usuarios', JSON.stringify(usuarios));
             cerrarModalUsuario();
             actualizarTabla();
         });
     }
 
-    // Escuchar el clic del botón "Agregar" para abrir el modal limpio
     const btnNuevoUsuario = document.querySelector('.btn-add-user');
     if (btnNuevoUsuario) {
         btnNuevoUsuario.addEventListener('click', () => abrirModalUsuario());
     }
 
-    // Carga inicial de la tabla al abrir el panel
     actualizarTabla();
 });
 
-// === 5. PERSISTENCIA DE DATOS (GLOBAL) ===
 let usuarios = JSON.parse(localStorage.getItem('kelmatica_usuarios')) || [
     { nombre: "Keith", apellido: "Galvan", email: "keisamg18@gmail.com", celular: "321654", direccion: "Cra 123", estado: "Activo", rol: "Cliente" }
 ];
-
-// === 6. FUNCIONES GLOBALES DEL CRUD Y MODALES ===
 
 window.abrirModalUsuario = (index = null) => {
     const modal = document.getElementById('modal-usuario');
@@ -160,10 +148,10 @@ window.abrirModalUsuario = (index = null) => {
     if (!modal || !form) return;
 
     modal.style.display = 'flex';
-    form.reset(); // Limpia campos previos
+    form.reset(); 
 
     if (index !== null) {
-        // MODO EDICIÓN
+       
         if (titulo) titulo.innerText = "EDITAR PERFIL DE CLIENTE";
         const user = usuarios[index];
         document.getElementById('user-index').value = index;
@@ -174,7 +162,6 @@ window.abrirModalUsuario = (index = null) => {
         document.getElementById('user-direccion').value = user.direccion;
         document.getElementById('user-estado').value = user.estado;
     } else {
-        // MODO NUEVO
         if (titulo) titulo.innerText = "AGREGAR NUEVO PERFIL";
         document.getElementById('user-index').value = "";
     }
@@ -211,7 +198,6 @@ window.actualizarTabla = (filtro = "") => {
     );
 
     usuariosFiltrados.forEach((user, index) => {
-        // Recuperar el índice real en el array original
         const indexReal = usuarios.indexOf(user);
 
         const tr = document.createElement('tr');
@@ -241,7 +227,6 @@ window.verFichaObra = (titulo, cliente, artista, desc, precio, img) => {
     document.getElementById('modal-descripcion').innerText = desc;
     document.getElementById('modal-presupuesto').innerText = precio;
     document.getElementById('modal-obra-img').src = img;
-    
     document.getElementById('modal-revision').style.display = 'flex';
 };
 
@@ -259,7 +244,6 @@ window.enviarAlArtista = (aprobado) => {
     cerrarModalRevision();
 };
 
-// Cerrar modales haciendo clic afuera del recuadro
 window.onclick = (event) => {
     const modalUsuario = document.getElementById('modal-usuario');
     const modalRevision = document.getElementById('modal-revision');

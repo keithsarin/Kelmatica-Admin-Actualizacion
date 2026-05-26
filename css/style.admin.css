@@ -1,4 +1,3 @@
-/* ///////////////// PANEL ADMIN ///////////////// */
 :root {
     --bg-black: #0a0a0a;
     --sidebar-black: #000000;
@@ -16,47 +15,43 @@
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
 }
-/* Contenedor principal del logo */
+
 .sidebar-logo {
     padding: 40px 20px;
     text-align: center;
-    background-color: #000000; /* Fondo negro absoluto del artista */
+    background-color: #000000; 
 }
-/* Elimina el fondo amarillo del botón de Reportes */
+
 .sidebar-menu li.active {
-    background-color: transparent !important; /* Quita el bloque amarillo */
-    border-left: 4px solid #c5a059; /* Añade la línea lateral del artista */
-    padding-left: 16px; /* Ajusta para compensar el borde */
+    background-color: transparent !important; 
+    border-left: 4px solid #c5a059; 
+    padding-left: 16px; 
 }
 
 .sidebar-menu li.active a {
-    color: #c5a059 !important; /* El texto activo ahora es dorado */
+    color: #c5a059 !important; 
 }
 
-/* Ajuste de la imagen del logo */
 .brand-logo {
-    max-width: 125px; /* Ajusta según el tamaño de tu imagen original */
+    max-width: 125px; 
     height: auto;
     margin-bottom: 15px;
-    filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.2)); /* Brillo sutil dorado */
+    filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.2)); 
 }
 
-/* Subtítulo "PANEL ADMIN" con el estilo del artista */
 .panel-subtitle {
     display: block;
     font-family: 'Roboto', sans-serif;
-    color: #c5a059; /* Dorado Kelmática */
+    color: #c5a059; 
     font-size: 0.8rem;
-    letter-spacing: 5px; /* Espaciado clave para la elegancia */
+    letter-spacing: 5px; 
     text-transform: uppercase;
     font-weight: 400;
 }
 
-/* Reset del H2 anterior si aún existe */
 .sidebar-logo h2 {
-    display: none; /* Ocultamos el texto Kelmática si ya viene en la imagen */
+    display: none; 
 }
-/* Sidebar Estilo FinSet */
 .sidebar {
     width: 260px;
     background-color: var(--card-dark);
@@ -68,7 +63,7 @@
     border-right: 1px solid #222;
 }
 .sidebar h2, .sidebar p {
-    margin-bottom: 0; /* Elimina espacios extra debajo del nombre Kelmática */
+    margin-bottom: 0; 
 }
 .sidebar-nav ul { 
     list-style: none; 
@@ -76,12 +71,12 @@
     padding: 0; 
 }
 .sidebar-nav li {
-    padding: 10px 15px; /* Bajamos de 15px a 10px para que estén más juntos */
+    padding: 10px 15px;
     color: var(--text-gray);
     cursor: pointer;
     transition: 0.3s;
     border-radius: 10px;
-    margin-bottom: 2px; /* Reducimos el espacio entre botones al mínimo */
+    margin-bottom: 2px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -90,40 +85,39 @@
     color: var(--bg-dark);
     font-weight: bold;
 }
-/* Estilo para el ítem activo (sin fondo, solo línea lateral y texto dorado) */
+
 .sidebar-nav li.active {
-    background-color: transparent !important; /* Quitamos el bloque amarillo */
-    color: #c5a059 !important; /* El texto ahora es dorado */
-    border-left: 4px solid #c5a059; /* La línea lateral elegante */
-    border-radius: 0; /* Quitamos las esquinas redondeadas */
+    background-color: transparent !important; 
+    color: #c5a059 !important; 
+    border-left: 4px solid #c5a059; 
+    border-radius: 0; 
     font-weight: 500;
 }
 
-/* Estilo para el hover (cuando pasas el mouse) */
+
 .sidebar-nav li:hover {
-    background-color: rgba(197, 160, 89, 0.05) !important; /* Un brillo muy sutil */
-    color: #ffffff; /* El texto se ilumina en blanco */
+    background-color: rgba(197, 160, 89, 0.05) !important; 
+    color: #ffffff; 
 }
 .sidebar-nav li {
-    padding: 16px 20px; /* Más alto para dar elegancia */
-    color: #a0a0a0; /* Color gris suave original del artista */
+    padding: 16px 20px; 
+    color: #a0a0a0; 
     cursor: pointer;
     transition: 0.3s;
-    margin-bottom: 0px; /* Eliminamos el espacio entre botones */
+    margin-bottom: 0px; 
     display: flex;
     align-items: center;
-    gap: 15px; /* Más espacio entre icono y texto */
-    font-weight: 300; /* Letra más delgada y sofisticada */
-    border-left: 4px solid transparent; /* Reserva el espacio para la línea del activo */
+    gap: 15px; 
+    font-weight: 300; 
+    border-left: 4px solid transparent; 
 }
-/* Main Panel */
 .main-panel {
     padding: 2rem;
-    max-width: 1400px; /* Evita que se estire demasiado */
-    margin: 0 auto;    /* Lo centra si la pantalla es muy ancha */
+    max-width: 1400px; 
+    margin: 0 auto;   
     width: 100%;
 }
-/* Gráficas y Cards */
+
 .chart-card {
     background-color: var(--card-dark);
     border-radius: 20px;
@@ -139,7 +133,6 @@
     border: 1px dashed #333;
     margin-top: 15px;
 }
-/* Semáforo de estados para ventas */
 .status-active { color: #4caf50; background: rgba(76, 175, 80, 0.1); padding: 5px 10px; border-radius: 20px; }
 .status-pending { color: #ffeb3b; }
 .status-urgent { color: #f44336; }
@@ -150,7 +143,7 @@
     margin-bottom: 20px;
 }
 .btn-add-user {
-    background-color: var(--gold); /* El dorado de Kelmática */
+    background-color: var(--gold);
     color: #000;
     border: none;
     padding: 10px 20px;
@@ -178,43 +171,41 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
 }
-/* Header Estilizado */
 .panel-header {
     display: flex;
-    justify-content: space-between; /* Separa los dos bloques principales a los extremos */
-    align-items: flex-start; /* Alinea los bloques arriba */
-    padding: 10px 0 20px 0; /* Bajamos el padding superior de 20px a 10px */
-    border-bottom: 1px solid var(--borde); /* #222 */
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 10px 0 20px 0; 
+    border-bottom: 1px solid var(--borde); 
     margin-bottom: 20px;
-    gap: 40px; /* Espacio mínimo si la pantalla es pequeña */
+    gap: 40px; 
 }
 .header-main-info {
     display: flex;
-    align-items: center; /* Centra el título y el botón verticalmente entre ellos */
+    align-items: center; 
     gap: 25px;
-    flex: 1; /* Permite que este bloque crezca */
+    flex: 1; 
 }
 .header-info h1 {
-    font-family: 'Playfair Display', serif !important; /* <--- CRÍTICO: Serif elegante */
-    font-size: 2.2rem !important; /* <--- CRÍTICO: Mismo tamaño grande */
-    color: #ffffff !important; /* <--- CRÍTICO: Blanco puro */
-    font-weight: 700 !important; /* Peso Bold */
-    margin-bottom: 5px; /* <--- Espacio sutil con el subtítulo */
+    font-family: 'Playfair Display', serif ; 
+    font-size: 2.2rem ; 
+    color: #ffffff ; 
+    font-weight: 700 ; 
+    margin-bottom: 5px; 
 }
-/* --- SUBTÍTULO (Estilo Artista aplicado al Admin) --- */
 .header-info p {
-    font-family: 'Roboto', sans-serif !important; /* <--- Sans-serif limpia */
-    color: #a0a0a0 !important; /* <--- CRÍTICO: Gris claro elegante */
-    font-size: 0.9rem !important; /* <--- CRÍTICO: Tamaño idéntico */
-    font-weight: 400 !important; /* Peso Regular */
+    font-family: 'Roboto', sans-serif ; 
+    color: #a0a0a0 ; 
+    font-size: 0.9rem ; 
+    font-weight: 400 ; 
     margin: 0;
 }
 .table-header-tools {
     display: flex;
-    flex-direction: column; /* Apila el título arriba y la búsqueda abajo */
-    gap: 20px; /* Aire entre las dos filas */
+    flex-direction: column; 
+    gap: 20px; 
     flex: 1;
-    max-width: 550px; /* Evita que el buscador se estire demasiado */
+    max-width: 550px; 
 }
 .panel-header h1 {
     font-family: 'Playfair Display', serif;
@@ -223,7 +214,6 @@ body {
     color: var(--dorado);
 }
 
-/* Botones como los de FinSet */
 .btn-download, .btn-add-user, .btn-filter {
     background-color: var(--gris-oscuro);
     color: var(--dorado);
@@ -243,7 +233,6 @@ body {
     color: var(--negro-profundo);
     box-shadow: 0 0 20px var(--dorado-suave);
 }
-/* Tarjetas de Gráficas (Cards) */
 .chart-card {
     background-color: var(--gris-oscuro);
     border-radius: 20px;

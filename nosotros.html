@@ -68,12 +68,10 @@
         </div>
     </div>
 </div>
-
             <div class="cart-icon-container" id="open-cart-btn" style="cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center;">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-counter" id="cart-counter">0</span>
             </div>
-
         </div> </div>
 </header>
 
@@ -217,7 +215,6 @@
     </div>
 </section>
 </main>
-
 <footer class="main-footer">
     <div class="footer-container">
         <div class="footer-brand">
@@ -257,17 +254,14 @@
     const overlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
 
-    // Abrir menú
     userBtn.addEventListener('click', () => {
         overlay.classList.add('show-overlay');
     });
 
-    // Cerrar menú con la X
     closeBtn.addEventListener('click', () => {
         overlay.classList.remove('show-overlay');
     });
 
-    // Cerrar si hacen clic afuera del cuadro
     window.addEventListener('click', (e) => {
         if (e.target === overlay) overlay.classList.remove('show-overlay');
     });

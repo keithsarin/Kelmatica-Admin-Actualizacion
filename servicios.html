@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios - KELMÁTICA</title>
     <link rel="icon" type="image/png" href="img/logo.png">
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style.cliente.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,7 +19,6 @@
                 <img src="img/logo.png" alt="Logo KELMATICA">
             </a>
         </div>
-
         <nav class="nav-menu">
             <ul class="nav-list">
                 <li class="nav-item"><a href="index.html">INICIO</a></li>
@@ -29,18 +27,13 @@
                 <li class="nav-item"><a href="galeria.html">GALERIA</a></li>
             </ul>
         </nav>
-
        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
-            
            <div class="k-user-session-container" style="position: relative;">
-    
     <div id="user-trigger" class="user-btn-grad" style="cursor: pointer;">
         <i class="fa-solid fa-user"></i>
     </div>
-
     <div id="profile-trigger" class="k-profile-circle-container" style="position: relative; display: none; cursor: pointer;">
         <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil" class="k-nav-avatar">
-        
         <div class="k-profile-dropdown" id="profile-dropdown">
             <div class="k-dropdown-header">
                 <img src="https://i.pravatar.cc/150?u=cliente" alt="Perfil">
@@ -77,7 +70,6 @@
 <div class="k-login-overlay" id="login-overlay">
     <button class="k-close-btn" id="close-login">&times;</button>
     <div class="k-login-content">
-        
         <div class="k-login-box">
             <div class="k-icon-gold"><i class="fa-solid fa-gem"></i></div>
             <h2>Soy amante del arte, un coleccionista</h2>
@@ -98,9 +90,7 @@
                     <a href="#" class="k-help-link">¿Olvidaste tu contraseña?</a>
                 </div>
             </div>
-
             <span class="k-sep">o</span>
-            
             <div class="k-socials">
                 <button class="k-btn-social"><i class="fa-brands fa-google"></i> Continuar con Google</button>
                 <button class="k-btn-social"><i class="fa-brands fa-facebook-f"></i> Continuar con Facebook</button>
@@ -193,9 +183,7 @@
         <div class="container-services">
             <h2 class="section-title-gold text-center">APRENDE Y DESCUBRE MÁS <br> SOBRE ESTILOS ARTÍSTICOS</h2>
             <p class="section-subtitle-centered text-center">Explora los estilos artísticos que KELMÁTICA domina. Inspírate para tu próxima pieza personalizada.</p>
-
             <div class="styles-grid-v2 mt-5"> 
-                
                 <div class="style-item-v2"> 
                     <div class="style-info-v2">
                         <h3>Retrato Clásico / Dramático</h3>
@@ -290,17 +278,14 @@
     const overlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
 
-    // Abrir menú
     userBtn.addEventListener('click', () => {
         overlay.classList.add('show-overlay');
     });
 
-    // Cerrar menú con la X
     closeBtn.addEventListener('click', () => {
         overlay.classList.remove('show-overlay');
     });
-
-    // Cerrar si hacen clic afuera del cuadro
+o
     window.addEventListener('click', (e) => {
         if (e.target === overlay) overlay.classList.remove('show-overlay');
     });
@@ -310,11 +295,9 @@
         <h3>Tu Carrito</h3>
         <button class="close-cart-btn" id="close-cart-btn">&times;</button>
     </div>
-
     <div class="cart-sidebar-content" id="cart-items-container">
         <p class="empty-cart-msg">Tu carrito está vacío.</p>
     </div>
-
     <div class="cart-sidebar-footer">
         <div class="cart-total-row">
             <span>Subtotal:</span>
@@ -324,7 +307,6 @@
         <button class="btn-checkout" id="checkout-btn">Proceder al Pago</button>
     </div>
 </div>
-
 <div class="cart-overlay" id="cart-overlay"></div>
 <script src="js/script.js"></script>
 <script src="js/cart.js"></script>

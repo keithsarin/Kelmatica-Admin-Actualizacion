@@ -1,37 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Datos iniciales quemados por si el localStorage está vacío
     const perfilesPredeterminados = [
         { id: "1", nombre: "Juan Pérez", rol: "Artista", estado: "Activo" },
         { id: "2", nombre: "María Paulina", rol: "Cliente", estado: "Activo" },
         { id: "3", nombre: "Kelly Galván", rol: "Administrador", estado: "Activo" }
     ];
 
-    // Cargar datos de localStorage o usar los predeterminados
     let perfiles = JSON.parse(localStorage.getItem("kelmatica_perfiles"));
     if (!perfiles) {
         perfiles = perfilesPredeterminados;
         localStorage.setItem("kelmatica_perfiles", JSON.stringify(perfiles));
     }
 
-    // 2. Elementos del DOM
     const tablaBody = document.getElementById("lista-usuarios-body");
     const modal = document.getElementById("modal-perfil");
     const formPerfil = document.getElementById("form-perfil");
     const modalTitulo = document.getElementById("modal-titulo");
     
-    // Inputs del formulario
     const inputId = document.getElementById("perfil-id");
     const inputNombre = document.getElementById("perfil-nombre");
     const inputRol = document.getElementById("perfil-rol");
     const inputEstado = document.getElementById("perfil-estado");
     const inputBuscar = document.getElementById("user-search");
 
-    // Botones de control del modal
     const btnAbrirModal = document.getElementById("btn-abrir-modal");
     const btnCerrarModal = document.getElementById("btn-cerrar-modal");
     const btnCancelar = document.getElementById("btn-cancelar");
 
-    // 3. Función para renderizar (dibujar) la tabla en pantalla
     function renderizarTabla(listaADibujar = perfiles) {
         tablaBody.innerHTML = "";
         
@@ -60,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
         asignarEventosBotones();
     }
 
-    // 4. Funciones del Modal (Abrir / Cerrar)
     function abrirModal(modo = "nuevo", idPerfil = null) {
         modal.style.display = "flex";
         if (modo === "nuevo") {
@@ -84,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
         formPerfil.reset();
     }
 
-    // 5. Guardar o Actualizar Perfil
     formPerfil.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -94,12 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const estado = inputEstado.value;
 
         if (id) {
-            // Modo: EDITAR / ACTUALIZAR
+    
             perfiles = perfiles.map(p => p.id === id ? { id, nombre, rol, estado } : p);
         } else {
-            // Modo: CREAR / AGREGAR NUEVO
+            
             const nuevoPerfil = {
-                id: Date.now().toString(), // Genera un ID único basado en el tiempo
+                id: Date.now().toString(), 
                 nombre,
                 rol,
                 estado
@@ -107,15 +99,15 @@ document.addEventListener("DOMContentLoaded", () => {
             perfiles.push(nuevoPerfil);
         }
 
-        // Guardar cambios en LocalStorage y refrescar vista
+       
         localStorage.setItem("kelmatica_perfiles", JSON.stringify(perfiles));
         renderizarTabla();
         cerrarModal();
     });
 
-    // 6. Asignar acciones dinámicas a los botones de Editar y Borrar
+    
     function asignarEventosBotones() {
-        // Botones Editar
+      
         document.querySelectorAll(".btn-editar").forEach(btn => {
             btn.addEventListener("click", () => {
                 const id = btn.getAttribute("data-id");
@@ -123,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Botones Borrar
         document.querySelectorAll(".btn-borrar").forEach(btn => {
             btn.addEventListener("click", () => {
                 const id = btn.getAttribute("data-id");
@@ -138,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 7. Buscador en tiempo real
     inputBuscar.addEventListener("input", (e) => {
         const busqueda = e.target.value.toLowerCase();
         const perfilesFiltrados = perfiles.filter(perfil => 
@@ -148,49 +138,35 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarTabla(perfilesFiltrados);
     });
 
-    // Eventos de los clics para el modal
     btnAbrirModal.addEventListener("click", () => abrirModal("nuevo"));
     btnCerrarModal.addEventListener("click", cerrarModal);
     btnCancelar.addEventListener("click", cerrarModal);
 
-    // Inicializar la tabla al cargar la página
     renderizarTabla();
 });
-// ==========================================================================
-// 1. FUNCIÓN PARA ELIMINAR UN CLIENTE
-// ==========================================================================
+
 function borrarUsuario(index) {
-    // Traemos la lista actualizada desde localStorage
+    
     let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     
-    // Una alerta elegante nativa para confirmar la acción
     if (confirm(`¿Estás segura de que deseas eliminar a ${usuarios[index].nombre}?`)) {
-        // Removemos el usuario del array usando su posición
+      
         usuarios.splice(index, 1);
         
-        // Guardamos la nueva lista en localStorage
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
         
-        // Volvemos a pintar la tabla para que desaparezca visualmente
         renderizarTablaUsuarios(); 
     }
 }
 
-// ==========================================================================
-// 2. FUNCIÓN PARA PREPARAR EL MODAL PARA EDICIÓN (CARGAR DATOS)
-// ==========================================================================
 function prepararEditarUsuario(index) {
     let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     const usuario = usuarios[index];
 
-    // Cambiamos el título del modal para que la interfaz sea clara
     document.getElementById('modal-usuario-titulo').innerText = "EDITAR CLIENTE";
-    
-    // CAMPOS DE CONTROL: Guardamos el índice en el input hidden que tienes en tu HTML
-    // Esto es vital para que el formulario sepa si está guardando uno NUEVO o ACTUALIZANDO uno viejo
+ 
     document.getElementById('user-index').value = index;
 
-    // Rellenamos los campos del formulario con los datos existentes
     document.getElementById('user-nombre').value = usuario.nombre;
     document.getElementById('user-apellido').value = usuario.apellido;
     document.getElementById('user-email').value = usuario.email;
@@ -198,23 +174,16 @@ function prepararEditarUsuario(index) {
     document.getElementById('user-estado').value = usuario.estado;
     document.getElementById('user-direccion').value = usuario.direccion;
 
-    // Abrimos el modal de manera hermosa
     abrirModalUsuario();
 }
 
-// ==========================================================================
-// 3. FUNCIÓN DE GUARDADO UNIFICADO (PROCESAR EL FORMULARIO)
-// ==========================================================================
-// Reemplaza o adapta tu lógica de "Guardar" actual para que maneje ambos casos:
 document.getElementById('form-usuario').addEventListener('submit', function(e) {
     e.preventDefault();
 
     let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     
-    // Capturamos el valor del input oculto
     const indexValue = document.getElementById('user-index').value;
 
-    // Creamos el objeto con los datos del formulario
     const datosUsuario = {
         nombre: document.getElementById('user-nombre').value,
         apellido: document.getElementById('user-apellido').value,
@@ -225,24 +194,18 @@ document.getElementById('form-usuario').addEventListener('submit', function(e) {
     };
 
     if (indexValue === "") {
-        // CASO A: Si el input oculto está vacío, significa que es un CLIENTE NUEVO
         usuarios.push(datosUsuario);
     } else {
-        // CASO B: Si tiene un número, estamos ACTUALIZANDO un cliente existente
         usuarios[indexValue] = datosUsuario;
     }
 
-    // Guardamos la lista final en LocalStorage
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-    // Reseteamos el formulario por completo (incluyendo el input oculto)
     document.getElementById('form-usuario').reset();
     document.getElementById('user-index').value = "";
     
-    // Restauramos el título original del modal
     document.getElementById('modal-usuario-titulo').innerText = "REGISTRAR NUEVO CLIENTE";
 
-    // Cerramos el modal y actualizamos la tabla
     cerrarModalUsuario();
-    renderizarTablaUsuarios(); // Tu función encargada de pintar los datos en el HTML
+    renderizarTablaUsuarios(); 
 });

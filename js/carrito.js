@@ -8,14 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarBadgesPopularidad();
 });
 
-// Manejador global de clics (Delegación de Eventos)
 document.addEventListener('click', (e) => {
 
-    // 1. CAPTURAR EL CLIC EN "AGREGAR AL CARRITO"
     if (e.target && (e.target.id === 'btn-adquirir-detalle' || e.target.classList.contains('btn-add-to-cart'))) {
         e.preventDefault();
         const boton = e.target;
-
         const item = {
             id:     boton.getAttribute('data-id')    || 'obra_pirata_001',
             titulo: boton.getAttribute('data-titulo') || 'El Pirata',
@@ -26,7 +23,6 @@ document.addEventListener('click', (e) => {
         agregarAlCarrito(item);
     }
 
-    // 2. CAPTURAR EL CLIC EN EL ICONO DE LA BOLSA DEL HEADER
     if (e.target && (
         e.target.id === 'open-cart-btn' ||
         e.target.closest('#open-cart-btn') ||
@@ -38,7 +34,6 @@ document.addEventListener('click', (e) => {
         abrirLaVentanaDelCarrito();
     }
 
-    // 3. CAPTURAR EL CLIC EN "PROCEDER AL PAGO"
     if (e.target && (e.target.id === 'checkout-btn' || e.target.id === 'btn-proceder-pago')) {
         e.preventDefault();
 
@@ -58,7 +53,6 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    // 4. CAPTURAR EL CLIC EN LA "X" PARA CERRAR EL CARRITO
     if (e.target && (e.target.id === 'close-cart-btn' || e.target.closest('#close-cart-btn'))) {
         e.preventDefault();
         const cartSidebar = document.getElementById('cart-sidebar');
@@ -79,13 +73,11 @@ function agregarAlCarrito(producto) {
     }
 
     carrito.push(producto);
-    // Actualizar popularidad
     const clave = `popularidad_${producto.id}`;
     const conteo = parseInt(localStorage.getItem(clave) || '0') + 1;
     localStorage.setItem(clave, conteo);
     actualizarBadgesPopularidad();
     localStorage.setItem('kelmatica_cart', JSON.stringify(carrito));
-
     actualizarInterfazVisual();
     abrirLaVentanaDelCarrito();
 }
@@ -103,19 +95,13 @@ function abrirLaVentanaDelCarrito() {
     }
 }
 
-// ========================================================
-// RENDERIZADO VISUAL
-// ========================================================
-
 function actualizarInterfazVisual() {
     const contenedor  = document.getElementById('cart-items-container') || document.getElementById('carrito-items-container');
     const txtSubtotal = document.getElementById('cart-sidebar-subtotal') || document.getElementById('cart-subtotal-val');
     const contadorMenu = document.getElementById('cart-counter') || document.getElementById('cart-count') || document.querySelector('.badge');
-
     if (contadorMenu) {
         contadorMenu.textContent = carrito.length;
     }
-
     if (!contenedor) return;
 
     if (carrito.length === 0) {

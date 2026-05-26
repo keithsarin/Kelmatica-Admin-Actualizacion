@@ -1,8 +1,3 @@
-// ========================================================
-// KELMÁTICA - SCRIPT DE PASARELA DE PAGO (compra.js)
-// ========================================================
-
-// --- CONSTANTES Y ESTADO ---
 const CLAVE_CARRITO = 'kelmatica_cart';
 const COSTOS_ENVIO = {
     estandar: 15000,
@@ -12,7 +7,6 @@ const COSTOS_ENVIO = {
 let carritoActual = [];
 let costoEnvioSeleccionado = COSTOS_ENVIO.estandar;
 
-// --- INICIALIZACIÓN AL CARGAR LA PÁGINA ---
 document.addEventListener('DOMContentLoaded', () => {
     cargarCarritoDesdeStorage();
     renderizarItemsResumen();
@@ -22,15 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarCupon();
 });
 
-// ========================================================
-// 1. CARGAR DATOS DEL CARRITO
-// ========================================================
-
 function cargarCarritoDesdeStorage() {
     const datos = localStorage.getItem(CLAVE_CARRITO);
     carritoActual = datos ? JSON.parse(datos) : [];
 
-    // Si el carrito llega vacío, avisar y redirigir
     if (carritoActual.length === 0) {
         const contenedor = document.getElementById('items-resumen-compra');
         if (contenedor) {
@@ -46,10 +35,6 @@ function cargarCarritoDesdeStorage() {
         }
     }
 }
-
-// ========================================================
-// 2. RENDERIZAR ITEMS EN EL RESUMEN
-// ========================================================
 
 function renderizarItemsResumen() {
     const contenedor = document.getElementById('items-resumen-compra');
@@ -80,10 +65,6 @@ function renderizarItemsResumen() {
     });
 }
 
-// ========================================================
-// 3. CALCULAR Y MOSTRAR TOTALES
-// ========================================================
-
 function calcularYMostrarTotales() {
     const subtotal = carritoActual.reduce((acc, item) => acc + item.precio, 0);
     const total    = subtotal + costoEnvioSeleccionado;
@@ -97,31 +78,21 @@ function calcularYMostrarTotales() {
     if (elTotal)    elTotal.textContent    = formatearPrecioCOP(total);
 }
 
-// ========================================================
-// 4. EVENTOS: MÉTODO DE ENVÍO
-// ========================================================
-
 function inicializarEventosEnvio() {
     const radios = document.querySelectorAll('input[name="metodo-envio"]');
     const labels = document.querySelectorAll('.radio-envio');
 
     radios.forEach(radio => {
         radio.addEventListener('change', () => {
-            // Actualizar clase activo
             labels.forEach(l => l.classList.remove('activo'));
             const labelActivo = radio.closest('.radio-envio');
             if (labelActivo) labelActivo.classList.add('activo');
 
-            // Actualizar costo y recalcular
             costoEnvioSeleccionado = COSTOS_ENVIO[radio.value] || COSTOS_ENVIO.estandar;
             calcularYMostrarTotales();
         });
     });
 }
-
-// ========================================================
-// 5. EVENTOS: PESTAÑAS DE PAGO
-// ========================================================
 
 function inicializarEventosPago() {
     const botonesPestana = document.querySelectorAll('.boton-pestana');
@@ -131,21 +102,15 @@ function inicializarEventosPago() {
             const objetivo = boton.getAttribute('data-objetivo');
             if (!objetivo) return;
 
-            // Desactivar todas las pestañas y contenidos
             botonesPestana.forEach(b => b.classList.remove('activo'));
             document.querySelectorAll('.contenido-pestana-pago').forEach(c => c.classList.remove('activo'));
 
-            // Activar la pestaña y el contenido correspondiente
             boton.classList.add('activo');
             const contenidoObjetivo = document.getElementById(objetivo);
             if (contenidoObjetivo) contenidoObjetivo.classList.add('activo');
         });
     });
 }
-
-// ========================================================
-// 6. CUPÓN DE DESCUENTO
-// ========================================================
 
 function inicializarCupon() {
     const botonCupon = document.getElementById('boton-aplicar-cupon');
@@ -156,13 +121,11 @@ function inicializarCupon() {
     botonCupon.addEventListener('click', () => {
         const codigo = inputCupon.value.trim().toUpperCase();
 
-        // Cupones válidos — puedes ampliar este objeto
         const cupones = {
             'KELMATICA10': 0.10,
             'ARTE15':      0.15,
             'BIENVENIDO':  0.05,
         };
-
         if (cupones[codigo]) {
             const descuento = cupones[codigo];
             aplicarDescuento(descuento, codigo);
@@ -173,18 +136,14 @@ function inicializarCupon() {
 }
 
 let descuentoAplicado = 0;
-
 function aplicarDescuento(porcentaje, codigo) {
     descuentoAplicado = porcentaje;
-
     const subtotal  = carritoActual.reduce((acc, item) => acc + item.precio, 0);
     const descuento = subtotal * porcentaje;
     const total     = subtotal - descuento + costoEnvioSeleccionado;
 
-    // Mostrar fila de descuento si no existe
     const totalesEl = document.querySelector('.totales-resumen');
     let filaDescuento = document.getElementById('fila-descuento');
-
     if (!filaDescuento && totalesEl) {
         filaDescuento = document.createElement('div');
         filaDescuento.id = 'fila-descuento';
@@ -193,7 +152,7 @@ function aplicarDescuento(porcentaje, codigo) {
             <span>Descuento (${Math.round(porcentaje * 100)}%)</span>
             <span id="valor-descuento" style="color: #4ade80;">-${formatearPrecioCOP(descuento)}</span>
         `;
-        // Insertar antes del divisor secundario
+  
         const divisorSec = totalesEl.querySelector('.divisor-secundario');
         if (divisorSec) {
             totalesEl.insertBefore(filaDescuento, divisorSec);
@@ -209,8 +168,6 @@ function aplicarDescuento(porcentaje, codigo) {
     if (elTotal) elTotal.textContent = formatearPrecioCOP(total);
 
     mostrarFeedbackCupon(`✓ Cupón "${codigo}" aplicado — ${Math.round(porcentaje * 100)}% de descuento`, true);
-
-    // Deshabilitar input y botón
     const inputCupon = document.getElementById('codigo-cupon');
     const botonCupon = document.getElementById('boton-aplicar-cupon');
     if (inputCupon) inputCupon.disabled = true;
@@ -236,8 +193,6 @@ function mostrarFeedbackCupon(mensaje, exito) {
     feedbackEl.style.color = exito ? '#4ade80' : '#f87171';
 }
 
-// 7. BOTÓN FINALIZAR PEDIDO
-
 document.addEventListener('DOMContentLoaded', () => {
     const botonFinalizar = document.getElementById('boton-finalizar-pedido');
     if (!botonFinalizar) return;
@@ -249,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Validar campos del formulario de envío
         const campos = [
             'compra-nombre', 'compra-correo', 'compra-telefono',
             'compra-direccion', 'compra-ciudad', 'compra-departamento'
@@ -274,13 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Todo OK — aquí iría la lógica real de pago
         alert('¡Pedido confirmado! Gracias por tu compra en Kelmática.');
         localStorage.removeItem(CLAVE_CARRITO);
     });
 });
 
-// UTILIDAD: FORMATEAR PRECIO EN COP
 function formatearPrecioCOP(valor) {
     return new Intl.NumberFormat('es-CO', {
         style: 'currency',

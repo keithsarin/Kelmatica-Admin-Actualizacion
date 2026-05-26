@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. SELECCIÓN DE ELEMENTOS GLOBALES ---
     const userIcon = document.getElementById('user-trigger'); 
     const loginOverlay = document.getElementById('login-overlay');
     const closeBtn = document.getElementById('close-login');
@@ -8,13 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileDropdown = document.getElementById('profile-dropdown');
     const sesionGuardada = localStorage.getItem('sesionKelmatica');
 
-    // --- 2. PERSISTENCIA DE SESIÓN ---
     if (sesionGuardada === 'activa') {
         if (userIcon) userIcon.style.display = 'none';
         if (profileTrigger) profileTrigger.style.display = 'block';
     }
 
-    // --- 3. LÓGICA DE ABRIR / CERRAR LOGIN ---
     if (userIcon && loginOverlay) {
         userIcon.addEventListener('click', (e) => {
             e.preventDefault();
@@ -35,13 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 4. VALIDACIÓN DE LOGIN (CLIENTE, ARTISTA Y ADMIN) ---
     const btnClienteDirecto = document.getElementById('btn-client-direct');
     const btnAdminLogin = document.getElementById('btn-admin-login');
     const clientErrorMsg = document.getElementById('client-error-msg');
     const adminErrorMsg = document.getElementById('admin-error-msg');
 
-    // Login Cliente
     if (btnClienteDirecto) {
         btnClienteDirecto.addEventListener('click', (e) => {
             e.preventDefault();
@@ -64,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Login Artista / Administrador
     if (btnAdminLogin) {
         btnAdminLogin.addEventListener('click', (e) => {
             e.preventDefault();
@@ -87,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 5. MENÚ DE PERFIL Y CERRAR SESIÓN ---
     if (profileTrigger && profileDropdown) {
         profileTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -109,9 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (profileDropdown) profileDropdown.classList.remove('active');
     });
 
-    // --- 6. INTERFAZ: CARRUSELES Y FAQ ---
-    
-    // FAQ Accordion
     document.querySelectorAll('.faq-item').forEach(item => {
         const q = item.querySelector('.faq-question');
         if (q) {
@@ -126,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Sliders de Galería
     const sliders = document.querySelectorAll('.style-slider-container-v2');
     sliders.forEach((container) => {
         const slides = container.querySelector('.style-slides-v2');
@@ -147,8 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-
-    // --- 7. PANEL DE CONTROL: TABS (PESTAÑAS) ---
     const dashboardTabs = document.querySelectorAll('.nav-link');
     const tabPanes = document.querySelectorAll('.tab-content');
 
@@ -166,14 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Limpiar errores al escribir en cualquier input
     document.querySelectorAll('input').forEach(input => {
         input.addEventListener('input', () => {
             if (clientErrorMsg) clientErrorMsg.style.display = "none";
             if (adminErrorMsg) adminErrorMsg.style.display = "none";
         });
     });
-// --- 8. ABRIR LOGIN AUTOMÁTICAMENTE SI VIENE DEL CARRITO ---
+
     if (window.location.hash === '#abrir-login') {
         setTimeout(() => {
             if (loginOverlay) {

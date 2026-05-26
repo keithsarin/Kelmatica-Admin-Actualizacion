@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body style="background-color: #0a0a0a; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
-
     <header class="main-header" style="border-bottom: 1px solid #1a1a1a;">
         <div class="header-container">
             <div class="logo">
@@ -25,10 +24,8 @@
             </a>
         </div>
     </header>
-
     <main style="display: flex; justify-content: center; align-items: center; padding: 60px 20px; flex-grow: 1;">
         <div class="k-login-box" style="width: 100%; max-width: 550px; background-color: #111111; border: 1px solid #1a1a1a; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); text-align: center;">
-            
             <div class="k-icon-gold" style="color: #c5a059; font-size: 2.5rem; margin-bottom: 20px;">
                 <i class="fa-solid fa-gem"></i>
             </div>
@@ -81,11 +78,9 @@
 
         </div>
     </main>
-
     <footer style="text-align: center; padding: 20px; border-top: 1px solid #1a1a1a; font-family: 'Roboto', sans-serif; font-size: 0.8rem; color: #555;">
         <p>&copy; 2026 KELMÁTICA Art. Todos los derechos reservados.</p>
     </footer>
-
     <script>
         document.getElementById('form-registro-cliente').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -103,29 +98,21 @@
                 errorDiv.style.display = "block";
                 return;
             }
-
-            // Creamos el objeto del nuevo usuario coleccionista
             const nuevoColeccionista = {
                 nombre: nombre,
                 apellidos: apellidos,
                 celular: celular,
                 ciudad: ciudad,
                 correo: correo,
-                password: password // En un entorno real esto se encriptaría en Backend
+                password: password 
             };
-
-            // Simulamos guardar en base de datos usando localStorage
             localStorage.setItem('kelmatica_user_registered', JSON.stringify(nuevoColeccionista));
-            
-            // Auto-logueamos al usuario recién creado para mejorar la experiencia
             localStorage.setItem('kelmatica_logged_in', JSON.stringify(true));
 
             alert("¡Registro exitoso! Bienvenido a Kelmática, " + nombre + ".");
             
-            // Redireccionamos a la galería para que pueda comprar de una vez
             window.location.href = 'galeria.html';
         });
     </script>
-
 </body>
 </html>
